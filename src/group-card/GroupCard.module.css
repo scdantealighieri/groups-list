@@ -1,0 +1,49 @@
+.groupCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 190px;
+  background-color: var(--dante-light-background);
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 400ms linear;
+}
+
+.groupCard:hover {
+  transform: scale(1.1);
+}
+
+.groupType {
+  font-weight: bold;
+  padding-top: 2px;
+}
+
+.groupLevel {
+  font-size: 220%;
+  font-weight: bold;
+  padding-top: 7px;
+}
+
+.groupDays {
+  font-size: 12px;
+  padding-top: 7px;
+}
+
+.groupLector {
+  font-weight: bold;
+  padding-top: 7px;
+}
+
+.showMoreBtn {
+  background-color: var(--dante-dark-brown);
+  color: white;
+  cursor: pointer;
+  width: 80%;
+  margin: 30px auto 5px auto;
+  border-radius: 5px;
+  text-align: center;
+  padding: 3px 0px;
+  font-size: 85%;
+}
