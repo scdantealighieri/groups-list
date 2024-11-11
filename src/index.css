@@ -5,7 +5,14 @@
   --dante-main-background: #f7e8cb;
 }
 
-body {
+body, #root {
   font-family: "Plus Jakarta Sans", sans-serif;
   background-color: var(--dante-main-background);
+  color: black;
+  font-size: 16px;
+  line-height: normal;
+}
+
+#root * {
+  box-sizing: content-box !important;
 }
