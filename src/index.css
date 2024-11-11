@@ -1,8 +1,11 @@
 :root {
   --dante-light-background: #f9f2e2;
   --dante-dark-brown: #6e292b;
+  --dante-filter-option-background: #f4d09c;
+  --dante-main-background: #f7e8cb;
 }
 
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: var(--dante-main-background);
 }

@@ -12,7 +12,7 @@ function App() {
         const response = await fetch(
           "https://dantealighieri.appblue.pl/api/get_groups.php"
         );
-        const data: Group[] = await response.json();
+        const data = await response.json();
         setGroups(data);
       } catch (error) {
         console.error("Error fetching data:", error);

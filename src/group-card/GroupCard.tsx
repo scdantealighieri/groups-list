@@ -1,17 +1,9 @@
 import { Group } from "../models/group";
+import { dayMapping } from "../services/group-service";
 import styles from "./GroupCard.module.css";
 
 export const GroupCard = ({ group }: { group: Group }) => {
-  const dayMapping: { [key: string]: string } = {
-    pon: "poniedziałek",
-    wto: "wtorek",
-    sro: "środa",
-    czw: "czwartek",
-    pia: "piątek",
-    sob: "sobota",
-    nie: "niedziela",
-  };
-
+  
   const getFormattedGroupDays = (groupDays: string): string => {
     return groupDays
       .split("-")

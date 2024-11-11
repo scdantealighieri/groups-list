@@ -1,0 +1,35 @@
+.filterContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.filterLine {
+    display: flex;
+}
+
+.filterTitle {
+    min-width: 200px;
+    font-weight: 700;
+}
+
+.filterOptionsContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filterOption {
+    background-color: var(--dante-filter-option-background);
+    border-radius: 6px;
+    padding: 3px 10px 3px 10px;
+    cursor: pointer;
+    color: var(--dante-dark-brown);
+}
+
+.filterOption.selected {
+    background-color: var(--dante-dark-brown);
+    color: white;
+}

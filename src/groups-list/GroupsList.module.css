@@ -1,6 +1,17 @@
 .groupList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
+  padding-top: 25px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.filters {
+  padding-bottom: 25px;
+  background-color: var(--dante-light-background);
+  padding-top: 50px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
