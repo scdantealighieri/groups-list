@@ -1,0 +1,68 @@
+.modal {
+    position: fixed;
+    background-color: white;
+    z-index: 9999;
+    width: 50%;
+
+    top: 20%;
+    left: 25%;
+}
+
+.modalContent {
+    display: flex;
+    justify-content: space-between;
+    padding: 48px 48px 0px 48px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.detail {
+    display: flex;
+}
+
+.detail .detailTitle {
+    font-weight: bold;
+}
+
+.detail.detailDays {
+    flex-direction: column;
+} 
+
+.photo img {
+    max-width: 200px;
+    max-height: 220px;
+    border-radius: 10px;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.photoTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.photoTitle .title {
+    font-weight: bold;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.closeBtn {
+    margin-right: 15px;
+    margin-bottom: 10px;
+    background-color: var(--dante-dark-brown);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}

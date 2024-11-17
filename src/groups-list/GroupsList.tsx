@@ -6,9 +6,13 @@ import { Filter } from "../models/filter";
 
 import styles from "./GroupsList.module.css";
 import { mapGroupHoursToPeriod } from "../services/group-service";
+import { GroupDetails } from "../models/group-details";
+import { GroupDetailsModal } from "../group-details/GroupDetailsModal";
 
 export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
+  const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setFilteredGroups(groups);
@@ -53,6 +57,35 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     setFilteredGroups(filteredGroups);
   };
 
+  const fetchGroupDetails = async (groupId: string) => {
+    try {
+      const response = await fetch(
+        "https://dantealighieri.appblue.pl/api/get_group_details.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({ id: groupId }).toString(),
+        }
+      );
+      const data: GroupDetails = (await response.json())[0];
+      setGroupDetails(data);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error("Error fetching group details:", error);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setGroupDetails(null);
+  };
+
+  const showModal = async (groupId: string) => {
+    await fetchGroupDetails(groupId);
+  };
+
   return (
     <div className={styles.listContainer}>
       <div className={styles.filters}>
@@ -60,9 +93,16 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
       </div>
       <div className={styles.groupList}>
         {filteredGroups.map((group) => (
-          <GroupCard group={group} key={group.groupId} />
+          <GroupCard
+            group={group}
+            onShowModal={showModal}
+            key={group.groupId}
+          />
         ))}
       </div>
+      {isModalOpen && groupDetails && (
+        <GroupDetailsModal groupDetails={groupDetails} onClose={closeModal} />
+      )}
     </div>
   );
 };

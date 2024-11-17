@@ -1,9 +1,15 @@
 import { Group } from "../models/group";
 import { dayMapping } from "../services/group-service";
+
 import styles from "./GroupCard.module.css";
 
-export const GroupCard = ({ group }: { group: Group }) => {
-  
+export const GroupCard = ({
+  group,
+  onShowModal,
+}: {
+  group: Group;
+  onShowModal: (groupId: string) => Promise<void>;
+}) => {
   const getFormattedGroupDays = (groupDays: string): string => {
     return groupDays
       .split("-")
@@ -24,7 +30,12 @@ export const GroupCard = ({ group }: { group: Group }) => {
         {getFormattedGroupHours(group.groupHours)}
       </div>
       <div className={styles.groupLector}>{group.groupLector}</div>
-      <div className={styles.showMoreBtn}>więcej info →</div>
+      <div
+        className={styles.showMoreBtn}
+        onClick={() => onShowModal(group.groupId)}
+      >
+        więcej info →
+      </div>
     </div>
   );
 };
