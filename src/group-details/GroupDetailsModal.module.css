@@ -2,10 +2,12 @@
     position: fixed;
     background-color: white;
     z-index: 9999;
-    width: 50%;
-
-    top: 20%;
-    left: 25%;
+    width: fit-content;
+    border-radius: 20px;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .modalContent {
@@ -17,52 +19,103 @@
 .details {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 25px;
+    justify-content: space-between;
 }
 
-.detail {
+.header {
+    display: flex;  
+    align-items: center; 
+    gap: 10px;
+    color: var(--dante-grey);
+}
+
+.infoContainer {
     display: flex;
-}
-
-.detail .detailTitle {
-    font-weight: bold;
-}
-
-.detail.detailDays {
     flex-direction: column;
-} 
+    gap: 5px;
+}
+
+.info {
+    display: flex;
+    gap: 10px;
+}
+
+.infoValue {
+    text-transform: capitalize;
+}
+
+.icon {
+    color:var(--dante-black)
+}
+
+.separator {
+    width: 2px;
+    height: 100%;
+    background-color: var(--dante-grey);
+}
+
+.level {
+    font-size: 110px;
+    font-weight: 700;
+    color: var(--dante-black);
+    line-height: 1;
+}
+
+.description{
+    color: var(--dante-grey);
+    max-width: 450px;
+}
+
+.datesHeader {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.dates {
+    margin-top: 10px;
+    color: var(--dante-grey);
+}
+
+.dates span {
+    margin-right: 10px;
+}
+
+.photo{
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+}
 
 .photo img {
-    max-width: 200px;
-    max-height: 220px;
-    border-radius: 10px;
-    border-color: lightgray;
-    border-width: 1px;
-    border-style: solid;
+    height:250px;
 }
 
 .photoTitle {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
+    font-size: 20px;
+    color: var(--dante-black);
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 15px;
+    margin-top: 20px;
 
-.photoTitle .title {
-    font-weight: bold;
 }
 
 .toolbar {
     display: flex;
     justify-content: flex-end;
+
+    padding: 25px 48px;
 }
 
 .closeBtn {
-    margin-right: 15px;
-    margin-bottom: 10px;
     background-color: var(--dante-dark-brown);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 5px;
+    color: var(--dante-white);
+    font-size: 14px;
+    font-weight: 400;
     cursor: pointer;
-    font-weight: bold;
+    padding: 7px 12px;
+    border-radius: 4px;
+    min-width: 80px;
+    text-align: center;
 }

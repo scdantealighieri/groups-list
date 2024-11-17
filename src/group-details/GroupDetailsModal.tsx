@@ -10,69 +10,71 @@ export const GroupDetailsModal = ({
   groupDetails: GroupDetails;
   onClose: () => void;
 }) => {
-  const mapGroupDetailsToFormattedSchedule = (
-    groupDetails: GroupDetails
-  ): string[] => {
-    const days = groupDetails.groupDays.split("-");
-    const hours = groupDetails.groupHours.split("$");
-
-    return days.map((day, index) => {
-      const formattedDay = dayMapping[day] || day;
-      const formattedHours = hours[index] || "";
-      return `${formattedDay} ${formattedHours}`;
-    });
+  const formatDate = (dateString: string): string => {
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
   };
 
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <div className={styles.details}>
-          <div className={styles.detail}>
-            <div className={styles.detailTitle}>Nazwa grupy:</div>
-            <div className={styles.detailValue}>{groupDetails.groupName}</div>
-          </div>
-          <div className={styles.detail}>
-            <div className={styles.detailTitle}>Tryb nauki:</div>
-            <div className={styles.detailValue}>{groupDetails.groupType}</div>
-          </div>
-          <div className={styles.detail}>
-            <div className={styles.detailTitle}>Poziom:</div>
-            <div className={styles.detailValue}>{groupDetails.groupLevel}</div>
-          </div>
-          <div className={styles.detail}>
-            <div className={styles.detailTitle}>Pierwsze zajęcia:</div>
-            <div className={styles.detailValue}>
-              {groupDetails.groupFirstMeet}
+          <div className={styles.header}>
+            <div className={styles.level}>{groupDetails.groupLevel}</div>
+            <div className={styles.separator}></div>
+            <div className={styles.infoContainer}>
+              <div className={styles.info}>
+                <div className={styles.icon}>
+                  <span className="material-symbols-outlined">location_on</span>
+                </div>
+                <div className={styles.infoValue}>{groupDetails.groupType}</div>
+              </div>
+              <div className={styles.info}>
+                <div className={styles.icon}>
+                  <span className="material-symbols-outlined">schedule</span>
+                </div>
+                <div className={styles.infoValue}>
+                  {groupDetails.groupHours.split("$").join(", ")}
+                </div>
+              </div>
+              <div className={styles.info}>
+                <div className={styles.icon}>
+                  <span className="material-symbols-outlined">
+                    calendar_month
+                  </span>
+                </div>
+                <div className={styles.infoValue}>
+                  {groupDetails.groupDays
+                    .split("-")
+                    .map((d) => dayMapping[d])
+                    .join(", ")}
+                </div>
+              </div>
             </div>
           </div>
-          <div className={styles.detail}>
-            <div className={styles.detailTitle}>Ostatnie zajęcia:</div>
-            <div className={styles.detailValue}>
-              {groupDetails.groupLastMeet}
-            </div>
+          <div className={styles.description}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sem
+            est, elementum quis neque nec, porttitor malesuada metus.
+            Pellentesque dui diam, blandit fringilla sapien id, venenatis
+            gravida felis. Morbi a semper augue. Aenean in leo efficitur,
+            hendrerit mi vitae, faucibus sapien. Donec gravida faucibus
+            consequat.
           </div>
-          <div className={`${styles.detail} ${styles.detailDays}`}>
-            <div className={styles.detailTitle}>Terminarz zajęć:</div>
-            <div className={styles.detailValue}>
-              {mapGroupDetailsToFormattedSchedule(groupDetails).map((s) => (
-                <div key={s}>-{s}</div>
-              ))}
+          <div className={styles.classDates}>
+            <div className={styles.datesHeader}>Terminy zajęć</div>
+            <div className={styles.dates}>
+              <span>{formatDate(groupDetails.groupFirstMeet)}</span>
+              <span>{formatDate(groupDetails.groupLastMeet)}</span>
             </div>
-          </div>
-          <div className={styles.detail}>
-            <div className={styles.detailTitle}>Opis grupy:</div>
-            <div className={styles.detailValue}></div>
           </div>
         </div>
+
         <div className={styles.photo}>
           <img
             src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
             alt={groupDetails.groupLector}
           />
-          <div className={styles.photoTitle}>
-            <div className={styles.title}>Lektor: </div>
-            <div className={styles.value}>{groupDetails.groupLector}</div>
-          </div>
+          <div className={styles.photoTitle}>{groupDetails.groupLector}</div>
         </div>
       </div>
       <div className={styles.toolbar}>
