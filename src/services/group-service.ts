@@ -1,3 +1,7 @@
+export const dayOrder = ["pon", "wto", "sro", "czw", "pia", "sob", "nie"];
+
+export const periodOrder = ["rano", "popołudnie", "wieczór"];
+
 export const dayMapping: { [key: string]: string } = {
     pon: "poniedziałek",
     wto: "wtorek",
@@ -11,11 +15,11 @@ export const dayMapping: { [key: string]: string } = {
 export const mapGroupHoursToPeriod = (groupHours: string): string => {
     const startHour = parseInt(groupHours.split("-")[0].split(":")[0], 10);
     if (startHour >= 6 && startHour < 12) {
-      return "Rano";
+      return "rano";
     } else if (startHour >= 12 && startHour < 18) {
-      return "Popołudnie";
+      return "popołudnie";
     } else if (startHour >= 18 && startHour < 24) {
-      return "Wieczór";
+      return "wieczór";
     } else {
       return "";
     }

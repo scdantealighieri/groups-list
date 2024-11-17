@@ -3,5 +3,5 @@ export interface Filter {
     groupLevel: [string?];
     groupDays: [string?];
     groupLector: [string?];
-    groupPeriod: string;
+    groupPeriod: [string?];
 }

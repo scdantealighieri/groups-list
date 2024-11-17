@@ -30,11 +30,16 @@ export const GroupCard = ({
         {getFormattedGroupHours(group.groupHours)}
       </div>
       <div className={styles.groupLector}>{group.groupLector}</div>
-      <div
-        className={styles.showMoreBtn}
-        onClick={() => onShowModal(group.groupId)}
-      >
-        więcej info →
+      <div className={styles.buttonsContainer}>
+        <div
+          className={`${styles.showMoreBtn} ${styles.danteButton}`}
+          onClick={() => onShowModal(group.groupId)}
+        >
+          Info
+        </div>
+        <div className={`${styles.signInBtn} ${styles.danteButton}`}>
+          Zapisz się
+        </div>
       </div>
     </div>
   );

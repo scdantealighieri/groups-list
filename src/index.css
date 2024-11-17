@@ -1,8 +1,11 @@
 :root {
-  --dante-light-background: #f9f2e2;
-  --dante-dark-brown: #6e292b;
+  --dante-light-background: #F8F2E6;
+  --dante-dark-brown: #6F2B2C;
   --dante-filter-option-background: #f4d09c;
-  --dante-main-background: #f7e8cb;
+  --dante-main-background: #F8EAD0;
+  --dante-black: #353F4F;
+  --dante-grey: #6C757D;
+  --dante-white: #faefdd;
 }
 
 body, #root {

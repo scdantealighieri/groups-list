@@ -2,7 +2,12 @@ import { useState } from "react";
 import { FilterType } from "../enums/filter-type";
 import { Filter } from "../models/filter";
 import { Group } from "../models/group";
-import { dayMapping, mapGroupHoursToPeriod } from "../services/group-service";
+import {
+  dayMapping,
+  dayOrder,
+  mapGroupHoursToPeriod,
+  periodOrder,
+} from "../services/group-service";
 
 import styles from "./GroupsFilter.module.css";
 
@@ -18,24 +23,28 @@ export const GroupsFilter = ({
     groupLector: [],
     groupLevel: [],
     groupType: [],
-    groupPeriod: "",
+    groupPeriod: [],
   });
 
   const groupTypes = Array.from(
     new Set(groups.map((group) => group.groupType))
   );
+
   const groupLevels = Array.from(
     new Set(groups.map((group) => group.groupLevel))
   );
+
   const groupDays = Array.from(
     new Set(groups.flatMap((group) => group.groupDays.split("-")))
-  );
+  ).sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+
   const groupLectors = Array.from(
     new Set(groups.map((group) => group.groupLector))
   );
+
   const groupPeriods = Array.from(
     new Set(groups.map((group) => mapGroupHoursToPeriod(group.groupHours)))
-  );
+  ).sort((a, b) => periodOrder.indexOf(a) - periodOrder.indexOf(b));
 
   const filterList = (filterType: FilterType, value: string) => {
     const idx = filter[filterType].indexOf(value);
@@ -48,12 +57,6 @@ export const GroupsFilter = ({
 
     setFilter({ ...filter });
     filterGroups(filter);
-  };
-
-  const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedPeriod = event.target.value;
-    setFilter({ ...filter, groupPeriod: selectedPeriod });
-    filterGroups({ ...filter, groupPeriod: selectedPeriod });
   };
 
   const isSelected = (filterType: FilterType, value: string): boolean => {
@@ -121,18 +124,21 @@ export const GroupsFilter = ({
 
       <div className={styles.filterLine}>
         <label className={styles.filterTitle}>Pora dnia</label>
-        <select
-          value={filter.groupPeriod}
-          onChange={handlePeriodChange}
-          className={styles.filterSelect}
-        >
-          <option value="">Dowolna</option>
-          {groupPeriods.map((period) => (
-            <option key={period} value={period}>
-              {period}
-            </option>
+        <div className={styles.filterOptionsContainer}>
+          {groupPeriods.map((groupPeriod) => (
+            <div
+              key={groupPeriod}
+              onClick={() => filterList(FilterType.GroupPeriod, groupPeriod)}
+              className={`${styles.filterOption} ${
+                isSelected(FilterType.GroupPeriod, groupPeriod)
+                  ? styles.selected
+                  : ""
+              }`}
+            >
+              {groupPeriod}
+            </div>
           ))}
-        </select>
+        </div>
       </div>
 
       <div className={styles.filterLine}>
