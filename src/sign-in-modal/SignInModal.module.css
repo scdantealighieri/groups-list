@@ -1,0 +1,45 @@
+.modal {
+    position: fixed;
+    background-color: var(--dante-light-background);
+    z-index: 9999;
+    min-width: 25%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modalContent {
+    display: flex;
+    padding: 48px 48px 0px 48px;
+    flex-direction: column;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+
+    padding: 25px 48px;
+}
+
+.closeBtn {
+    background-color: var(--dante-dark-brown);
+    color: var(--dante-white);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 7px 12px;
+    border-radius: 4px;
+    min-width: 80px;
+    text-align: center;
+    font-family: "Rubik", sans-serif;
+}
+
+.closeBtn:hover {
+    background-color: var(--dante-dark-brown);
+}
+
+.modal section {
+    flex-grow: 1;
+}

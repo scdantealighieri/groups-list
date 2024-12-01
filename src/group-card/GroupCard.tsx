@@ -5,10 +5,12 @@ import styles from "./GroupCard.module.css";
 
 export const GroupCard = ({
   group,
-  onShowModal,
+  onShowGroupDetails,
+  onShowSignIn,
 }: {
   group: Group;
-  onShowModal: (groupId: string) => Promise<void>;
+  onShowGroupDetails: (groupId: string) => Promise<void>;
+  onShowSignIn: (groupId: string) => Promise<void>;
 }) => {
   const getFormattedGroupDays = (groupDays: string): string => {
     return groupDays
@@ -33,11 +35,14 @@ export const GroupCard = ({
       <div className={styles.buttonsContainer}>
         <div
           className={`${styles.showMoreBtn} ${styles.danteButton}`}
-          onClick={() => onShowModal(group.groupId)}
+          onClick={() => onShowGroupDetails(group.groupId)}
         >
           Info
         </div>
-        <div className={`${styles.signInBtn} ${styles.danteButton}`}>
+        <div
+          className={`${styles.signInBtn} ${styles.danteButton}`}
+          onClick={() => onShowSignIn(group.groupId)}
+        >
           Zapisz się
         </div>
       </div>

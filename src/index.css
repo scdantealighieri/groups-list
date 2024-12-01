@@ -19,3 +19,8 @@ body, #root {
 #root * {
   box-sizing: content-box !important;
 }
+
+#root section,
+#root section * {
+  box-sizing: border-box !important;
+}

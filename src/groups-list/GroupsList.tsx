@@ -8,11 +8,13 @@ import styles from "./GroupsList.module.css";
 import { mapGroupHoursToPeriod } from "../services/group-service";
 import { GroupDetails } from "../models/group-details";
 import { GroupDetailsModal } from "../group-details/GroupDetailsModal";
+import { SignInModal } from "../sign-in-modal/SignInModal";
 
 export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
 
   useEffect(() => {
     setFilteredGroups(groups);
@@ -76,19 +78,29 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
       );
       const data: GroupDetails = (await response.json())[0];
       setGroupDetails(data);
-      setIsModalOpen(true);
     } catch (error) {
       console.error("Error fetching group details:", error);
     }
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeGroupDetails = () => {
+    setIsGroupDetailsOpen(false);
     setGroupDetails(null);
   };
 
-  const showModal = async (groupId: string) => {
+  const onShowGroupDetails = async (groupId: string) => {
     await fetchGroupDetails(groupId);
+    setIsGroupDetailsOpen(true);
+  };
+
+  const onShowSignIn = async (groupId: string) => {
+    await fetchGroupDetails(groupId);
+    setIsSignInOpen(true);
+  };
+
+  const closeSignIn = () => {
+    setIsSignInOpen(false);
+    setGroupDetails(null);
   };
 
   return (
@@ -100,13 +112,20 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
         {filteredGroups.map((group) => (
           <GroupCard
             group={group}
-            onShowModal={showModal}
+            onShowGroupDetails={onShowGroupDetails}
+            onShowSignIn={onShowSignIn}
             key={group.groupId}
           />
         ))}
       </div>
-      {isModalOpen && groupDetails && (
-        <GroupDetailsModal groupDetails={groupDetails} onClose={closeModal} />
+      {isGroupDetailsOpen && groupDetails && (
+        <GroupDetailsModal
+          groupDetails={groupDetails}
+          onClose={closeGroupDetails}
+        />
+      )}
+      {isSignInOpen && groupDetails && (
+        <SignInModal groupDetails={groupDetails} onClose={closeSignIn} />
       )}
     </div>
   );
