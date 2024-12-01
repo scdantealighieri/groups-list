@@ -50,7 +50,7 @@
 
 .separator {
     width: 2px;
-    height: 100%;
+    height: 100px;
     background-color: var(--dante-grey);
 }
 
@@ -118,6 +118,11 @@
     border-radius: 4px;
     min-width: 80px;
     text-align: center;
+    font-family: "Rubik", sans-serif;
+}
+
+.closeBtn:hover {
+    background-color: var(--dante-dark-brown);
 }
 
 .detailsBottom {
