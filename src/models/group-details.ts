@@ -4,6 +4,7 @@ export interface GroupDetails {
     groupLevel: string;
     groupDays: string;
     groupHours: string;
+    groupDescription: string;
     groupFirstMeet: string;
     groupLastMeet: string;
     groupLector: string;

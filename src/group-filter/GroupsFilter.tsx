@@ -6,6 +6,7 @@ import {
   dayMapping,
   dayOrder,
   mapGroupHoursToPeriod,
+  mapGroupState,
   periodOrder,
 } from "../services/group-service";
 
@@ -24,10 +25,15 @@ export const GroupsFilter = ({
     groupLevel: [],
     groupType: [],
     groupPeriod: [],
+    groupState: [],
   });
 
   const groupTypes = Array.from(
     new Set(groups.map((group) => group.groupType))
+  );
+
+  const groupStates = Array.from(
+    new Set(groups.map((group) => group.groupState))
   );
 
   const groupLevels = Array.from(
@@ -136,6 +142,25 @@ export const GroupsFilter = ({
               }`}
             >
               {groupPeriod}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.filterLine}>
+        <label className={styles.filterTitle}>Data rozpoczęcia</label>
+        <div className={styles.filterOptionsContainer}>
+          {groupStates.map((groupState) => (
+            <div
+              key={groupState}
+              onClick={() => filterList(FilterType.GroupState, groupState)}
+              className={`${styles.filterOption} ${
+                isSelected(FilterType.GroupState, groupState)
+                  ? styles.selected
+                  : ""
+              }`}
+            >
+              {mapGroupState(groupState)}
             </div>
           ))}
         </div>

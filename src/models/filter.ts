@@ -4,4 +4,5 @@ export interface Filter {
     groupDays: [string?];
     groupLector: [string?];
     groupPeriod: [string?];
+    groupState: [string?];
 }

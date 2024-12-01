@@ -5,4 +5,5 @@ export enum FilterType
     GroupDays = "groupDays",
     GroupLector = "groupLector",
     GroupPeriod = "groupPeriod",
+    GroupState = "groupState"
 }

@@ -48,8 +48,14 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     }
 
     if (filter.groupPeriod.length > 0) {
-      filteredGroups = filteredGroups.filter(
-        (group) => filter.groupPeriod.includes(mapGroupHoursToPeriod(group.groupHours))
+      filteredGroups = filteredGroups.filter((group) =>
+        filter.groupPeriod.includes(mapGroupHoursToPeriod(group.groupHours))
+      );
+    }
+
+    if (filter.groupState.length > 0) {
+      filteredGroups = filteredGroups.filter((group) =>
+        filter.groupState.includes(group.groupState)
       );
     }
 

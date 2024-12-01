@@ -1,3 +1,5 @@
+import { GroupState } from "../enums/group-state";
+
 export const dayOrder = ["pon", "wto", "sro", "czw", "pia", "sob", "nie"];
 
 export const periodOrder = ["rano", "popołudnie", "wieczór"];
@@ -23,4 +25,13 @@ export const mapGroupHoursToPeriod = (groupHours: string): string => {
     } else {
       return "";
     }
+  };
+
+  export const mapGroupState = (state: GroupState): string => {
+    const stateMapping: { [key in GroupState]: string } = {
+      [GroupState.Active]: "Trwające",
+      [GroupState.Icoming]: "Nadchodzące",
+    };
+  
+    return stateMapping[state];
   };

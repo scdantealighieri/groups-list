@@ -53,12 +53,7 @@ export const GroupDetailsModal = ({
             </div>
           </div>
           <div className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sem
-            est, elementum quis neque nec, porttitor malesuada metus.
-            Pellentesque dui diam, blandit fringilla sapien id, venenatis
-            gravida felis. Morbi a semper augue. Aenean in leo efficitur,
-            hendrerit mi vitae, faucibus sapien. Donec gravida faucibus
-            consequat.
+            {groupDetails.groupDescription}
           </div>
           <div className={styles.classDates}>
             <div className={styles.datesHeader}>Terminy zajęć</div>
