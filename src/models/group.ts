@@ -9,4 +9,5 @@ export interface Group {
   groupLector: string;
   groupFirstMeet: string;
   groupState: GroupState;
+  groupShortName: string;
 }

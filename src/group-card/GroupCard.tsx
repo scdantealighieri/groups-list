@@ -24,7 +24,7 @@ export const GroupCard = ({
   return (
     <div className={styles.groupCard}>
       <div className={styles.groupType}>{group.groupType}</div>
-      <div className={styles.groupLevel}>{group.groupLevel}</div>
+      <div className={styles.groupLevel}>{group.groupShortName}</div>
       <div className={styles.groupDays}>
         {getFormattedGroupDays(group.groupDays)}{" "}
         {getFormattedGroupHours(group.groupHours)}
