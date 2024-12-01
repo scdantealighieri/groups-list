@@ -18,43 +18,63 @@ export const GroupDetailsModal = ({
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
-        <div className={styles.details}>
-          <div className={styles.header}>
-            <div className={styles.level}>{groupDetails.groupShortName}</div>
-            <div className={styles.separator}></div>
-            <div className={styles.infoContainer}>
-              <div className={styles.info}>
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">location_on</span>
+        <div className={styles.detailsTop}>
+          <div className={styles.detailsLeft}>
+            <div className={styles.header}>
+              <div className={styles.level}>{groupDetails.groupShortName}</div>
+              <div className={styles.separator}></div>
+              <div className={styles.infoContainer}>
+                <div className={styles.info}>
+                  <div className={styles.icon}>
+                    <span className="material-symbols-outlined">
+                      location_on
+                    </span>
+                  </div>
+                  <div className={styles.infoValue}>
+                    {groupDetails.groupType}
+                  </div>
                 </div>
-                <div className={styles.infoValue}>{groupDetails.groupType}</div>
-              </div>
-              <div className={styles.info}>
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">schedule</span>
+                <div className={styles.info}>
+                  <div className={styles.icon}>
+                    <span className="material-symbols-outlined">schedule</span>
+                  </div>
+                  <div className={styles.infoValue}>
+                    {groupDetails.groupHours.split("$").join(", ")}
+                  </div>
                 </div>
-                <div className={styles.infoValue}>
-                  {groupDetails.groupHours.split("$").join(", ")}
-                </div>
-              </div>
-              <div className={styles.info}>
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">
-                    calendar_month
-                  </span>
-                </div>
-                <div className={styles.infoValue}>
-                  {groupDetails.groupDays
-                    .split("-")
-                    .map((d) => dayMapping[d])
-                    .join(", ")}
+                <div className={styles.info}>
+                  <div className={styles.icon}>
+                    <span className="material-symbols-outlined">
+                      calendar_month
+                    </span>
+                  </div>
+                  <div className={styles.infoValue}>
+                    {groupDetails.groupDays
+                      .split("-")
+                      .map((d) => dayMapping[d])
+                      .join(", ")}
+                  </div>
                 </div>
               </div>
             </div>
+            <div className={styles.description}>
+              {groupDetails.groupDescription}
+            </div>
           </div>
-          <div className={styles.description}>
-            {groupDetails.groupDescription}
+
+          <div className={styles.detailsRight}>
+            <div className={styles.photo}>
+              <img
+                src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
+                alt={groupDetails.groupLector}
+              />
+              <div className={styles.photoTitle}>
+                {groupDetails.groupLector}
+              </div>
+            </div>
           </div>
+        </div>
+        <div className={styles.detailsBottom}>
           <div className={styles.classDates}>
             <div className={styles.datesHeader}>Terminy zajęć</div>
             <div className={styles.dates}>
@@ -62,14 +82,15 @@ export const GroupDetailsModal = ({
               <span>{formatDate(groupDetails.groupLastMeet)}</span>
             </div>
           </div>
-        </div>
 
-        <div className={styles.photo}>
-          <img
-            src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
-            alt={groupDetails.groupLector}
-          />
-          <div className={styles.photoTitle}>{groupDetails.groupLector}</div>
+          {groupDetails.groupFreePlaces < 3 && (
+            <div className={styles.freePlacesContainer}>
+              <div className={styles.freePlacesHeader}>Wolne miejsca</div>
+              <div className={styles.freePlaces}>
+                Pozostałe miejsca: {groupDetails.groupFreePlaces}
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.toolbar}>

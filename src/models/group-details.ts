@@ -13,4 +13,5 @@ export interface GroupDetails {
     groupLectorFotoSize: number;
     groupLectorFotoContent: string;
     groupShortName: string;
+    groupFreePlaces: number;
   }

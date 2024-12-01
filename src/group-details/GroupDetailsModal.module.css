@@ -12,13 +12,12 @@
 
 .modalContent {
     display: flex;
-    justify-content: space-between;
     padding: 48px 48px 0px 48px;
+    flex-direction: column;
 }
 
-.details {
+.detailsTop {
     display: flex;
-    flex-direction: column;
     gap: 25px;
     justify-content: space-between;
 }
@@ -64,15 +63,15 @@
 
 .description{
     color: var(--dante-grey);
-    max-width: 450px;
+    max-width: 300px;
 }
 
-.datesHeader {
+.datesHeader, .freePlacesHeader {
     font-size: 25px;
     font-weight: 700;
 }
 
-.dates {
+.dates, .freePlaces {
     margin-top: 10px;
     color: var(--dante-grey);
 }
@@ -85,10 +84,11 @@
      display: flex;
      flex-direction: column;
      justify-content: flex-end;
+     object-fit: contain;
 }
 
-.photo img {
-    height:250px;
+.detailsRight, .freePlacesContainer {
+    width: 250px;
 }
 
 .photoTitle {
@@ -118,4 +118,15 @@
     border-radius: 4px;
     min-width: 80px;
     text-align: center;
+}
+
+.detailsBottom {
+ display: flex;
+ justify-content: space-between;   
+}
+
+.freePlacesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
