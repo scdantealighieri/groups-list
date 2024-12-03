@@ -64,6 +64,7 @@
 .description {
   color: var(--dante-grey);
   max-width: 300px;
+  white-space: pre-wrap;
 }
 
 .datesHeader,
