@@ -23,6 +23,18 @@ export const SignInModal = ({
     );
     copyOfFormContainer?.removeAttribute("id");
 
+    var groupIdContainer = copyOfFormContainer?.querySelector(".group-id");
+    var groupIdInput = groupIdContainer?.querySelector("input");
+    if (groupIdInput) {
+      groupIdInput.value = groupDetails.groupId;
+    }
+
+    var groupNameContainer = copyOfFormContainer?.querySelector(".group-name");
+    var groupNameInput = groupNameContainer?.querySelector("input");
+    if (groupNameInput) {
+      groupNameInput.value = groupDetails.groupName;
+    }
+
     if (copyOfFormSection && modalContentRef.current) {
       modalContentRef.current.appendChild(copyOfFormSection);
     }

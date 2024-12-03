@@ -77,6 +77,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
         }
       );
       const data: GroupDetails = (await response.json())[0];
+      data.groupId = groupId;
       setGroupDetails(data);
     } catch (error) {
       console.error("Error fetching group details:", error);

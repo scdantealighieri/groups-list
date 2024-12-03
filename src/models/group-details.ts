@@ -1,4 +1,5 @@
 export interface GroupDetails {
+    groupId: string;
     groupType: string;
     groupName: string;
     groupLevel: string;
