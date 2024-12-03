@@ -12,3 +12,9 @@
   background-color: var(--dante-light-background);
   padding: 20px;
 }
+
+@media screen and (max-width: 630px) {
+  .groupList {
+    justify-content: center;
+  }
+}

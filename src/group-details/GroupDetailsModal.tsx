@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { GroupDetails } from "../models/group-details";
 import { dayMapping } from "../services/group-service";
 
@@ -10,10 +11,24 @@ export const GroupDetailsModal = ({
   groupDetails: GroupDetails;
   onClose: () => void;
 }) => {
+  const shortNameRef = useRef<HTMLDivElement>(null);
+
   const formatDate = (dateString: string): string => {
     const [year, month, day] = dateString.split("-");
     return `${day}/${month}/${year}`;
   };
+
+  useEffect(() => {
+    if (
+      shortNameRef.current &&
+      shortNameRef.current.offsetWidth > 220 &&
+      shortNameRef.current.offsetWidth < 500
+    ) {
+      shortNameRef.current.classList.add(styles.medium);
+    } else if (shortNameRef.current && shortNameRef.current.offsetWidth > 450) {
+      shortNameRef.current.classList.add(styles.small);
+    }
+  }, []);
 
   return (
     <div className={styles.modal}>
@@ -21,7 +36,9 @@ export const GroupDetailsModal = ({
         <div className={styles.detailsTop}>
           <div className={styles.detailsLeft}>
             <div className={styles.header}>
-              <div className={styles.level}>{groupDetails.groupShortName}</div>
+              <div className={styles.level} ref={shortNameRef}>
+                {groupDetails.groupShortName}
+              </div>
               <div className={styles.separator}></div>
               <div className={styles.infoContainer}>
                 <div className={styles.info}>
@@ -63,6 +80,9 @@ export const GroupDetailsModal = ({
           </div>
 
           <div className={styles.detailsRight}>
+            <div className={styles.description}>
+              {groupDetails.groupDescription}
+            </div>
             <div className={styles.photo}>
               <img
                 src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
