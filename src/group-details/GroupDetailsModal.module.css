@@ -42,6 +42,7 @@
 
 .infoValue {
   text-transform: capitalize;
+  color: var(--dante-black);
 }
 
 .icon {

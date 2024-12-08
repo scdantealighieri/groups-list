@@ -1,45 +1,82 @@
 .modal {
-    position: fixed;
-    background-color: var(--dante-light-background);
-    z-index: 9999;
-    min-width: 25%;
-    border-radius: 20px;
-    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  background-color: var(--dante-light-background);
+  z-index: 9999;
+  min-width: 25%;
+  border-radius: 20px;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .modalContent {
-    display: flex;
-    padding: 48px 48px 0px 48px;
-    flex-direction: column;
+  display: flex;
+  padding: 15px 15px 0px 15px;
+  flex-direction: column;
 }
 
 .toolbar {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 
-    padding: 25px 48px;
+  padding: 25px 48px;
 }
 
 .closeBtn {
-    background-color: var(--dante-dark-brown);
-    color: var(--dante-white);
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 7px 12px;
-    border-radius: 4px;
-    min-width: 80px;
-    text-align: center;
-    font-family: "Rubik", sans-serif;
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 4px;
+  min-width: 80px;
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+  border: unset !important;
 }
 
 .closeBtn:hover {
-    background-color: var(--dante-dark-brown);
+  background-color: var(--dante-dark-brown);
 }
 
 .modal section {
-    flex-grow: 1;
+  flex-grow: 1;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header .groupName {
+  font-weight: 700;
+  color: var(--dante-black);
+  font-size: 54px;
+}
+
+.header .details {
+  font-size: 18px;
+  font-family: "Rubik", sans-serif;
+  color: var(--dante-grey);
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+button[type="submit"] {
+  padding: 15px !important;
+  height: 47px !important;
+}
+
+.wpforms-submit-spinner {
+  top: 46%;
+  right: 46%;
+  max-width: 100px !important;
+  max-height: 100px !important;
+  height: 100px !important;
+  margin: unset !important;
+  position: fixed !important;
 }
