@@ -123,6 +123,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
         <GroupDetailsModal
           groupDetails={groupDetails}
           onClose={closeGroupDetails}
+          showSignInModal={onShowSignIn}
         />
       )}
       {isSignInOpen && groupDetails && (

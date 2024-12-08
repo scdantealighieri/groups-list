@@ -7,9 +7,11 @@ import styles from "./GroupDetailsModal.module.css";
 export const GroupDetailsModal = ({
   groupDetails,
   onClose,
+  showSignInModal,
 }: {
   groupDetails: GroupDetails;
   onClose: () => void;
+  showSignInModal: (groupId: string) => void;
 }) => {
   const shortNameRef = useRef<HTMLDivElement>(null);
 
@@ -111,6 +113,14 @@ export const GroupDetailsModal = ({
               </div>
             </div>
           )}
+
+          <div
+            className={styles.signInButton}
+            onClick={() => showSignInModal(groupDetails.groupId)}
+          >
+            <span className="material-symbols-outlined">person_add</span>
+            Zapisz się
+          </div>
         </div>
       </div>
       <div className={styles.toolbar}>

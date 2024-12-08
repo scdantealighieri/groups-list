@@ -80,3 +80,11 @@ button[type="submit"] {
   margin: unset !important;
   position: fixed !important;
 }
+
+@media screen and (max-width: 630px) {
+  .modal {
+    width: 95%;
+    max-height: 90vh;
+    overflow: scroll;
+  }
+}

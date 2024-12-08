@@ -144,6 +144,10 @@
   background-color: var(--dante-dark-brown);
 }
 
+.signInButton {
+  display: none;
+}
+
 .detailsBottom {
   display: flex;
   justify-content: space-between;
@@ -161,7 +165,9 @@
 
 @media screen and (max-width: 630px) {
   .modal {
-    width: 100%;
+    width: 95%;
+    max-height: 90vh;
+    overflow: scroll;
   }
 
   .modalContent {
@@ -169,17 +175,47 @@
   }
 
   .detailsRight {
-    flex-direction: row;
+    flex-direction: column-reverse;
     width: unset;
+    align-items: center;
   }
 
   .detailsRight .description {
     display: block;
     padding-right: 25px;
+    font-size: 14px;
+    padding-right: 0px;
+    margin-bottom: 15px;
   }
 
   .photo {
     width: 50%;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+
+  .level {
+    font-size: 70px;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .info {
+    gap: 5px;
+  }
+
+  .infoContainer {
+    flex-direction: row;
+    font-size: 12px;
+  }
+
+  .infoValue {
+    display: flex;
+    align-items: center;
   }
 
   .detailsLeft .description {
@@ -188,6 +224,34 @@
 
   .detailsTop {
     flex-direction: column;
+  }
+
+  .dates {
+    font-size: 12px;
+  }
+
+  .datesHeader {
+    font-size: 18px;
+  }
+
+  .freePlacesContainer {
+    display: none;
+  }
+
+  .signInButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--dante-dark-brown);
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .signInButton span {
+    font-size: 40px;
   }
 
   .toolbar {
