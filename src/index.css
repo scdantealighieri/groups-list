@@ -1,14 +1,15 @@
 :root {
-  --dante-light-background: #F8F2E6;
-  --dante-dark-brown: #6F2B2C;
+  --dante-light-background: #f8f2e6;
+  --dante-dark-brown: #6f2b2c;
   --dante-filter-option-background: #f4d09c;
-  --dante-main-background: #F8EAD0;
-  --dante-black: #353F4F;
-  --dante-grey: #6C757D;
+  --dante-main-background: #f8ead0;
+  --dante-black: #353f4f;
+  --dante-grey: #6c757d;
   --dante-white: #faefdd;
 }
 
-body, #root {
+body,
+#root {
   font-family: "Plus Jakarta Sans", sans-serif;
   background-color: var(--dante-main-background);
   color: black;
@@ -23,4 +24,20 @@ body, #root {
 #root section,
 #root section * {
   box-sizing: border-box !important;
+}
+
+.group-filters-multi-select {
+  width: 80%;
+}
+
+.group-filters-multi-select .dropdown-heading-value {
+  text-align: center;
+}
+
+.group-filters-multi-select .dropdown-heading {
+  width: 96% !important;
+}
+
+.dropdown-container {
+  border-radius: 10px !important;
 }

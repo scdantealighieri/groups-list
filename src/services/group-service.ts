@@ -1,4 +1,5 @@
 import { GroupState } from "../enums/group-state";
+import { FilterDropdownOption } from "../models/filter-dropdown-option";
 
 export const dayOrder = ["pon", "wto", "sro", "czw", "pia", "sob", "nie"];
 
@@ -34,4 +35,27 @@ export const mapGroupHoursToPeriod = (groupHours: string): string => {
     };
   
     return stateMapping[state];
+  };
+
+  const capitalize = (str: string): string => {
+    const words = str.split(" ");
+    return words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  export const convertToOptions = (strings: (string | undefined)[], labelConverter?: (value: string) => string): FilterDropdownOption[] => {
+    let getLabel = (str: string) => str;
+
+    if(labelConverter) {
+      getLabel = labelConverter;
+    }
+
+    return strings
+      .filter((str): str is string => str !== undefined)
+      .map((str) => ({
+        label: capitalize(getLabel(str)),
+        value: str,
+        disabled: false,
+      }));
   };

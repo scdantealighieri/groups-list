@@ -1,8 +1,8 @@
 export interface Filter {
-    groupType: [string?];
-    groupLevel: [string?];
-    groupDays: [string?];
-    groupLector: [string?];
-    groupPeriod: [string?];
-    groupState: [string?];
+    groupType: (string | undefined)[];
+    groupLevel: (string | undefined)[];
+    groupDays: (string | undefined)[];
+    groupLector: (string | undefined)[];
+    groupPeriod: (string | undefined)[];
+    groupState: (string | undefined)[];
 }
