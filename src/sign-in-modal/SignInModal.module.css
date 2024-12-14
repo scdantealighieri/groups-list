@@ -83,7 +83,7 @@ button[type="submit"] {
 
 @media screen and (max-width: 630px) {
   .modal {
-    width: 95%;
+    width: 90%;
     max-height: 90vh;
     overflow: scroll;
   }
