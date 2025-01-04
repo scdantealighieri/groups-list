@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Group } from "../models/group";
 import { dayMapping } from "../services/group-service";
 
@@ -12,6 +13,9 @@ export const GroupCard = ({
   onShowGroupDetails: (groupId: string) => Promise<void>;
   onShowSignIn: (groupId: string) => Promise<void>;
 }) => {
+  const groupLevelRef = useRef<HTMLDivElement>(null);
+  const cardWidth = 230;
+
   const getFormattedGroupDays = (groupDays: string): string => {
     return groupDays
       .split("-")
@@ -23,10 +27,28 @@ export const GroupCard = ({
     return groupHours.split("$")[0];
   };
 
+  useEffect(() => {
+    if (groupLevelRef.current) {
+      const width = groupLevelRef.current.offsetWidth;
+      if (width > cardWidth) {
+        let fontSize = parseFloat(
+          window.getComputedStyle(groupLevelRef.current).fontSize
+        );
+
+        while (groupLevelRef.current.offsetWidth > cardWidth && fontSize > 0) {
+          fontSize -= 1;
+          groupLevelRef.current.style.fontSize = `${fontSize}px`;
+        }
+      }
+    }
+  }, []);
+
   return (
-    <div className={styles.groupCard}>
+    <div className={styles.groupCard} style={{ width: `${cardWidth}px` }}>
       <div className={styles.groupType}>{group.groupType}</div>
-      <div className={styles.groupLevel}>{group.groupShortName}</div>
+      <div className={styles.groupLevel} ref={groupLevelRef}>
+        {group.groupShortName}
+      </div>
       <div className={styles.groupDays}>
         {getFormattedGroupDays(group.groupDays)}{" "}
         {getFormattedGroupHours(group.groupHours)}
