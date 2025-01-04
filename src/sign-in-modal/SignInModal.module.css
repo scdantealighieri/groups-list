@@ -102,4 +102,17 @@ button[type="submit"] {
   .modal {
     width: 90%;
   }
+
+  .details {
+    font-size: 16px;
+  }
+
+  .header {
+    margin-bottom: -25px;
+  }
+
+  .wpforms-field {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
 }
