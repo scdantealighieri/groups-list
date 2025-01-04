@@ -101,6 +101,10 @@
   object-fit: contain;
 }
 
+.photo img {
+  border-radius: 20px;
+}
+
 .detailsRight {
   display: flex;
   flex-direction: column;
