@@ -109,16 +109,19 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
       <div className={styles.filters}>
         <GroupsFilter groups={groups} filterGroups={filterGroups} />
       </div>
-      <div className={styles.groupList}>
-        {filteredGroups.map((group) => (
-          <GroupCard
-            group={group}
-            onShowGroupDetails={onShowGroupDetails}
-            onShowSignIn={onShowSignIn}
-            key={group.groupId}
-          />
-        ))}
+      <div className={styles.groupsListContainer}>
+        <div className={styles.groupList}>
+          {filteredGroups.map((group) => (
+            <GroupCard
+              group={group}
+              onShowGroupDetails={onShowGroupDetails}
+              onShowSignIn={onShowSignIn}
+              key={group.groupId}
+            />
+          ))}
+        </div>
       </div>
+
       {isGroupDetailsOpen && groupDetails && (
         <GroupDetailsModal
           groupDetails={groupDetails}
