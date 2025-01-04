@@ -34,6 +34,11 @@ export const GroupDetailsModal = ({
 
   return (
     <div className={styles.modal}>
+      <div className={styles.modalClose}>
+        <span className="material-symbols-outlined" onClick={onClose}>
+          close
+        </span>
+      </div>
       <div className={styles.modalContent}>
         <div className={styles.detailsTop}>
           <div className={styles.detailsLeft}>
@@ -113,19 +118,14 @@ export const GroupDetailsModal = ({
               </div>
             </div>
           )}
-
-          <div
-            className={styles.signInButton}
-            onClick={() => showSignInModal(groupDetails.groupId)}
-          >
-            <span className="material-symbols-outlined">person_add</span>
-            Zapisz się
-          </div>
         </div>
       </div>
       <div className={styles.toolbar}>
-        <button className={styles.closeBtn} onClick={onClose}>
-          Zamknij
+        <button
+          className={styles.signInButton}
+          onClick={() => showSignInModal(groupDetails.groupId)}
+        >
+          Zapisz się
         </button>
       </div>
     </div>

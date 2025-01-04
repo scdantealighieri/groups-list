@@ -12,7 +12,7 @@
 
 .modalContent {
   display: flex;
-  padding: 48px 48px 0px 48px;
+  padding: 10px 48px 0px 48px;
   flex-direction: column;
 }
 
@@ -127,7 +127,7 @@
   padding: 25px 48px;
 }
 
-.closeBtn {
+.signInButton {
   background-color: var(--dante-dark-brown);
   color: var(--dante-white);
   font-size: 14px;
@@ -141,12 +141,8 @@
   border: none !important;
 }
 
-.closeBtn:hover {
+.signInButton:hover {
   background-color: var(--dante-dark-brown);
-}
-
-.signInButton {
-  display: none;
 }
 
 .detailsBottom {
@@ -164,15 +160,27 @@
   display: none;
 }
 
+.modalClose {
+  text-align: right;
+  color: var(--dante-grey);
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.modalClose span {
+  cursor: pointer;
+  font-size: 30px;
+}
+
 @media screen and (max-width: 630px) {
   .modal {
     width: 90%;
     max-height: 90vh;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .modalContent {
-    padding: 25px 25px 0px 25px;
+    padding: 10px 25px 0px 25px;
   }
 
   .detailsRight {
@@ -239,29 +247,13 @@
     display: none;
   }
 
-  .signInButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    background-color: var(--dante-dark-brown);
-    color: white;
-    border-radius: 10px;
-    font-size: 12px;
-    cursor: pointer;
-  }
-
-  .signInButton span {
-    font-size: 40px;
-  }
-
   .toolbar {
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
   }
 
-  .closeBtn {
+  .signInButton {
     width: 100%;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
