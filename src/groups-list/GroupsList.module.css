@@ -30,4 +30,8 @@
   .groupList {
     justify-content: center;
   }
+
+  .filters {
+    background-color: unset;
+  }
 }
