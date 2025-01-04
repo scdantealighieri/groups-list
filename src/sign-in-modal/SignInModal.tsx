@@ -53,6 +53,11 @@ export const SignInModal = ({
 
   return (
     <div className={styles.modal}>
+      <div className={styles.modalClose}>
+        <span className="material-symbols-outlined" onClick={onClose}>
+          close
+        </span>
+      </div>
       <div className={styles.modalContent} ref={modalContentRef}>
         <div className={styles.header}>
           <div className={styles.groupName}>{groupDetails.groupShortName}</div>
@@ -70,11 +75,6 @@ export const SignInModal = ({
         {externalFormSection && modalContentRef.current && (
           <div ref={(el) => el?.appendChild(externalFormSection)} />
         )}
-      </div>
-      <div className={styles.toolbar}>
-        <button className={styles.closeBtn} onClick={handleClose}>
-          Zamknij
-        </button>
       </div>
     </div>
   );
