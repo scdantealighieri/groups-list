@@ -189,7 +189,7 @@
   }
 
   .modalContent {
-    padding: 10px 25px 0px 25px;
+    padding: 0px 25px 0px 25px;
   }
 
   .detailsRight {
@@ -207,6 +207,10 @@
   }
 
   .photo {
+    align-items: center;
+  }
+
+  .photo img {
     width: 50%;
   }
 
@@ -232,7 +236,7 @@
 
   .infoContainer {
     flex-direction: row;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .infoValue {
@@ -248,16 +252,29 @@
     flex-direction: column;
   }
 
-  .dates {
+  .dates,
+  .freePlaces {
     font-size: 12px;
   }
 
+  .dates {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dates span:last-child {
+    margin-right: unset;
+  }
+
+  .freePlacesHeader,
   .datesHeader {
     font-size: 18px;
   }
 
-  .freePlacesContainer {
-    display: none;
+  .classDates {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .toolbar {

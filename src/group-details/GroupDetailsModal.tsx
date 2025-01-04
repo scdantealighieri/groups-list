@@ -110,14 +110,15 @@ export const GroupDetailsModal = ({
             </div>
           </div>
 
-          {groupDetails.groupFreePlaces < 3 && (
-            <div className={styles.freePlacesContainer}>
-              <div className={styles.freePlacesHeader}>Wolne miejsca</div>
-              <div className={styles.freePlaces}>
-                {groupDetails.groupFreePlaces}
+          {groupDetails.groupFreePlaces < 3 &&
+            groupDetails.groupFreePlaces > 0 && (
+              <div className={styles.freePlacesContainer}>
+                <div className={styles.freePlacesHeader}>Wolne miejsca</div>
+                <div className={styles.freePlaces}>
+                  Ostatnie {groupDetails.groupFreePlaces}!
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
       </div>
       <div className={styles.toolbar}>
