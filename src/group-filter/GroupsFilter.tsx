@@ -41,9 +41,7 @@ export const GroupsFilter = ({
     new Set(groups.map((group) => group.groupType))
   );
 
-  const groupStates = Array.from(
-    new Set(groups.map((group) => group.groupState))
-  );
+  const groupStates = [GroupState.Active, GroupState.Icoming];
 
   const groupLevels = Array.from(
     new Set(groups.map((group) => group.groupLevel))

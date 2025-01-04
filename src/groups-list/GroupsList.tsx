@@ -109,17 +109,24 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
       <div className={styles.filters}>
         <GroupsFilter groups={groups} filterGroups={filterGroups} />
       </div>
+
       <div className={styles.groupsListContainer}>
-        <div className={styles.groupList}>
-          {filteredGroups.map((group) => (
-            <GroupCard
-              group={group}
-              onShowGroupDetails={onShowGroupDetails}
-              onShowSignIn={onShowSignIn}
-              key={group.groupId}
-            />
-          ))}
-        </div>
+        {filteredGroups.length === 0 ? (
+          <div className={styles.noGroups}>
+            Brak grup dla wybranych kryteriów
+          </div>
+        ) : (
+          <div className={styles.groupList}>
+            {filteredGroups.map((group) => (
+              <GroupCard
+                group={group}
+                onShowGroupDetails={onShowGroupDetails}
+                onShowSignIn={onShowSignIn}
+                key={group.groupId}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {isGroupDetailsOpen && groupDetails && (
