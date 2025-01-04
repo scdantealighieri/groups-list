@@ -114,7 +114,7 @@ export const GroupDetailsModal = ({
             <div className={styles.freePlacesContainer}>
               <div className={styles.freePlacesHeader}>Wolne miejsca</div>
               <div className={styles.freePlaces}>
-                Pozostałe miejsca: {groupDetails.groupFreePlaces}
+                {groupDetails.groupFreePlaces}
               </div>
             </div>
           )}
