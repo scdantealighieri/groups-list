@@ -34,7 +34,7 @@ export const GroupCard = ({
       <div className={styles.groupLector}>{group.groupLector}</div>
       <div className={styles.buttonsContainer}>
         <div
-          className={`${styles.showMoreBtn} ${styles.danteButton}`}
+          className={`${styles.showMoreBtn} ${styles.danteButton} ${styles.infoButton}`}
           onClick={() => onShowGroupDetails(group.groupId)}
         >
           Info

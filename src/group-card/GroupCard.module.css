@@ -26,7 +26,7 @@
 .groupLevel {
   font-weight: 700;
   padding-top: 7px;
-  color:var(--dante-black);
+  color: var(--dante-black);
   font-size: 45px;
 }
 
@@ -34,7 +34,7 @@
   padding-top: 7px;
   font-size: 14px;
   font-family: "Rubik", sans-serif;
-  color:var(--dante-grey);
+  color: var(--dante-grey);
   font-weight: 400;
 }
 
@@ -42,17 +42,16 @@
   padding-top: 7px;
   font-size: 14px;
   font-family: "Rubik", sans-serif;
-  color:var(--dante-grey);
+  color: var(--dante-grey);
   font-weight: 400;
 }
 
-.buttonsContainer{
+.buttonsContainer {
   display: flex;
   justify-content: center;
   gap: 20px;
   width: 100%;
   margin-top: 20px;
-
 }
 
 .danteButton {
@@ -66,4 +65,10 @@
   min-width: 80px;
   text-align: center;
   font-family: "Rubik", sans-serif;
+}
+
+.infoButton {
+  background-color: var(--dante-white);
+  color: var(--dante-dark-brown);
+  border: 1px solid var(--dante-dark-brown);
 }
