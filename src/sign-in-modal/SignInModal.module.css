@@ -10,6 +10,10 @@
   transform: translate(-50%, -50%);
 }
 
+.modal input {
+  font-family: "Rubik", sans-serif;
+}
+
 .modalContent {
   display: flex;
   padding: 15px 15px 0px 15px;
@@ -19,7 +23,6 @@
 .toolbar {
   display: flex;
   justify-content: flex-end;
-
   padding: 25px 48px;
 }
 

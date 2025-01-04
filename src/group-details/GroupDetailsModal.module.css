@@ -76,6 +76,7 @@
   white-space: pre-wrap;
   text-align: justify;
   margin-top: 10px;
+  font-family: "Rubik", sans-serif;
 }
 
 .datesHeader,
@@ -83,12 +84,14 @@
   font-size: 25px;
   font-weight: 700;
   color: var(--dante-black);
+  font-family: "Rubik", sans-serif;
 }
 
 .dates,
 .freePlaces {
   margin-top: 10px;
   color: var(--dante-grey);
+  font-family: "Rubik", sans-serif;
 }
 
 .dates span {

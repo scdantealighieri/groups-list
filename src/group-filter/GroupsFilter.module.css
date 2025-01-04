@@ -57,6 +57,7 @@
   .filterMobileContainer {
     display: block;
     position: relative;
+    font-family: "Rubik", sans-serif;
   }
 
   .filtersButton {
