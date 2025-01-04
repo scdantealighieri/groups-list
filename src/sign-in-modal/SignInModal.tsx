@@ -37,6 +37,12 @@ export const SignInModal = ({
         if (groupNameInput) {
           groupNameInput.value = groupDetails.groupName;
         }
+
+        var inputs = externalForm.querySelectorAll(".wpforms-field");
+        inputs.forEach((input) => {
+          (input as HTMLInputElement).style.paddingTop = "10px";
+          (input as HTMLInputElement).style.paddingBottom = "10px";
+        });
       }
 
       setExternalFormSection(externalFormSectionElement as HTMLElement);
@@ -54,7 +60,7 @@ export const SignInModal = ({
   return (
     <div className={styles.modal}>
       <div className={styles.modalClose}>
-        <span className="material-symbols-outlined" onClick={onClose}>
+        <span className="material-symbols-outlined" onClick={handleClose}>
           close
         </span>
       </div>
