@@ -140,7 +140,7 @@ export const GroupsFilter = ({
             />
             <MultiSelect
               options={convertToOptions(groupDays, (day) => dayMapping[day])}
-              value={convertToOptions(filter.groupDays)}
+              value={convertToOptions(filter.groupDays, (day) => dayMapping[day])}
               className="group-filters-multi-select"
               labelledBy={"Wybierz dzień tygodnia"}
               disableSearch={true}
@@ -174,7 +174,9 @@ export const GroupsFilter = ({
               options={convertToOptions(groupStates, (val) =>
                 mapGroupState(val as GroupState)
               )}
-              value={convertToOptions(filter.groupState)}
+              value={convertToOptions(filter.groupState, (val) =>
+                mapGroupState(val as GroupState)
+              )}
               className="group-filters-multi-select"
               labelledBy={"Wybierz datę rozpoczęcia"}
               disableSearch={true}
