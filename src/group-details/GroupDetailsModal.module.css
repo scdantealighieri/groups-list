@@ -293,6 +293,7 @@
     border: none;
     height: 30px;
     transition: unset;
+    font-weight: 500;
   }
 
   .signInButton:hover {
