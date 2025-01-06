@@ -66,8 +66,19 @@
   font-family: "Rubik", sans-serif;
 }
 
+.danteButton:hover {
+  background-color: var(--dante-white);
+  color: var(--dante-dark-brown);
+  border: 1px solid var(--dante-dark-brown);
+}
+
 .infoButton {
   background-color: var(--dante-white);
   color: var(--dante-dark-brown);
   border: 1px solid var(--dante-dark-brown);
+}
+
+.infoButton:hover {
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
 }
