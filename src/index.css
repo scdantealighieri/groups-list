@@ -42,3 +42,7 @@ body,
 .dropdown-container {
   border-radius: 10px !important;
 }
+
+.dropdown-content {
+  color: var(--dante-grey);
+}
