@@ -110,7 +110,7 @@ export const SignInModal = ({
           </div>
         </div>
         {externalFormSection && modalContentRef.current && (
-          <div ref={(el) => el?.appendChild(externalFormSection)} />
+          <div className={styles.signInFormContainer} ref={(el) => el?.appendChild(externalFormSection)} />
         )}
       </div>
     </div>

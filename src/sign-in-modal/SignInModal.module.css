@@ -98,6 +98,10 @@ button[type="submit"] {
   font-size: 30px;
 }
 
+.signInFormContainer {
+  font-family: "Rubik", sans-serif;
+}
+
 @media screen and (max-width: 630px) {
   .modal {
     width: 90%;
