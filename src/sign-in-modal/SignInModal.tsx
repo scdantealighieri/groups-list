@@ -12,6 +12,7 @@ export const SignInModal = ({
   onClose: () => void;
 }) => {
   const modalContentRef = useRef<HTMLDivElement>(null);
+  const groupDetailsRef = useRef<HTMLDivElement>(null);
   const [externalFormSection, setExternalFormSection] =
     useState<HTMLElement | null>(null);
 
@@ -49,6 +50,36 @@ export const SignInModal = ({
     }
   }, [groupDetails.groupId, groupDetails.groupName]);
 
+  useEffect(() => {
+    if (modalContentRef.current) {
+      const modalWidth = getElementWidthWithoutPadding(modalContentRef.current);
+      if (modalWidth) {
+        const groupDetailsWidth = groupDetailsRef.current?.offsetWidth;
+        if (groupDetailsWidth && groupDetailsWidth >= modalWidth) {
+          let fontSize = parseFloat(
+            window.getComputedStyle(groupDetailsRef.current).fontSize
+          );
+
+          while (
+            groupDetailsRef.current.offsetWidth >= modalWidth &&
+            fontSize > 0
+          ) {
+            fontSize -= 1;
+            groupDetailsRef.current.style.fontSize = `${fontSize}px`;
+          }
+        }
+      }
+    }
+  }, []);
+
+  const getElementWidthWithoutPadding = (element: HTMLElement): number => {
+    const computedStyle = window.getComputedStyle(element);
+    const width = element.clientWidth; // Width including padding
+    const paddingLeft = parseFloat(computedStyle.paddingLeft);
+    const paddingRight = parseFloat(computedStyle.paddingRight);
+    return width - paddingLeft - paddingRight;
+  };
+
   const handleClose = () => {
     if (externalFormSection) {
       document.body.appendChild(externalFormSection);
@@ -67,7 +98,7 @@ export const SignInModal = ({
       <div className={styles.modalContent} ref={modalContentRef}>
         <div className={styles.header}>
           <div className={styles.groupName}>{groupDetails.groupShortName}</div>
-          <div className={styles.details}>
+          <div className={styles.details} ref={groupDetailsRef}>
             <span>
               {groupDetails.groupDays
                 .split("-")
