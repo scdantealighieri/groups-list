@@ -105,8 +105,9 @@ export const GroupDetailsModal = ({
           <div className={styles.classDates}>
             <div className={styles.datesHeader}>Terminy zajęć</div>
             <div className={styles.dates}>
-              <span>{formatDate(groupDetails.groupFirstMeet)}</span>
-              <span>{formatDate(groupDetails.groupLastMeet)}</span>
+              <span>{`${formatDate(groupDetails.groupFirstMeet)} - ${formatDate(
+                groupDetails.groupLastMeet
+              )}`}</span>
             </div>
           </div>
 
