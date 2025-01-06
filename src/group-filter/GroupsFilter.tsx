@@ -47,9 +47,7 @@ export const GroupsFilter = ({
     new Set(groups.map((group) => group.groupLevel))
   );
 
-  const groupDays = Array.from(
-    new Set(groups.flatMap((group) => group.groupDays.split("-")))
-  ).sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+  const groupDays = ["pon", "wto", "sro", "czw", "pia", "sob"];
 
   const groupLectors = Array.from(
     new Set(groups.map((group) => group.groupLector))
@@ -140,7 +138,10 @@ export const GroupsFilter = ({
             />
             <MultiSelect
               options={convertToOptions(groupDays, (day) => dayMapping[day])}
-              value={convertToOptions(filter.groupDays, (day) => dayMapping[day])}
+              value={convertToOptions(
+                filter.groupDays,
+                (day) => dayMapping[day]
+              )}
               className="group-filters-multi-select"
               labelledBy={"Wybierz dzień tygodnia"}
               disableSearch={true}

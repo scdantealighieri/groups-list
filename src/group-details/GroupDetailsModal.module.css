@@ -138,7 +138,7 @@
 
 .signInButton {
   background-color: var(--dante-dark-brown);
-  color: var(--dante-white);
+  color: white;
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
@@ -148,10 +148,13 @@
   text-align: center;
   font-family: "Rubik", sans-serif;
   border: none !important;
+  transition: linear 200ms;
 }
 
 .signInButton:hover {
   background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+  transform: scale(1.1);
 }
 
 .detailsBottom {
@@ -289,5 +292,10 @@
     border-bottom-right-radius: 20px;
     border: none;
     height: 30px;
+    transition: unset;
+  }
+
+  .signInButton:hover {
+    transform: unset;
   }
 }
