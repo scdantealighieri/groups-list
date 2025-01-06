@@ -64,6 +64,7 @@
   min-width: 80px;
   text-align: center;
   font-family: "Rubik", sans-serif;
+  transition: 200ms linear;
 }
 
 .danteButton:hover {
@@ -76,6 +77,7 @@
   background-color: var(--dante-white);
   color: var(--dante-dark-brown);
   border: 1px solid var(--dante-dark-brown);
+  transition: 200ms linear;
 }
 
 .infoButton:hover {
