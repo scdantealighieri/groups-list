@@ -62,7 +62,7 @@ export const GroupDetailsModal = ({
                   <div className={styles.icon}>
                     <span className="material-symbols-outlined">schedule</span>
                   </div>
-                  <div className={styles.infoValue}>
+                  <div className={`${styles.infoValue} ${styles.hours}`}>
                     {groupDetails.groupHours.split("$")[0]}
                   </div>
                 </div>

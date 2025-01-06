@@ -247,6 +247,10 @@
     align-items: center;
   }
 
+  .infoValue.hours {
+    min-width: 65px;
+  }
+
   .detailsLeft .description {
     display: none;
   }
