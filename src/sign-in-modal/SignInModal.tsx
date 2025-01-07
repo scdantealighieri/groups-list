@@ -27,23 +27,17 @@ export const SignInModal = ({
       ).querySelector("form");
 
       if (externalForm) {
-        var groupIdContainer = externalForm?.querySelector(".group-id");
-        var groupIdInput = groupIdContainer?.querySelector("input");
+        const groupIdContainer = externalForm?.querySelector(".group-id");
+        const groupIdInput = groupIdContainer?.querySelector("input");
         if (groupIdInput) {
           groupIdInput.value = groupDetails.groupId;
         }
 
-        var groupNameContainer = externalForm?.querySelector(".group-name");
-        var groupNameInput = groupNameContainer?.querySelector("input");
+        const groupNameContainer = externalForm?.querySelector(".group-name");
+        const groupNameInput = groupNameContainer?.querySelector("input");
         if (groupNameInput) {
           groupNameInput.value = groupDetails.groupName;
         }
-
-        var inputs = externalForm.querySelectorAll(".wpforms-field");
-        inputs.forEach((input) => {
-          (input as HTMLInputElement).style.paddingTop = "10px";
-          (input as HTMLInputElement).style.paddingBottom = "10px";
-        });
       }
 
       setExternalFormSection(externalFormSectionElement as HTMLElement);
@@ -89,7 +83,7 @@ export const SignInModal = ({
   };
 
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} id="signInModal">
       <div className={styles.modalClose}>
         <span className="material-symbols-outlined" onClick={handleClose}>
           close
@@ -110,7 +104,10 @@ export const SignInModal = ({
           </div>
         </div>
         {externalFormSection && modalContentRef.current && (
-          <div className={styles.signInFormContainer} ref={(el) => el?.appendChild(externalFormSection)} />
+          <div
+            className={styles.signInFormContainer}
+            ref={(el) => el?.appendChild(externalFormSection)}
+          />
         )}
       </div>
     </div>

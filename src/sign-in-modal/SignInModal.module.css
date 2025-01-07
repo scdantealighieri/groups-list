@@ -105,6 +105,8 @@ button[type="submit"] {
 @media screen and (max-width: 630px) {
   .modal {
     width: 90%;
+    max-height: 95vh;
+    transform: translate(-50%, -50%);
   }
 
   .header {
