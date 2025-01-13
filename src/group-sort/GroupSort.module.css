@@ -1,0 +1,28 @@
+.container {
+  background-color: var(--dante-white);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.type,
+.header {
+  padding: 10px;
+}
+
+.type {
+  color: var(--dante-black);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.type.active {
+  background-color: var(--dante-main-background);
+  border-radius: 10px;
+}
+
+.header {
+  font-weight: 700;
+  margin-right: 20px;
+}

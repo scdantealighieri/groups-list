@@ -20,10 +20,41 @@
   padding: 20px;
 }
 
+.filtersMobile {
+  display: none;
+}
+
 .noGroups {
   font-size: 45px;
   text-align: center;
   margin-top: 20px;
+}
+
+.toolbar {
+  width: 100%;
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.toolbarItem {
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+}
+
+.toolbarItem span {
+  margin-right: 10px;
+}
+
+.tabActive {
+  display: flex;
+}
+
+.tabHidden {
+  display: none;
 }
 
 @media screen and (max-width: 630px) {
@@ -31,7 +62,16 @@
     justify-content: center;
   }
 
-  .filters {
-    background-color: unset;
+  .filtersMobile {
+    padding: 20px;
+    display: block;
+  }
+
+  .toolbar {
+    display: none;
+  }
+
+  .toolbarTab {
+    display: none;
   }
 }

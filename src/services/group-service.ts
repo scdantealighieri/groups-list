@@ -15,6 +15,21 @@ export const dayMapping: { [key: string]: string } = {
     nie: "niedziela",
   };
 
+
+export const dayMappingToNumber: { [key: string]: number } = {
+  pon: 1,
+  wto: 2,
+  sro: 3,
+  czw: 4,
+  pia: 5,
+  sob: 6,
+  nie: 7};
+
+export const parseDateToNumber = (dateString: string): number => {
+  const [year, month, day] = dateString.split("-").map(Number);
+  return new Date(year, month - 1, day).getTime();
+};
+
 export const mapGroupHoursToPeriod = (groupHours: string): string => {
     const startHour = parseInt(groupHours.split("-")[0].split(":")[0], 10);
     if (startHour >= 6 && startHour < 12) {

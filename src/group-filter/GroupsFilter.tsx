@@ -19,18 +19,14 @@ import { GroupState } from "../enums/group-state";
 export const GroupsFilter = ({
   groups,
   filterGroups,
+  handleSetFilter,
+  filter,
 }: {
   groups: Group[];
   filterGroups: (filter: Filter) => void;
+  handleSetFilter: (filter: Filter) => void;
+  filter: Filter;
 }) => {
-  const [filter, setFilter] = useState<Filter>({
-    groupDays: [],
-    groupLector: [],
-    groupLevel: [],
-    groupType: [],
-    groupPeriod: [],
-    groupState: [],
-  });
   const [isFiltersListVisible, setIsFiltersListVisible] = useState(false);
 
   const toggleFiltersListVisibility = () => {
@@ -66,7 +62,7 @@ export const GroupsFilter = ({
       filter[filterType].splice(idx, 1);
     }
 
-    setFilter({ ...filter });
+    handleSetFilter({ ...filter });
     filterGroups(filter);
   };
 
@@ -78,7 +74,7 @@ export const GroupsFilter = ({
       | string
       | undefined
     )[];
-    setFilter({ ...filter });
+    handleSetFilter({ ...filter });
     filterGroups(filter);
   };
 
