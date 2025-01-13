@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   gap: 50px;
+  padding: 5px;
 }
 
 .toolbarItem {
@@ -55,6 +56,28 @@
 
 .tabHidden {
   display: none;
+}
+
+.displayTypeContainer {
+  display: flex;
+  padding: 5px;
+  border-radius: 50px;
+  background-color: var(--dante-main-background);
+  position: relative;
+}
+
+.displayTypeItem {
+  color: var(--dante-dark-brown);
+  font-weight: 600;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 500ms;
+}
+
+.displayTypeItem.selected {
+  color: var(--dante-main-background);
+  background-color: var(--dante-dark-brown);
+  border-radius: 50px;
 }
 
 @media screen and (max-width: 630px) {

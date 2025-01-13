@@ -16,6 +16,7 @@ import { GroupSort } from "../group-sort/GroupSort";
 import { GroupSortType } from "../enums/group-sort-type";
 
 import styles from "./GroupsList.module.css";
+import { ListDisplayType } from "../enums/list-display-type";
 
 export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
@@ -26,6 +27,8 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [selectedSortType, setSelectedSortType] = useState<GroupSortType>(
     GroupSortType.Level
   );
+  const [selectedListDisplayType, setSelectedListDisplayType] =
+    useState<ListDisplayType>(ListDisplayType.Grid);
   const [filter, setFilter] = useState<Filter>({
     groupDays: [],
     groupLector: [],
@@ -197,6 +200,28 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
         >
           <span className="material-symbols-outlined">swap_vert</span>
           Sortuj
+        </div>
+        <div className={styles.displayTypeContainer}>
+          <div
+            className={`${styles.displayTypeItem} ${
+              selectedListDisplayType === ListDisplayType.Grid
+                ? styles.selected
+                : ""
+            }`}
+            onClick={() => setSelectedListDisplayType(ListDisplayType.Grid)}
+          >
+            Kafelki
+          </div>
+          <div
+            className={`${styles.displayTypeItem} ${
+              selectedListDisplayType === ListDisplayType.List
+                ? styles.selected
+                : ""
+            }`}
+            onClick={() => setSelectedListDisplayType(ListDisplayType.List)}
+          >
+            Lista
+          </div>
         </div>
       </div>
       <div className={styles.toolbarTab}>
