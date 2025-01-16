@@ -108,7 +108,9 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
 
   const closeGroupDetails = () => {
     setIsGroupDetailsOpen(false);
-    setGroupDetails(null);
+    if (!isSignInOpen) {
+      setGroupDetails(null);
+    }
   };
 
   const onShowGroupDetails = async (groupId: string) => {
@@ -123,7 +125,10 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
 
   const closeSignIn = () => {
     setIsSignInOpen(false);
-    setGroupDetails(null);
+
+    if (!isGroupDetailsOpen) {
+      setGroupDetails(null);
+    }
   };
 
   const onToggleFilterTab = (tab: FilterTabs) => {
