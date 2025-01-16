@@ -31,7 +31,6 @@
 }
 
 .toolbar {
-  width: 100%;
   background-color: var(--dante-dark-brown);
   color: var(--dante-white);
   display: flex;
@@ -63,7 +62,6 @@
   padding: 5px;
   border-radius: 50px;
   background-color: var(--dante-main-background);
-  position: relative;
 }
 
 .displayTypeItem {
