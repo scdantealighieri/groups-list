@@ -45,6 +45,12 @@
   display: flex;
 }
 
+.toolbarTab {
+  display: flex;
+  justify-content: center;
+  background-color: var(--dante-light-background);
+}
+
 .toolbarItem span {
   margin-right: 10px;
 }
