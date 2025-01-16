@@ -306,4 +306,8 @@
   .signInButton:hover {
     transform: unset;
   }
+
+  .freePlacesContainer {
+    width: unset;
+  }
 }
