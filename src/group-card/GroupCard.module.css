@@ -9,6 +9,8 @@
   padding: 10px 20px;
   border-radius: 10px;
   transition: 400ms linear;
+  overflow: hidden;
+  position: relative;
 }
 
 .groupCard:hover {
@@ -83,4 +85,18 @@
 .infoButton:hover {
   background-color: var(--dante-dark-brown);
   color: var(--dante-white);
+}
+
+.groupFullBanner {
+  position: absolute;
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+  top: 10px;
+  left: -45px;
+  rotate: -45deg;
+  font-size: 20px;
+  font-weight: 600;
+  width: 150px;
+  text-align: center;
+  padding: 5px;
 }

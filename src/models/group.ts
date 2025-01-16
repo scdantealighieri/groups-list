@@ -10,4 +10,5 @@ export interface Group {
   groupFirstMeet: string;
   groupState: GroupState;
   groupShortName: string;
+  groupFreePlaces: number;
 }
