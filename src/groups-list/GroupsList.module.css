@@ -95,4 +95,8 @@
   .toolbarTab {
     display: none;
   }
+
+  .filters {
+    background-color: unset;
+  }
 }
