@@ -25,4 +25,5 @@
 .header {
   font-weight: 700;
   margin-right: 20px;
+  color: var(--dante-black);
 }
