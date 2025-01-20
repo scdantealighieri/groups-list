@@ -1,4 +1,5 @@
 import { Group } from "../models/group";
+import { dayMapping } from "../services/group-service";
 
 import styles from "./GroupsTable.module.css";
 
@@ -26,8 +27,13 @@ export const GroupsTable = ({
         {groups.map((group) => (
           <div key={group.groupId} className={styles.tableRow}>
             <div className={styles.firstColumn}>{group.groupShortName}</div>
-            <div>{group.groupDays}</div>
-            <div>{group.groupHours}</div>
+            <div>
+              {group.groupDays
+                .split("-")
+                .map((d) => dayMapping[d])
+                .join(", ")}
+            </div>
+            <div>{group.groupHours.split("$")[0]}</div>
             <div>{group.groupType}</div>
             <div>{group.groupLector}</div>
             <div
