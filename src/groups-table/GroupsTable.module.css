@@ -1,0 +1,62 @@
+.groupsTable {
+  --cell-width: 220px;
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableBody > .tableRow:nth-child(2n) > div {
+  background-color: white;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: center;
+}
+
+.tableHeader {
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.tableHeader > div {
+  min-width: var(--cell-width);
+  padding: 10px 0px;
+}
+
+.firstColumn {
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: var(--dante-grey);
+}
+
+.tableRow > div {
+  min-width: var(--cell-width);
+  text-align: center;
+  padding: 10px 0px;
+  color: var(--dante-black);
+}
+
+.tableHeader > div,
+.tableRow > div {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: var(--dante-grey);
+
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: var(--dante-grey);
+}
+
+.danteButton {
+  cursor: pointer;
+}

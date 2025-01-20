@@ -17,6 +17,7 @@ import { GroupSortType } from "../enums/group-sort-type";
 
 import styles from "./GroupsList.module.css";
 import { ListDisplayType } from "../enums/list-display-type";
+import { GroupsTable } from "../groups-table/GroupsTable";
 
 export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
@@ -263,6 +264,12 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
           <div className={styles.noGroups}>
             Brak grup dla wybranych kryteriów
           </div>
+        ) : selectedListDisplayType === ListDisplayType.List ? (
+          <GroupsTable
+            groups={filteredGroups}
+            onShowGroupDetails={onShowGroupDetails}
+            onShowSignIn={onShowSignIn}
+          ></GroupsTable>
         ) : (
           <div className={styles.groupList}>
             {filteredGroups.map((group) => (
