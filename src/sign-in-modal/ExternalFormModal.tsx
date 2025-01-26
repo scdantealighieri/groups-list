@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { GroupDetails } from "../models/group-details";
 
-import styles from "./SignInModal.module.css";
+import styles from "./ExternalFormModal.module.css";
 import { dayMapping } from "../services/group-service";
 
-export const SignInModal = ({
+export const ExternalFormModal = ({
   groupDetails,
+  formSectionId,
   onClose,
 }: {
   groupDetails: GroupDetails;
+  formSectionId: string;
   onClose: () => void;
 }) => {
   const modalContentRef = useRef<HTMLDivElement>(null);
@@ -17,8 +19,9 @@ export const SignInModal = ({
     useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    const externalFormSectionElement =
-      document.querySelector("#signInFormSection");
+    const externalFormSectionElement = document.querySelector(
+      `#${formSectionId}`
+    );
     if (externalFormSectionElement) {
       (externalFormSectionElement as HTMLElement).style.display = "block";
 
@@ -83,7 +86,7 @@ export const SignInModal = ({
   };
 
   return (
-    <div className={styles.modal} id="signInModal">
+    <div className={styles.modal} id="externalFormModal">
       <div className={styles.modalClose}>
         <span className="material-symbols-outlined" onClick={handleClose}>
           close
@@ -105,7 +108,7 @@ export const SignInModal = ({
         </div>
         {externalFormSection && modalContentRef.current && (
           <div
-            className={styles.signInFormContainer}
+            className={styles.externalFormContainer}
             ref={(el) => el?.appendChild(externalFormSection)}
           />
         )}

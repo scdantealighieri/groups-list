@@ -47,22 +47,22 @@ body,
   color: var(--dante-grey);
 }
 
-#signInModal .wpforms-field {
+#externalFormModal .wpforms-field {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
 }
 
 @media screen and (max-width: 630px) {
-  #signInModal .wpforms-field {
+  #externalFormModal .wpforms-field {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
   }
 
-  #signInModal .wpforms-field-description {
+  #externalFormModal .wpforms-field-description {
     font-size: 10px !important;
   }
 
-  #signInModal .discounts-list ul {
+  #externalFormModal .discounts-list ul {
     gap: 5px;
   }
 }

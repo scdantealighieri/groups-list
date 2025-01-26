@@ -8,10 +8,12 @@ export const GroupDetailsModal = ({
   groupDetails,
   onClose,
   showSignInModal,
+  showNotifyModal,
 }: {
   groupDetails: GroupDetails;
   onClose: () => void;
   showSignInModal: (groupId: string) => void;
+  showNotifyModal: (groupId: string) => void;
 }) => {
   const shortNameRef = useRef<HTMLDivElement>(null);
 
@@ -110,7 +112,6 @@ export const GroupDetailsModal = ({
               )}`}</span>
             </div>
           </div>
-
           {groupDetails.groupFreePlaces < 3 &&
             groupDetails.groupFreePlaces > 0 && (
               <div className={styles.freePlacesContainer}>
@@ -120,15 +121,30 @@ export const GroupDetailsModal = ({
                 </div>
               </div>
             )}
+          {groupDetails.groupFreePlaces === 0 && (
+            <div className={styles.freePlacesContainer}>
+              <div className={styles.freePlacesHeader}></div>
+              <div className={styles.freePlaces}>Brak wolnych miejsc</div>
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.toolbar}>
-        <button
-          className={styles.signInButton}
-          onClick={() => showSignInModal(groupDetails.groupId)}
-        >
-          Zapisz się
-        </button>
+        {groupDetails.groupFreePlaces === 0 ? (
+          <button
+            className={styles.signInButton}
+            onClick={() => showNotifyModal(groupDetails.groupId)}
+          >
+            Powiadom mnie
+          </button>
+        ) : (
+          <button
+            className={styles.signInButton}
+            onClick={() => showSignInModal(groupDetails.groupId)}
+          >
+            Zapisz się
+          </button>
+        )}
       </div>
     </div>
   );

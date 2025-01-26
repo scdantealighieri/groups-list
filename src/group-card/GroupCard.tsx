@@ -8,10 +8,12 @@ export const GroupCard = ({
   group,
   onShowGroupDetails,
   onShowSignIn,
+  onShowNotify,
 }: {
   group: Group;
   onShowGroupDetails: (groupId: string) => Promise<void>;
   onShowSignIn: (groupId: string) => Promise<void>;
+  onShowNotify: (groupId: string) => Promise<void>;
 }) => {
   const groupLevelRef = useRef<HTMLDivElement>(null);
   const cardWidth = 230;
@@ -64,12 +66,21 @@ export const GroupCard = ({
         >
           Info
         </div>
-        <div
-          className={`${styles.signInBtn} ${styles.danteButton}`}
-          onClick={() => onShowSignIn(group.groupId)}
-        >
-          Zapisz się
-        </div>
+        {group.groupFreePlaces === 0 ? (
+          <div
+            className={`${styles.signInBtn} ${styles.danteButton} ${styles.notifyButton}`}
+            onClick={() => onShowNotify(group.groupId)}
+          >
+            Powiadom
+          </div>
+        ) : (
+          <div
+            className={`${styles.signInBtn} ${styles.danteButton}`}
+            onClick={() => onShowSignIn(group.groupId)}
+          >
+            Zapisz się
+          </div>
+        )}
       </div>
     </div>
   );

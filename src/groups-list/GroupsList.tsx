@@ -10,7 +10,7 @@ import {
 } from "../services/group-service";
 import { GroupDetails } from "../models/group-details";
 import { GroupDetailsModal } from "../group-details/GroupDetailsModal";
-import { SignInModal } from "../sign-in-modal/SignInModal";
+import { ExternalFormModal } from "../sign-in-modal/ExternalFormModal";
 import { FilterTabs } from "../enums/filter-tabs";
 import { GroupSort } from "../group-sort/GroupSort";
 import { GroupSortType } from "../enums/group-sort-type";
@@ -24,6 +24,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const [selectedFilterTab, setSelectedFilterTab] = useState(FilterTabs.None);
   const [selectedSortType, setSelectedSortType] = useState<GroupSortType>(
     GroupSortType.Level
@@ -109,8 +110,14 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
 
   const closeGroupDetails = () => {
     setIsGroupDetailsOpen(false);
-    if (!isSignInOpen) {
+    if (isSignInOpen) {
       setGroupDetails(null);
+      setIsSignInOpen(false);
+    }
+
+    if (isNotifyOpen) {
+      setGroupDetails(null);
+      setIsNotifyOpen(false);
     }
   };
 
@@ -126,6 +133,19 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
 
   const closeSignIn = () => {
     setIsSignInOpen(false);
+
+    if (!isGroupDetailsOpen) {
+      setGroupDetails(null);
+    }
+  };
+
+  const onShowNotify = async (groupId: string) => {
+    await fetchGroupDetails(groupId);
+    setIsNotifyOpen(true);
+  };
+
+  const closeNotify = () => {
+    setIsNotifyOpen(false);
 
     if (!isGroupDetailsOpen) {
       setGroupDetails(null);
@@ -277,6 +297,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
                 group={group}
                 onShowGroupDetails={onShowGroupDetails}
                 onShowSignIn={onShowSignIn}
+                onShowNotify={onShowNotify}
                 key={group.groupId}
               />
             ))}
@@ -289,10 +310,22 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
           groupDetails={groupDetails}
           onClose={closeGroupDetails}
           showSignInModal={onShowSignIn}
+          showNotifyModal={onShowNotify}
         />
       )}
       {isSignInOpen && groupDetails && (
-        <SignInModal groupDetails={groupDetails} onClose={closeSignIn} />
+        <ExternalFormModal
+          groupDetails={groupDetails}
+          onClose={closeSignIn}
+          formSectionId="signInFormSection"
+        />
+      )}
+      {isNotifyOpen && groupDetails && (
+        <ExternalFormModal
+          groupDetails={groupDetails}
+          onClose={closeNotify}
+          formSectionId="notifyFormSection"
+        />
       )}
     </div>
   );
