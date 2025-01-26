@@ -15,7 +15,16 @@ export const dayMapping: { [key: string]: string } = {
     nie: "niedziela",
   };
 
-
+export const dayMappingShort: { [key: string]: string } = {
+    pon: "pon",
+    wto: "wto",
+    sro: "śro",
+    czw: "czw",
+    pia: "pią",
+    sob: "sob",
+    nie: "nie",
+  };
+  
 export const dayMappingToNumber: { [key: string]: number } = {
   pon: 1,
   wto: 2,

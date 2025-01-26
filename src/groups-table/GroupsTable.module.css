@@ -1,5 +1,7 @@
 .groupsTable {
-  --cell-width: 200px;
+  --cell-width: 15%;
+  max-width: 1410px;
+  width: 100%;
 }
 
 .tableBody {
@@ -25,11 +27,11 @@
   text-align: center;
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .tableHeader > div {
-  min-width: var(--cell-width);
+  width: var(--cell-width);
   padding: 10px 0px;
 }
 
@@ -39,8 +41,12 @@
   border-left-color: var(--dante-grey);
 }
 
+.icon {
+  color: var(--dante-black);
+}
+
 .tableRow > div {
-  min-width: var(--cell-width);
+  width: var(--cell-width);
   text-align: center;
   padding: 10px 0px;
   color: var(--dante-black);
@@ -57,6 +63,12 @@
   border-right-color: var(--dante-grey);
 }
 
-.danteButton {
+.tableRow > .danteButton {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--dante-dark-brown);
+}
+
+.infoIcon {
   cursor: pointer;
 }

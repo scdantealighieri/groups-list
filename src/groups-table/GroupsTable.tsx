@@ -1,5 +1,5 @@
 import { Group } from "../models/group";
-import { dayMapping } from "../services/group-service";
+import { dayMappingShort } from "../services/group-service";
 
 import styles from "./GroupsTable.module.css";
 
@@ -15,35 +15,49 @@ export const GroupsTable = ({
   return (
     <div className={styles.groupsTable}>
       <div className={styles.tableHeader}>
-        <div className={styles.firstColumn}>POZIOM</div>
-        <div>DZIEŃ</div>
-        <div>GODZINA</div>
-        <div>TRYB</div>
-        <div>NAUCZYCIEL</div>
-        <div>INFO</div>
-        <div>ZAPISZ SIĘ</div>
+        <div className={`${styles.firstColumn} ${styles.levelHeader}`}>
+          POZIOM
+        </div>
+        <div className={styles.dayHeader}>DZIEŃ</div>
+        <div className={styles.hourHeader}>GODZINA</div>
+        <div className={styles.typeHeader}>TRYB</div>
+        <div className={styles.lectorHeader}>NAUCZYCIEL</div>
+        <div className={styles.infoHeader}>INFO</div>
+        <div className={styles.signInHeader}>ZAPISZ SIĘ</div>
       </div>
       <div className={styles.tableBody}>
         {groups.map((group) => (
           <div key={group.groupId} className={styles.tableRow}>
-            <div className={styles.firstColumn}>{group.groupShortName}</div>
-            <div>
+            <div className={`${styles.firstColumn} ${styles.level}`}>
+              {group.groupShortName}
+            </div>
+            <div className={styles.day}>
               {group.groupDays
                 .split("-")
-                .map((d) => dayMapping[d])
+                .map((d) => dayMappingShort[d])
                 .join(", ")}
             </div>
-            <div>{group.groupHours.split("$")[0]}</div>
-            <div>{group.groupType}</div>
-            <div>{group.groupLector}</div>
+            <div className={styles.hour}>{group.groupHours.split("$")[0]}</div>
+            <div className={styles.type}>
+              {group.groupType === "stacjonarna" ? (
+                <div className={styles.icon}>
+                  <span className="material-symbols-outlined">home</span>
+                </div>
+              ) : (
+                <div className={styles.icon}>
+                  <span className="material-symbols-outlined">computer</span>
+                </div>
+              )}
+            </div>
+            <div className={styles.lector}>{group.groupLector}</div>
             <div
-              className={`${styles.showMoreBtn} ${styles.danteButton} ${styles.infoButton}`}
+              className={`${styles.icon} ${styles.infoIcon} ${styles.info}`}
               onClick={() => onShowGroupDetails(group.groupId)}
             >
-              Info
+              <span className="material-symbols-outlined">info</span>
             </div>
             <div
-              className={`${styles.signInBtn} ${styles.danteButton}`}
+              className={`${styles.signInBtn} ${styles.danteButton} ${styles.signIn}`}
               onClick={() => onShowSignIn(group.groupId)}
             >
               Zapisz się
