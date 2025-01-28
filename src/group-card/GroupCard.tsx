@@ -48,7 +48,7 @@ export const GroupCard = ({
   return (
     <div className={styles.groupCard} style={{ width: `${cardWidth}px` }}>
       {group.groupFreePlaces === 0 && (
-        <div className={styles.groupFullBanner}>Pełny</div>
+        <div className={styles.groupFullBanner}>Pełna</div>
       )}
       <div className={styles.groupType}>{group.groupType}</div>
       <div className={styles.groupLevel} ref={groupLevelRef}>
