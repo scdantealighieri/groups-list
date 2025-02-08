@@ -89,7 +89,7 @@
 
 .groupFullBanner {
   position: absolute;
-  background-color: var(--dante-dark-brown);
+  background-color: var(--dante-inactive-grey);
   color: var(--dante-white);
   top: 10px;
   left: -45px;
@@ -99,4 +99,30 @@
   width: 150px;
   text-align: center;
   padding: 5px;
+}
+
+.fullGroupCard .danteButton {
+  background-color: var(--dante-inactive-grey);
+}
+
+.fullGroupCard .danteButton:hover {
+  background-color: var(--dante-white);
+  color: var(---dante-inactive-grey);
+  border: 1px solid var(--dante-inactive-grey);
+}
+
+.fullGroupCard .infoButton {
+  background-color: var(--dante-white);
+  color: var(--dante-inactive-grey);
+  border: 1px solid var(--dante-inactive-grey);
+  transition: 200ms linear;
+}
+
+.fullGroupCard .infoButton:hover {
+  background-color: var(--dante-inactive-grey);
+  color: var(--dante-white);
+}
+
+.fullGroupCard .groupType {
+  color: var(--dante-inactive-grey);
 }

@@ -46,7 +46,12 @@ export const GroupCard = ({
   }, []);
 
   return (
-    <div className={styles.groupCard} style={{ width: `${cardWidth}px` }}>
+    <div
+      className={`${styles.groupCard} ${
+        group.groupFreePlaces === 0 ? styles.fullGroupCard : ""
+      } `}
+      style={{ width: `${cardWidth}px` }}
+    >
       {group.groupFreePlaces === 0 && (
         <div className={styles.groupFullBanner}>Pełna</div>
       )}
