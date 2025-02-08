@@ -23,7 +23,7 @@ export const GroupsTable = ({
         <div className={styles.lectorHeader}>NAUCZYCIEL</div>
         <div className={styles.typeHeader}>TRYB</div>
         <div className={styles.infoHeader}>INFO</div>
-        <div className={styles.signInHeader}>ZAPISZ SIĘ</div>
+        <div className={styles.signInHeader}></div>
       </div>
       <div className={styles.tableBody}>
         {groups.map((group) => (
