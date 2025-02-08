@@ -72,3 +72,8 @@
 .infoIcon {
   cursor: pointer;
 }
+
+.tableRow > .specialRow {
+  width: calc(var(--cell-width) * 3);
+  padding-right: 2px;
+}

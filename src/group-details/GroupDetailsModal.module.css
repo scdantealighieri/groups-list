@@ -62,6 +62,12 @@
   line-height: 1;
 }
 
+.levelSpecial {
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+}
+
 .level.medium {
   font-size: 50px;
 }

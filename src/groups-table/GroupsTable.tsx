@@ -20,8 +20,8 @@ export const GroupsTable = ({
         </div>
         <div className={styles.dayHeader}>DZIEŃ</div>
         <div className={styles.hourHeader}>GODZINA</div>
-        <div className={styles.typeHeader}>TRYB</div>
         <div className={styles.lectorHeader}>NAUCZYCIEL</div>
+        <div className={styles.typeHeader}>TRYB</div>
         <div className={styles.infoHeader}>INFO</div>
         <div className={styles.signInHeader}>ZAPISZ SIĘ</div>
       </div>
@@ -31,25 +31,49 @@ export const GroupsTable = ({
             <div className={`${styles.firstColumn} ${styles.level}`}>
               {group.groupShortName}
             </div>
-            <div className={styles.day}>
-              {group.groupDays
-                .split("-")
-                .map((d) => dayMappingShort[d])
-                .join(", ")}
-            </div>
-            <div className={styles.hour}>{group.groupHours.split("$")[0]}</div>
-            <div className={styles.type}>
-              {group.groupType === "stacjonarna" ? (
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">home</span>
+            {!group.groupDays && (
+              <>
+                <div className={styles.specialRow}>{group.groupLector}</div>
+                <div className={styles.type}>
+                  <span className={styles.icon}>
+                    <span className="material-symbols-outlined">home</span>
+                  </span>
+
+                  <span className={styles.icon}>
+                    <span className="material-symbols-outlined">computer</span>
+                  </span>
                 </div>
-              ) : (
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">computer</span>
+              </>
+            )}
+            {group.groupDays && (
+              <>
+                {" "}
+                <div className={styles.day}>
+                  {group.groupDays
+                    .split("-")
+                    .map((d) => dayMappingShort[d])
+                    .join(", ")}
                 </div>
-              )}
-            </div>
-            <div className={styles.lector}>{group.groupLector}</div>
+                <div className={styles.hour}>
+                  {group.groupHours.split("$")[0]}
+                </div>
+                <div className={styles.lector}>{group.groupLector}</div>{" "}
+                <div className={styles.type}>
+                  {group.groupType === "stacjonarna" ? (
+                    <div className={styles.icon}>
+                      <span className="material-symbols-outlined">home</span>
+                    </div>
+                  ) : (
+                    <div className={styles.icon}>
+                      <span className="material-symbols-outlined">
+                        computer
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+
             <div
               className={`${styles.icon} ${styles.infoIcon} ${styles.info}`}
               onClick={() => onShowGroupDetails(group.groupId)}

@@ -95,16 +95,18 @@ export const ExternalFormModal = ({
       <div className={styles.modalContent} ref={modalContentRef}>
         <div className={styles.header}>
           <div className={styles.groupName}>{groupDetails.groupShortName}</div>
-          <div className={styles.details} ref={groupDetailsRef}>
-            <span>
-              {groupDetails.groupDays
-                .split("-")
-                .map((d) => dayMapping[d])
-                .join(", ")}{" "}
-            </span>
-            <span>{groupDetails.groupHours.split("$")[0]}</span> |{" "}
-            <span>{groupDetails.groupLector}</span>
-          </div>
+          {groupDetails.groupDays && (
+            <div className={styles.details} ref={groupDetailsRef}>
+              <span>
+                {groupDetails.groupDays
+                  .split("-")
+                  .map((d) => dayMapping[d])
+                  .join(", ")}{" "}
+              </span>
+              <span>{groupDetails.groupHours.split("$")[0]}</span> |{" "}
+              <span>{groupDetails.groupLector}</span>
+            </div>
+          )}
         </div>
         {externalFormSection && modalContentRef.current && (
           <div

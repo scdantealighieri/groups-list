@@ -45,73 +45,89 @@ export const GroupDetailsModal = ({
         <div className={styles.detailsTop}>
           <div className={styles.detailsLeft}>
             <div className={styles.header}>
-              <div className={styles.level} ref={shortNameRef}>
-                {groupDetails.groupShortName}
-              </div>
-              <div className={styles.separator}></div>
-              <div className={styles.infoContainer}>
-                <div className={styles.info}>
-                  <div className={styles.icon}>
-                    <span className="material-symbols-outlined">
-                      location_on
-                    </span>
-                  </div>
-                  <div className={styles.infoValue}>
-                    {groupDetails.groupType}
-                  </div>
+              {(groupDetails.groupId === "-1" ||
+                groupDetails.groupId === "-2") && (
+                <div className={`${styles.level} ${styles.levelSpecial}`}>
+                  {groupDetails.groupShortName}
                 </div>
-                <div className={styles.info}>
-                  <div className={styles.icon}>
-                    <span className="material-symbols-outlined">schedule</span>
+              )}
+              {groupDetails.groupDays && (
+                <>
+                  <div className={styles.level} ref={shortNameRef}>
+                    {groupDetails.groupShortName}
                   </div>
-                  <div className={`${styles.infoValue} ${styles.hours}`}>
-                    {groupDetails.groupHours.split("$")[0]}
+                  <div className={styles.separator}></div>
+                  <div className={styles.infoContainer}>
+                    <div className={styles.info}>
+                      <div className={styles.icon}>
+                        <span className="material-symbols-outlined">
+                          location_on
+                        </span>
+                      </div>
+                      <div className={styles.infoValue}>
+                        {groupDetails.groupType}
+                      </div>
+                    </div>
+                    <div className={styles.info}>
+                      <div className={styles.icon}>
+                        <span className="material-symbols-outlined">
+                          schedule
+                        </span>
+                      </div>
+                      <div className={`${styles.infoValue} ${styles.hours}`}>
+                        {groupDetails.groupHours.split("$")[0]}
+                      </div>
+                    </div>
+                    <div className={styles.info}>
+                      <div className={styles.icon}>
+                        <span className="material-symbols-outlined">
+                          calendar_month
+                        </span>
+                      </div>
+                      <div className={styles.infoValue}>
+                        {groupDetails.groupDays
+                          .split("-")
+                          .map((d) => dayMapping[d])
+                          .join(", ")}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.info}>
-                  <div className={styles.icon}>
-                    <span className="material-symbols-outlined">
-                      calendar_month
-                    </span>
-                  </div>
-                  <div className={styles.infoValue}>
-                    {groupDetails.groupDays
-                      .split("-")
-                      .map((d) => dayMapping[d])
-                      .join(", ")}
-                  </div>
-                </div>
-              </div>
+                </>
+              )}
             </div>
             <div className={styles.description}>
               {groupDetails.groupDescription}
             </div>
           </div>
 
-          <div className={styles.detailsRight}>
-            <div className={styles.description}>
-              {groupDetails.groupDescription}
-            </div>
-            <div className={styles.photo}>
-              <img
-                src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
-                alt={groupDetails.groupLector}
-              />
-              <div className={styles.photoTitle}>
-                {groupDetails.groupLector}
+          {groupDetails.groupLectorFotoContent && (
+            <div className={styles.detailsRight}>
+              <div className={styles.description}>
+                {groupDetails.groupDescription}
+              </div>
+              <div className={styles.photo}>
+                <img
+                  src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
+                  alt={groupDetails.groupLector}
+                />
+                <div className={styles.photoTitle}>
+                  {groupDetails.groupLector}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
         <div className={styles.detailsBottom}>
-          <div className={styles.classDates}>
-            <div className={styles.datesHeader}>Terminy zajęć</div>
-            <div className={styles.dates}>
-              <span>{`${formatDate(groupDetails.groupFirstMeet)} - ${formatDate(
-                groupDetails.groupLastMeet
-              )}`}</span>
+          {groupDetails.groupFirstMeet && (
+            <div className={styles.classDates}>
+              <div className={styles.datesHeader}>Terminy zajęć</div>
+              <div className={styles.dates}>
+                <span>{`${formatDate(
+                  groupDetails.groupFirstMeet
+                )} - ${formatDate(groupDetails.groupLastMeet)}`}</span>
+              </div>
             </div>
-          </div>
+          )}
           {groupDetails.groupFreePlaces < 3 &&
             groupDetails.groupFreePlaces > 0 && (
               <div className={styles.freePlacesContainer}>

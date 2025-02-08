@@ -48,40 +48,52 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     let filteredGroups = groups;
 
     if (filter.groupType.length > 0) {
-      filteredGroups = filteredGroups.filter((group) =>
-        filter.groupType.includes(group.groupType)
+      filteredGroups = filteredGroups.filter(
+        (group) =>
+          filter.groupType.includes(group.groupType) || group.groupAlwaysVisible
       );
     }
 
     if (filter.groupLevel.length > 0) {
-      filteredGroups = filteredGroups.filter((group) =>
-        filter.groupLevel.includes(group.groupLevel)
+      filteredGroups = filteredGroups.filter(
+        (group) =>
+          filter.groupLevel.includes(group.groupLevel) ||
+          group.groupAlwaysVisible
       );
     }
 
     if (filter.groupDays.length > 0) {
       filteredGroups = filteredGroups.filter((group) =>
-        filter.groupDays.some((day) =>
-          group.groupDays.split("-").includes(day as string)
+        filter.groupDays.some(
+          (day) =>
+            group.groupDays.split("-").includes(day as string) ||
+            group.groupAlwaysVisible
         )
       );
     }
 
     if (filter.groupLector.length > 0) {
-      filteredGroups = filteredGroups.filter((group) =>
-        filter.groupLector.includes(group.groupLector)
+      filteredGroups = filteredGroups.filter(
+        (group) =>
+          filter.groupLector.includes(group.groupLector) ||
+          group.groupAlwaysVisible
       );
     }
 
     if (filter.groupPeriod.length > 0) {
-      filteredGroups = filteredGroups.filter((group) =>
-        filter.groupPeriod.includes(mapGroupHoursToPeriod(group.groupHours))
+      filteredGroups = filteredGroups.filter(
+        (group) =>
+          filter.groupPeriod.includes(
+            mapGroupHoursToPeriod(group.groupHours)
+          ) || group.groupAlwaysVisible
       );
     }
 
     if (filter.groupState.length > 0) {
-      filteredGroups = filteredGroups.filter((group) =>
-        filter.groupState.includes(group.groupState)
+      filteredGroups = filteredGroups.filter(
+        (group) =>
+          filter.groupState.includes(group.groupState) ||
+          group.groupAlwaysVisible
       );
     }
 
@@ -89,6 +101,56 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
   };
 
   const fetchGroupDetails = async (groupId: string) => {
+    if (groupId === "-1") {
+      const individualGroupDetails: GroupDetails = {
+        groupDays: "",
+        groupDescription:
+          "Lekcje indywidualne to doskonała metoda, aby otrzymać podejście bardziej dopasowane do własnych potrzeb. Dzięki lekcjom indywidualnym będziecie mogli bezpośrednio ustalić z nauczycielem program, koncentrując się bardziej na swoich słabszych punktach. Ponadto, jest to idealne rozwiązanie dla osób, które mają dynamiczny czas pracy i mogą mieć trudności z regularnym uczestniczeniem w kursie grupowym. Wreszcie, jeśli w danym momencie nie ma dostępnych kursów grupowych na twoim poziomie, możesz szybciej osiągnąć wymagany poziom indywidualnie, a następnie dołączyć do lekcji grupowych.",
+        groupFirstMeet: "",
+        groupFreePlaces: 10,
+        groupHours: "",
+        groupId: "-1",
+        groupLastMeet: "",
+        groupLector: "",
+        groupLectorFotoContent: "",
+        groupLectorFotoName: "",
+        groupLectorFotoSize: 0,
+        groupLectorFotoType: "",
+        groupLevel: "",
+        groupName: "Indywidualna",
+        groupShortName: "Indywidualna",
+        groupType: "Indywidualna",
+      };
+
+      setGroupDetails(individualGroupDetails);
+      return;
+    }
+
+    if (groupId === "-2") {
+      const individualGroupDetails: GroupDetails = {
+        groupDays: "",
+        groupDescription:
+          "Kursy Duetto to idealne połączenie lekcji grupowych i kursów indywidualnych. Jeśli nie lubisz zbyt bezpośredniego podejścia do nauczyciela, ale nie chcesz również uczyć się w zbyt dużej grupie, Duetto jest rozwiązaniem idealnym dla Ciebie. Jeśli masz już partnera, zapiszcie się razem i otrzymajcie zniżkę, w przeciwnym razie postaramy się dopasować Cię do innych osób, które wyraziły chęć dołączenia!",
+        groupFirstMeet: "",
+        groupFreePlaces: 10,
+        groupHours: "",
+        groupId: "-2",
+        groupLastMeet: "",
+        groupLector: "",
+        groupLectorFotoContent: "",
+        groupLectorFotoName: "",
+        groupLectorFotoSize: 0,
+        groupLectorFotoType: "",
+        groupLevel: "",
+        groupName: "Duetto",
+        groupShortName: "Duetto",
+        groupType: "Duetto",
+      };
+
+      setGroupDetails(individualGroupDetails);
+      return;
+    }
+
     try {
       const response = await fetch(
         "https://dantealighieri.appblue.pl/api/get_group_details.php",
@@ -210,6 +272,9 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     }
   };
 
+  const isDuettoOrIndividual = (groupId: string) =>
+    groupId === "-1" || groupId === "-2";
+
   return (
     <div className={styles.listContainer}>
       <div className={styles.toolbar}>
@@ -313,13 +378,29 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
           showNotifyModal={onShowNotify}
         />
       )}
-      {isSignInOpen && groupDetails && (
+      {isSignInOpen && groupDetails && groupDetails.groupId === "-1" && (
         <ExternalFormModal
           groupDetails={groupDetails}
           onClose={closeSignIn}
-          formSectionId="signInFormSection"
+          formSectionId="signInIndividualFormSection"
         />
       )}
+      {isSignInOpen && groupDetails && groupDetails.groupId === "-2" && (
+        <ExternalFormModal
+          groupDetails={groupDetails}
+          onClose={closeSignIn}
+          formSectionId="signInDuettoFormSection"
+        />
+      )}
+      {isSignInOpen &&
+        groupDetails &&
+        !isDuettoOrIndividual(groupDetails.groupId) && (
+          <ExternalFormModal
+            groupDetails={groupDetails}
+            onClose={closeSignIn}
+            formSectionId="signInFormSection"
+          />
+        )}
       {isNotifyOpen && groupDetails && (
         <ExternalFormModal
           groupDetails={groupDetails}

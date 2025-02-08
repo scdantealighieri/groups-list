@@ -5,7 +5,6 @@ import { Group } from "../models/group";
 import {
   convertToOptions,
   dayMapping,
-  dayOrder,
   mapGroupHoursToPeriod,
   mapGroupState,
   periodOrder,
@@ -34,23 +33,37 @@ export const GroupsFilter = ({
   };
 
   const groupTypes = Array.from(
-    new Set(groups.map((group) => group.groupType))
+    new Set(
+      groups.filter((group) => group.groupType).map((group) => group.groupType)
+    )
   );
 
   const groupStates = [GroupState.Active, GroupState.Icoming];
 
   const groupLevels = Array.from(
-    new Set(groups.map((group) => group.groupLevel))
+    new Set(
+      groups
+        .filter((group) => group.groupLevel)
+        .map((group) => group.groupLevel)
+    )
   );
 
   const groupDays = ["pon", "wto", "sro", "czw", "pia", "sob"];
 
   const groupLectors = Array.from(
-    new Set(groups.map((group) => group.groupLector))
+    new Set(
+      groups
+        .filter((group) => group.groupLector)
+        .map((group) => group.groupLector)
+    )
   );
 
   const groupPeriods = Array.from(
-    new Set(groups.map((group) => mapGroupHoursToPeriod(group.groupHours)))
+    new Set(
+      groups
+        .filter((group) => group.groupHours)
+        .map((group) => mapGroupHoursToPeriod(group.groupHours))
+    )
   ).sort((a, b) => periodOrder.indexOf(a) - periodOrder.indexOf(b));
 
   const filterList = (filterType: FilterType, value: string) => {

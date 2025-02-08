@@ -11,4 +11,5 @@ export interface Group {
   groupState: GroupState;
   groupShortName: string;
   groupFreePlaces: number;
+  groupAlwaysVisible: boolean;
 }

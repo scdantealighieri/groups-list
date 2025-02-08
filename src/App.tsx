@@ -23,6 +23,7 @@ function App() {
           }
         });
 
+        addAlwaysVisibleGroups(data);
         setGroups(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -31,6 +32,36 @@ function App() {
 
     fetchData();
   }, []);
+
+  const addAlwaysVisibleGroups = (groups: Group[]): void => {
+    groups.push({
+      groupId: "-1",
+      groupType: "",
+      groupLevel: "",
+      groupDays: "",
+      groupHours: "",
+      groupLector: "Stwórz swoją grupę, podając swoje preferencje!",
+      groupFirstMeet: "",
+      groupState: GroupState.Active,
+      groupShortName: "Indywidualna ",
+      groupFreePlaces: 5,
+      groupAlwaysVisible: true,
+    });
+
+    groups.push({
+      groupId: "-2",
+      groupType: "",
+      groupLevel: "",
+      groupDays: "",
+      groupHours: "",
+      groupLector: "Stwórz swoją grupę, podając swoje preferencje!",
+      groupFirstMeet: "",
+      groupState: GroupState.Active,
+      groupShortName: "Duetto",
+      groupFreePlaces: 5,
+      groupAlwaysVisible: true,
+    });
+  };
 
   return (
     <div className="App">
