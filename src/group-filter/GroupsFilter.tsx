@@ -53,7 +53,7 @@ export const GroupsFilter = ({
   const groupLectors = Array.from(
     new Set(
       groups
-        .filter((group) => group.groupLector)
+        .filter((group) => group.groupLector && !group.groupAlwaysVisible)
         .map((group) => group.groupLector)
     )
   );
@@ -234,11 +234,10 @@ export const GroupsFilter = ({
               <div
                 key={groupType}
                 onClick={() => filterList(FilterType.GroupType, groupType)}
-                className={`${styles.filterOption} ${
-                  isSelected(FilterType.GroupType, groupType)
-                    ? styles.selected
-                    : ""
-                }`}
+                className={`${styles.filterOption} ${isSelected(FilterType.GroupType, groupType)
+                  ? styles.selected
+                  : ""
+                  }`}
               >
                 {groupType}
               </div>
@@ -253,11 +252,10 @@ export const GroupsFilter = ({
               <div
                 key={groupLevel}
                 onClick={() => filterList(FilterType.GroupLevel, groupLevel)}
-                className={`${styles.filterOption} ${
-                  isSelected(FilterType.GroupLevel, groupLevel)
-                    ? styles.selected
-                    : ""
-                }`}
+                className={`${styles.filterOption} ${isSelected(FilterType.GroupLevel, groupLevel)
+                  ? styles.selected
+                  : ""
+                  }`}
               >
                 {groupLevel}
               </div>
@@ -272,11 +270,10 @@ export const GroupsFilter = ({
               <div
                 key={groupDay}
                 onClick={() => filterList(FilterType.GroupDays, groupDay)}
-                className={`${styles.filterOption} ${
-                  isSelected(FilterType.GroupDays, groupDay)
-                    ? styles.selected
-                    : ""
-                }`}
+                className={`${styles.filterOption} ${isSelected(FilterType.GroupDays, groupDay)
+                  ? styles.selected
+                  : ""
+                  }`}
               >
                 {dayMapping[groupDay]}
               </div>
@@ -291,11 +288,10 @@ export const GroupsFilter = ({
               <div
                 key={groupPeriod}
                 onClick={() => filterList(FilterType.GroupPeriod, groupPeriod)}
-                className={`${styles.filterOption} ${
-                  isSelected(FilterType.GroupPeriod, groupPeriod)
-                    ? styles.selected
-                    : ""
-                }`}
+                className={`${styles.filterOption} ${isSelected(FilterType.GroupPeriod, groupPeriod)
+                  ? styles.selected
+                  : ""
+                  }`}
               >
                 {groupPeriod}
               </div>
@@ -310,11 +306,10 @@ export const GroupsFilter = ({
               <div
                 key={groupState}
                 onClick={() => filterList(FilterType.GroupState, groupState)}
-                className={`${styles.filterOption} ${
-                  isSelected(FilterType.GroupState, groupState)
-                    ? styles.selected
-                    : ""
-                }`}
+                className={`${styles.filterOption} ${isSelected(FilterType.GroupState, groupState)
+                  ? styles.selected
+                  : ""
+                  }`}
               >
                 {mapGroupState(groupState)}
               </div>
@@ -329,11 +324,10 @@ export const GroupsFilter = ({
               <div
                 key={groupLector}
                 onClick={() => filterList(FilterType.GroupLector, groupLector)}
-                className={`${styles.filterOption} ${
-                  isSelected(FilterType.GroupLector, groupLector)
-                    ? styles.selected
-                    : ""
-                }`}
+                className={`${styles.filterOption} ${isSelected(FilterType.GroupLector, groupLector)
+                  ? styles.selected
+                  : ""
+                  }`}
               >
                 {groupLector}
               </div>
