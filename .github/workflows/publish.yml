@@ -16,7 +16,7 @@ jobs:
 
     permissions:
       contents: write
-      
+
     steps:
     - uses: actions/checkout@v4
 
@@ -47,6 +47,7 @@ jobs:
         clean: false
         repository: scdantealighieri/public-store
         path: ./store
+        token: ${{ secrets.PAT }}
       
     - name: Move file to public store repository
       run: |
