@@ -40,6 +40,7 @@ jobs:
       
     - name: Move file to public store repository
       run: |
+        mkdir /home/file-store
         mv /home/file-store/main.groupslist.css ./groups-list/main.groupslist.css
         mv /home/file-store/main.groupslist.js ./groups-list/main.groupslist.js
 
