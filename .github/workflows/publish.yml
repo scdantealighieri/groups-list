@@ -41,6 +41,7 @@ jobs:
       with:
         clean: false
         repository: scdantealighieri/public-store
+        path: ./store
       
     - name: Move file to public store repository
       run: |
