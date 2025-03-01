@@ -54,6 +54,13 @@ jobs:
         git config --global user.name "scdantealighieri"
         git add --all
         git commit -a -m store
-        git push --force 
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        directory: ./store
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: scdantealighieri/public-store
+        force: true
 
         
