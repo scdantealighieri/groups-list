@@ -31,7 +31,7 @@ jobs:
     - name: Rename js file
       run: |
         cd .
-        cd cd build/static/js
+        cd build/static/js
         mv main.*.js main.groupslist.jss
     - name: Checkout storage repository
       uses: actions/checkout@v4.2.2
