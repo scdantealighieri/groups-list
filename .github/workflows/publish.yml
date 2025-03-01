@@ -46,6 +46,8 @@ jobs:
     - name: Move file to public store repository
       run: |
         mkdir -p ./store/groups-list
+        cd ./build/static/css
+        ls
         mv ./build/static/css/main.groupslist.css ./store/groups-list/main.groupslist.css
         mv ./build/static/js/main.groupslist.js ./store/groups-list/main.groupslist.js
 
