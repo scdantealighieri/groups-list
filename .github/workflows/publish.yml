@@ -45,8 +45,9 @@ jobs:
       
     - name: Move file to public store repository
       run: |
-        mv /build/static/css/main.groupslist.css ./public-store/groups-list/main.groupslist.css
-        mv /build/static/js/main.groupslist.js ./public-store/groups-list/main.groupslist.js
+        ls
+        mv ./build/static/css/main.groupslist.css ./store/public-store/groups-list/main.groupslist.css
+        mv ./build/static/js/main.groupslist.js ./store/public-store/groups-list/main.groupslist.js
 
     - name: Push to github
       run: |
