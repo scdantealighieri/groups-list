@@ -28,14 +28,16 @@ jobs:
       run: | 
         cd build/static/css
         mv main.*.css main.groupslist.css
+        ls
     - name: Rename js file
       run: |
         cd .
         cd build/static/js
         mv main.*.js main.groupslist.jss
+        ls
     - name: Checkout storage repository
       uses: actions/checkout@v4.2.2
       with:
-        repository: https://github.com/scdantealighieri/public-store
+        repository: scdantealighieri/public-store
       
         
