@@ -51,7 +51,7 @@ jobs:
       
     - name: Move file to public store repository
       run: |
-        mv ./groups-list ./store
+        mv ./groups-list/* ./store
 
     - name: Add changes to public-store
       run: |
