@@ -19,9 +19,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        
-    - name: Treat warnings as warnings
-      run: process.env.CI = true
       
     - name: Build
       run: |

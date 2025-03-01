@@ -45,7 +45,7 @@ export const ExternalFormModal = ({
 
       setExternalFormSection(externalFormSectionElement as HTMLElement);
     }
-  }, [groupDetails.groupId, groupDetails.groupName]);
+  }, [groupDetails.groupId, groupDetails.groupName, formSectionId]);
 
   useEffect(() => {
     if (modalContentRef.current) {
