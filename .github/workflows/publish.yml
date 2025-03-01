@@ -59,7 +59,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         directory: ./store
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.PAT }}
         repository: scdantealighieri/public-store
         force: true
 
