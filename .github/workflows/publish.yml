@@ -39,7 +39,7 @@ jobs:
     - name: Rename js file
       run: |
         cd build/static/js
-        mv main.*.js ../../../groups-list/main.groupslist.jss
+        mv main.*.js ../../../groups-list/main.groupslist.js
 
     - name: Checkout storage repository
       uses: actions/checkout@v4.2.2
@@ -53,7 +53,7 @@ jobs:
       run: |
         mv ./groups-list ./store
 
-    - name: Push to github
+    - name: Add changes to public-store
       run: |
         cd ./store
         git config --global user.email "scdantealighieri6@gmail.com"
@@ -61,12 +61,17 @@ jobs:
         git add --all
         git commit -a -m store
     
-    - name: Push changes
+    - name: Push changes to public-store
       uses: ad-m/github-push-action@master
       with:
         directory: ./store
         github_token: ${{ secrets.PAT }}
         repository: scdantealighieri/public-store
         force: true
+
+    - name: Purge cdn
+      run: |
+        curl https://purge.jsdelivr.net/gh/scdantealighieri/public-store@refs/heads/main/groups-list/main.groupslist.css
+        curl https://purge.jsdelivr.net/gh/scdantealighieri/public-store@refs/heads/main/groups-list/main.groupslist.js
 
         
