@@ -1,0 +1,41 @@
+name: Publish
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        npm install
+        npm run build
+    - name: Rename css file
+      run: | 
+        cd build/static/css
+        mv main.*.css main.groupslist.css
+    - name: Rename js file
+      run: |
+        cd .
+        cd cd build/static/js
+        mv main.*.js main.groupslist.jss
+    - name: Checkout storage repository
+      uses: actions/checkout@v4.2.2
+      with:
+        repository: https://github.com/scdantealighieri/public-store
+      
+        
