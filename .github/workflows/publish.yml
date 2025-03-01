@@ -40,4 +40,6 @@ jobs:
       with:
         repository: scdantealighieri/public-store
       
+    - name: test
+      run: ls
         
