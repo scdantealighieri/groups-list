@@ -26,7 +26,9 @@ jobs:
         npm run build
     
     - name: Create file-store folder
-      run: mkdir -p /home/file-store
+      run: |
+        mkdir -p ./file-store
+        ls
 
     - name: Rename css file
       run: | 
