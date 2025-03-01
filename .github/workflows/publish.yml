@@ -25,16 +25,16 @@ jobs:
         npm install
         npm run build
 
-    # - name: Rename css file
-    #   run: | 
-    #     cd build/static/css
-    #     mv main.*.css main.groupslist.css
+    - name: Rename css file
+      run: | 
+        mkdir groups-list
+        cd build/static/css
+        mv main.*.css ../../../groups-list/main.groupslist.css
 
-    # - name: Rename js file
-    #   run: |
-    #     cd .
-    #     cd build/static/js
-    #     mv main.*.js main.groupslist.jss
+    - name: Rename js file
+      run: |
+        cd build/static/js
+        mv main.*.js ../../../groups-list/main.groupslist.jss
 
     - name: Checkout storage repository
       uses: actions/checkout@v4.2.2
@@ -45,11 +45,7 @@ jobs:
       
     - name: Move file to public store repository
       run: |
-        mkdir -p ./store/groups-list
-        cd ./build/static/css
-        mv main.*.css ./store/groups-list/main.groupslist.css
-        cd ./build/static/js
-        mv main.*.js ./store/groups-list/main.groupslist.js
+        mv ./groups-list ./store
 
     - name: Push to github
       run: |
