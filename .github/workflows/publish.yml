@@ -24,15 +24,21 @@ jobs:
       run: |
         npm install
         npm run build
+    
+    - name: Create file-store folder
+      run: mkdir -p /home/file-store
+
     - name: Rename css file
       run: | 
         cd build/static/css
         mv main.*.css /home/file-store/main.groupslist.css
+
     - name: Rename js file
       run: |
         cd .
         cd build/static/js
         mv main.*.js /home/file-store/main.groupslist.jss
+
     - name: Checkout storage repository
       uses: actions/checkout@v4.2.2
       with:
@@ -40,7 +46,6 @@ jobs:
       
     - name: Move file to public store repository
       run: |
-        mkdir /home/file-store
         mv /home/file-store/main.groupslist.css ./groups-list/main.groupslist.css
         mv /home/file-store/main.groupslist.js ./groups-list/main.groupslist.js
 
