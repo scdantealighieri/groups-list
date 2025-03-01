@@ -52,6 +52,7 @@ jobs:
         cd ./store
         git config --global user.email "scdantealighieri6@gmail.com"
         git config --global user.name "scdantealighieri"
+        git add --all
         git commit -a
         git push main --force 
 
