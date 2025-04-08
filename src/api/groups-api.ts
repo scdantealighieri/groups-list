@@ -41,7 +41,7 @@ export async function fetchGroup(groupId: string): Promise<GroupDetails | null> 
         const data: GroupDetails = (await response.json())[0];
 
         data.groupId = groupId;
-        
+
         return data;
     } catch (error) {
         console.error("Error fetching data:", error);

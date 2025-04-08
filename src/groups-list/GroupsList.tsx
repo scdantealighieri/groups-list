@@ -19,6 +19,7 @@ import styles from "./GroupsList.module.css";
 import { ListDisplayType } from "../enums/list-display-type";
 import { GroupsTable } from "../groups-table/GroupsTable";
 import { fetchGroup } from "../api/groups-api";
+import { SpecialGroup } from "../models/special-group";
 
 export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
@@ -102,55 +103,13 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
   };
 
   const fetchGroupDetails = async (groupId: string) => {
-    if (groupId === "-1") {
-      const individualGroupDetails: GroupDetails = {
-        groupDays: "",
-        groupDescription:
-          "Lekcje indywidualne to doskonała metoda, aby otrzymać podejście bardziej dopasowane do własnych potrzeb. Dzięki lekcjom indywidualnym będziecie mogli bezpośrednio ustalić z nauczycielem program, koncentrując się bardziej na swoich słabszych punktach. Ponadto, jest to idealne rozwiązanie dla osób, które mają dynamiczny czas pracy i mogą mieć trudności z regularnym uczestniczeniem w kursie grupowym. Wreszcie, jeśli w danym momencie nie ma dostępnych kursów grupowych na twoim poziomie, możesz szybciej osiągnąć wymagany poziom indywidualnie, a następnie dołączyć do lekcji grupowych.",
-        groupFirstMeet: "",
-        groupFreePlaces: 10,
-        groupHours: "",
-        groupId: "-1",
-        groupLastMeet: "",
-        groupLector: "",
-        groupLectorFotoContent: "",
-        groupLectorFotoName: "",
-        groupLectorFotoSize: 0,
-        groupLectorFotoType: "",
-        groupLevel: "",
-        groupName: "Indywidualna",
-        groupShortName: "Indywidualna",
-        groupType: "Indywidualna",
-      };
+    const group = groups.find((group) => group.groupId === groupId);
 
-      setGroupDetails(individualGroupDetails);
+    if (group && group instanceof SpecialGroup) {
+      setGroupDetails(group.details);
       return;
     }
 
-    if (groupId === "-2") {
-      const individualGroupDetails: GroupDetails = {
-        groupDays: "",
-        groupDescription:
-          "Kursy Duetto to idealne połączenie lekcji grupowych i kursów indywidualnych. Jeśli nie lubisz zbyt bezpośredniego podejścia do nauczyciela, ale nie chcesz również uczyć się w zbyt dużej grupie, Duetto jest rozwiązaniem idealnym dla Ciebie. Jeśli masz już partnera, zapiszcie się razem i otrzymajcie zniżkę, w przeciwnym razie postaramy się dopasować Cię do innych osób, które wyraziły chęć dołączenia!",
-        groupFirstMeet: "",
-        groupFreePlaces: 10,
-        groupHours: "",
-        groupId: "-2",
-        groupLastMeet: "",
-        groupLector: "",
-        groupLectorFotoContent: "",
-        groupLectorFotoName: "",
-        groupLectorFotoSize: 0,
-        groupLectorFotoType: "",
-        groupLevel: "",
-        groupName: "Duetto",
-        groupShortName: "Duetto",
-        groupType: "Duetto",
-      };
-
-      setGroupDetails(individualGroupDetails);
-      return;
-    }
     const data = await fetchGroup(groupId);
     setGroupDetails(data);
   };
@@ -257,8 +216,10 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     }
   };
 
-  const isDuettoOrIndividual = (groupId: string) =>
-    groupId === "-1" || groupId === "-2";
+  const isSpecialGroup = (groupId: string) => {
+    const group = groups.find((group) => group.groupId === groupId);
+    return group && group instanceof SpecialGroup;
+  }
 
   return (
     <div className={styles.listContainer}>
@@ -280,8 +241,8 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
         <div className={styles.displayTypeContainer}>
           <div
             className={`${styles.displayTypeItem} ${selectedListDisplayType === ListDisplayType.Grid
-                ? styles.selected
-                : ""
+              ? styles.selected
+              : ""
               }`}
             onClick={() => setSelectedListDisplayType(ListDisplayType.Grid)}
           >
@@ -289,8 +250,8 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
           </div>
           <div
             className={`${styles.displayTypeItem} ${selectedListDisplayType === ListDisplayType.List
-                ? styles.selected
-                : ""
+              ? styles.selected
+              : ""
               }`}
             onClick={() => setSelectedListDisplayType(ListDisplayType.List)}
           >
@@ -377,7 +338,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
       )}
       {isSignInOpen &&
         groupDetails &&
-        !isDuettoOrIndividual(groupDetails.groupId) && (
+        !isSpecialGroup(groupDetails.groupId) && (
           <ExternalFormModal
             groupDetails={groupDetails}
             onClose={closeSignIn}

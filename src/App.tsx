@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import "./App.module.css";
 import { Group } from "./models/group";
 import { GroupsList } from "./groups-list/GroupsList";
-import { GroupState } from "./enums/group-state";
 import { fetchGroups } from "./api/groups-api";
+import { IndividualGroup } from "./special-groups/individual-group";
+import { DuettoGroup } from "./special-groups/duetto-group";
 
 function App() {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -11,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchGroups();
-      
+
       addAlwaysVisibleGroups(data);
       setGroups(data);
     };
@@ -20,33 +21,8 @@ function App() {
   }, []);
 
   const addAlwaysVisibleGroups = (groups: Group[]): void => {
-    groups.push({
-      groupId: "-1",
-      groupType: "",
-      groupLevel: "",
-      groupDays: "",
-      groupHours: "",
-      groupLector: "Stwórz swoją grupę, podając swoje preferencje!",
-      groupFirstMeet: "",
-      groupState: GroupState.Active,
-      groupShortName: "Indywidualna ",
-      groupFreePlaces: 5,
-      groupAlwaysVisible: true,
-    });
-
-    groups.push({
-      groupId: "-2",
-      groupType: "",
-      groupLevel: "",
-      groupDays: "",
-      groupHours: "",
-      groupLector: "Stwórz swoją grupę, podając swoje preferencje!",
-      groupFirstMeet: "",
-      groupState: GroupState.Active,
-      groupShortName: "Duetto",
-      groupFreePlaces: 5,
-      groupAlwaysVisible: true,
-    });
+    groups.push(IndividualGroup);
+    groups.push(DuettoGroup);
   };
 
   return (
