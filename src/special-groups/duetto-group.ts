@@ -1,9 +1,11 @@
 import { GroupState } from "../enums/group-state";
 import { SpecialGroup } from "../models/special-group";
 
+const groupId = "-2";
+
 const duettoGroupInfo = {
-    groupId: "-2",
-    groupType: "",
+    groupId: groupId,
+    groupType: "STACJONARNA/ONLINE",
     groupLevel: "",
     groupDays: "",
     groupHours: "",
@@ -22,7 +24,7 @@ const duettoGroupDetails = {
     groupFirstMeet: "",
     groupFreePlaces: 10,
     groupHours: "",
-    groupId: "-2",
+    groupId: groupId,
     groupLastMeet: "",
     groupLector: "",
     groupLectorFotoContent: "",

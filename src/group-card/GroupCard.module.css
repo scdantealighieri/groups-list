@@ -45,6 +45,7 @@
   font-family: "Rubik", sans-serif;
   color: var(--dante-grey);
   font-weight: 400;
+  text-align: center;
 }
 
 .buttonsContainer {

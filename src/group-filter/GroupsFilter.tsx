@@ -34,7 +34,9 @@ export const GroupsFilter = ({
 
   const groupTypes = Array.from(
     new Set(
-      groups.filter((group) => group.groupType).map((group) => group.groupType)
+      groups
+        .filter((group) => group.groupType && !group.groupAlwaysVisible)
+        .map((group) => group.groupType)
     )
   );
 

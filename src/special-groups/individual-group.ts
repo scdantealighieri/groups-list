@@ -3,9 +3,11 @@ import { Group } from "../models/group";
 import { GroupDetails } from "../models/group-details";
 import { SpecialGroup } from "../models/special-group";
 
+const groupId = "-1";
+
 const individualGroupInfo: Group = {
-    groupId: "-1",
-    groupType: "",
+    groupId: groupId,
+    groupType: "STACJONARNA/ONLINE",
     groupLevel: "",
     groupDays: "",
     groupHours: "",
@@ -24,7 +26,7 @@ const individualGroupDetails: GroupDetails = {
     groupFirstMeet: "",
     groupFreePlaces: 10,
     groupHours: "",
-    groupId: "-1",
+    groupId: groupId,
     groupLastMeet: "",
     groupLector: "",
     groupLectorFotoContent: "",
