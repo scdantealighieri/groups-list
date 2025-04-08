@@ -180,40 +180,44 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
   };
 
   const sort = (sortBy: GroupSortType, groupsToSort: Group[]) => {
+    let sortedGroups: Group[] = [];
+    const specialGroups = groupsToSort.filter(
+      (group) => group instanceof SpecialGroup
+    );
+    const nonSpecialGroups = groupsToSort.filter(
+      (group) => !(group instanceof SpecialGroup)
+    );
     switch (sortBy) {
       case GroupSortType.Level:
-        setFilteredGroups(
-          [...groupsToSort].sort((a, b) =>
+        sortedGroups =
+          [...nonSpecialGroups].sort((a, b) =>
             a.groupShortName.localeCompare(b.groupShortName)
-          )
-        );
+          );
         break;
       case GroupSortType.Day:
-        setFilteredGroups(
-          [...groupsToSort].sort(
+        sortedGroups =
+          [...nonSpecialGroups].sort(
             (a, b) =>
               dayMappingToNumber[a.groupDays.split("-")[0]] -
               dayMappingToNumber[b.groupDays.split("-")[0]]
-          )
-        );
+          );
         break;
       case GroupSortType.StartDate:
-        setFilteredGroups(
-          [...groupsToSort].sort(
+        sortedGroups =
+          [...nonSpecialGroups].sort(
             (a, b) =>
               parseDateToNumber(a.groupFirstMeet) -
               parseDateToNumber(b.groupFirstMeet)
-          )
-        );
+          );
         break;
       case GroupSortType.Lector:
-        setFilteredGroups(
-          [...groupsToSort].sort((a, b) =>
+        sortedGroups =
+          [...nonSpecialGroups].sort((a, b) =>
             a.groupLector.localeCompare(b.groupLector)
-          )
-        );
+          );
         break;
     }
+    setFilteredGroups([...sortedGroups, ...specialGroups]);
   };
 
   const isSpecialGroup = (groupId: string) => {
