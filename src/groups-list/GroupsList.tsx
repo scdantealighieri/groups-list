@@ -9,8 +9,6 @@ import {
   parseDateToNumber,
 } from "../services/group-service";
 import { GroupDetails } from "../models/group-details";
-import { GroupDetailsModal } from "../group-details/GroupDetailsModal";
-import { ExternalFormModal } from "../sign-in-modal/ExternalFormModal";
 import { FilterTabs } from "../enums/filter-tabs";
 import { GroupSort } from "../group-sort/GroupSort";
 import { GroupSortType } from "../enums/group-sort-type";
@@ -20,13 +18,14 @@ import { ListDisplayType } from "../enums/list-display-type";
 import { GroupsTable } from "../groups-table/GroupsTable";
 import { fetchGroup } from "../api/groups-api";
 import { SpecialGroup } from "../models/special-group";
+import { ModalManager } from "../modal-manager/ModalManager";
+import { ModalType } from "../enums/modal-type";
 
 export const GroupsList = ({ groups }: { groups: Group[] }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isNotifyOpen, setIsNotifyOpen] = useState(false);
+  const [modalType, setModalType] = useState<ModalType>(ModalType.None);
   const [selectedFilterTab, setSelectedFilterTab] = useState(FilterTabs.None);
   const [selectedSortType, setSelectedSortType] = useState<GroupSortType>(
     GroupSortType.Level
@@ -114,48 +113,26 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     setGroupDetails(data);
   };
 
-  const closeGroupDetails = () => {
+  const closeModals = () => {
     setIsGroupDetailsOpen(false);
-    if (isSignInOpen) {
-      setGroupDetails(null);
-      setIsSignInOpen(false);
-    }
-
-    if (isNotifyOpen) {
-      setGroupDetails(null);
-      setIsNotifyOpen(false);
-    }
+    setModalType(ModalType.None);
+    setGroupDetails(null);
   };
 
   const onShowGroupDetails = async (groupId: string) => {
     await fetchGroupDetails(groupId);
     setIsGroupDetailsOpen(true);
+    setModalType(ModalType.Details);
   };
 
   const onShowSignIn = async (groupId: string) => {
     await fetchGroupDetails(groupId);
-    setIsSignInOpen(true);
-  };
-
-  const closeSignIn = () => {
-    setIsSignInOpen(false);
-
-    if (!isGroupDetailsOpen) {
-      setGroupDetails(null);
-    }
+    setModalType(ModalType.SignIn);
   };
 
   const onShowNotify = async (groupId: string) => {
     await fetchGroupDetails(groupId);
-    setIsNotifyOpen(true);
-  };
-
-  const closeNotify = () => {
-    setIsNotifyOpen(false);
-
-    if (!isGroupDetailsOpen) {
-      setGroupDetails(null);
-    }
+    setModalType(ModalType.Notify);
   };
 
   const onToggleFilterTab = (tab: FilterTabs) => {
@@ -220,9 +197,9 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     setFilteredGroups([...sortedGroups, ...specialGroups]);
   };
 
-  const isSpecialGroup = (groupId: string) => {
+  const isSpecialGroup = (groupId: string): boolean => {
     const group = groups.find((group) => group.groupId === groupId);
-    return group && group instanceof SpecialGroup;
+    return !!(group && group instanceof SpecialGroup);
   }
 
   return (
@@ -317,45 +294,15 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
           </div>
         )}
       </div>
-
-      {isGroupDetailsOpen && groupDetails && (
-        <GroupDetailsModal
-          groupDetails={groupDetails}
-          onClose={closeGroupDetails}
-          showSignInModal={onShowSignIn}
-          showNotifyModal={onShowNotify}
-        />
-      )}
-      {isSignInOpen && groupDetails && groupDetails.groupId === "-1" && (
-        <ExternalFormModal
-          groupDetails={groupDetails}
-          onClose={closeSignIn}
-          formSectionId="signInIndividualFormSection"
-        />
-      )}
-      {isSignInOpen && groupDetails && groupDetails.groupId === "-2" && (
-        <ExternalFormModal
-          groupDetails={groupDetails}
-          onClose={closeSignIn}
-          formSectionId="signInDuettoFormSection"
-        />
-      )}
-      {isSignInOpen &&
-        groupDetails &&
-        !isSpecialGroup(groupDetails.groupId) && (
-          <ExternalFormModal
-            groupDetails={groupDetails}
-            onClose={closeSignIn}
-            formSectionId="signInFormSection"
-          />
-        )}
-      {isNotifyOpen && groupDetails && (
-        <ExternalFormModal
-          groupDetails={groupDetails}
-          onClose={closeNotify}
-          formSectionId="notifyFormSection"
-        />
-      )}
+      <ModalManager
+        groupDetails={groupDetails}
+        onCloseModal={closeModals}
+        modalType={modalType}
+        isSpecialGroup={isSpecialGroup}
+        isGroupDetailsOpen={isGroupDetailsOpen}
+        onShowSignIn={onShowSignIn}
+        onShowNotify={onShowNotify}
+      />
     </div>
   );
 };
