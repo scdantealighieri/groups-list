@@ -3,7 +3,7 @@ import { Group } from "../models/group";
 import { GroupDetails } from "../models/group-details";
 import { SpecialGroup } from "../models/special-group";
 
-const groupId = "-1";
+const groupId = "special_individual"
 
 const individualGroupInfo: Group = {
     groupId: groupId,

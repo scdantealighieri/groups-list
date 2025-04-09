@@ -1,7 +1,7 @@
 import { GroupState } from "../enums/group-state";
 import { SpecialGroup } from "../models/special-group";
 
-const groupId = "-2";
+const groupId = "special_duetto";
 
 const duettoGroupInfo = {
     groupId: groupId,

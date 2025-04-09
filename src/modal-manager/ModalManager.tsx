@@ -2,12 +2,12 @@ import { GroupDetails } from "../models/group-details";
 import { ExternalFormModal } from "../sign-in-modal/ExternalFormModal";
 import { GroupDetailsModal } from "../group-details/GroupDetailsModal";
 import { ModalType } from "../enums/modal-type";
+import { isSpecialGroup } from "../utils/group-utils";
 
 export const ModalManager = ({
     groupDetails,
     onCloseModal,
     modalType,
-    isSpecialGroup,
     isGroupDetailsOpen,
     onShowSignIn,
     onShowNotify
@@ -15,7 +15,6 @@ export const ModalManager = ({
     groupDetails: GroupDetails | null;
     onCloseModal: () => void;
     modalType: ModalType;
-    isSpecialGroup: (groupId: string) => boolean;
     isGroupDetailsOpen?: boolean;
     onShowSignIn?: (groupId: string) => void;
     onShowNotify?: (groupId: string) => void;
@@ -27,11 +26,11 @@ export const ModalManager = ({
     let formSectionId = "";
 
     if (modalType === ModalType.SignIn) {
-        if (groupDetails.groupId === "-1") {
-            formSectionId = "signInIndividualFormSection";
-        } else if (groupDetails.groupId === "-2") {
-            formSectionId = "signInDuettoFormSection";
-        } else if (!isSpecialGroup(groupDetails.groupId)) {
+        if (isSpecialGroup(groupDetails.groupId)) {
+            formSectionId = groupDetails.groupId === "-1"
+                ? "signInIndividualFormSection"
+                : "signInDuettoFormSection";
+        } else {
             formSectionId = "signInFormSection";
         }
     } else if (modalType === ModalType.Notify) {

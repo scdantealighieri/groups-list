@@ -197,11 +197,6 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
     setFilteredGroups([...sortedGroups, ...specialGroups]);
   };
 
-  const isSpecialGroup = (groupId: string): boolean => {
-    const group = groups.find((group) => group.groupId === groupId);
-    return !!(group && group instanceof SpecialGroup);
-  }
-
   return (
     <div className={styles.listContainer}>
       <div className={styles.toolbar}>
@@ -298,7 +293,6 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
         groupDetails={groupDetails}
         onCloseModal={closeModals}
         modalType={modalType}
-        isSpecialGroup={isSpecialGroup}
         isGroupDetailsOpen={isGroupDetailsOpen}
         onShowSignIn={onShowSignIn}
         onShowNotify={onShowNotify}
