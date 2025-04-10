@@ -40,7 +40,7 @@ export const GroupDetailsModal = ({
   );
 
   return (
-    <BaseGroupDetailsModal onClose={onClose} toolbar={toolbar}>
+    <BaseGroupDetailsModal onClose={onClose} toolbar={toolbar} centerToolbar={isSpecialGroup(groupDetails.groupId)}>
       {isSpecialGroup(groupDetails.groupId) ? (
         <SpecialGroupDetailsContent groupDetails={groupDetails as SpecialGroupDetails} />
       ) : (
