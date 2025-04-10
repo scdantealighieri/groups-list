@@ -1,9 +1,11 @@
 import { GroupState } from "../enums/group-state";
+import { Group } from "../models/group";
 import { SpecialGroup } from "../models/special-group";
+import { SpecialGroupDetails } from "../models/special-group-details";
 
-const groupId = "special_duetto";
+export const groupId = "special_duetto";
 
-const duettoGroupInfo = {
+const duettoGroupInfo: Group = {
     groupId: groupId,
     groupType: "STACJONARNA/ONLINE",
     groupLevel: "",
@@ -17,10 +19,11 @@ const duettoGroupInfo = {
     groupAlwaysVisible: true,
 };
 
-const duettoGroupDetails = {
+const duettoGroupDetails: SpecialGroupDetails = {
     groupDays: "",
     groupDescription:
         "Kursy Duetto to idealne połączenie lekcji grupowych i kursów indywidualnych. Jeśli nie lubisz zbyt bezpośredniego podejścia do nauczyciela, ale nie chcesz również uczyć się w zbyt dużej grupie, Duetto jest rozwiązaniem idealnym dla Ciebie. Jeśli masz już partnera, zapiszcie się razem i otrzymajcie zniżkę, w przeciwnym razie postaramy się dopasować Cię do innych osób, które wyraziły chęć dołączenia!",
+    groupSubHeader: "Zalety kursów duetto",
     groupFirstMeet: "",
     groupFreePlaces: 10,
     groupHours: "",
@@ -35,6 +38,20 @@ const duettoGroupDetails = {
     groupName: "Duetto",
     groupShortName: "Duetto",
     groupType: "Duetto",
+    bulletPoints: [
+        {
+            text: "Uwaga lektora skupiona jest tylko na dwóch osobach",
+            icon: "group",
+        },
+        {
+            text: "Indywidualne podejście i motywacja we dwoje",
+            icon: "bolt",
+        },
+        {
+            text: "Tańsze od lekcji indywidualnych, ale zawierające pozytywne strony kursu",
+            icon: "attach_money",
+        }
+    ]
 }
 
 export const DuettoGroup = new SpecialGroup(duettoGroupInfo, duettoGroupDetails);

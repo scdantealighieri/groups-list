@@ -1,10 +1,11 @@
 import { GroupDetails } from "../models/group-details";
 import { BaseGroupDetailsModal } from "./BaseGroupDetailsModal";
-import { GroupDetailsContent } from "./GroupDetailsContent";
-import { SpecialGroupDetailsContent } from "./SpecialGroupDetailsContent";
+import { GroupDetailsContent } from "../group-details-contents/GroupDetailsContent";
+import { SpecialGroupDetailsContent } from "../group-details-contents/SpecialGroupDetailsContent";
 
 import styles from "./GroupDetailsModal.module.css";
 import { isSpecialGroup } from "../utils/group-utils";
+import { SpecialGroupDetails } from "../models/special-group-details";
 
 export const GroupDetailsModal = ({
   groupDetails,
@@ -41,7 +42,7 @@ export const GroupDetailsModal = ({
   return (
     <BaseGroupDetailsModal onClose={onClose} toolbar={toolbar}>
       {isSpecialGroup(groupDetails.groupId) ? (
-        <SpecialGroupDetailsContent groupDetails={groupDetails} />
+        <SpecialGroupDetailsContent groupDetails={groupDetails as SpecialGroupDetails} />
       ) : (
         <GroupDetailsContent groupDetails={groupDetails} />
       )}

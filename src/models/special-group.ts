@@ -1,6 +1,6 @@
 import { GroupState } from "../enums/group-state";
 import { Group } from "./group";
-import { GroupDetails } from "./group-details";
+import { SpecialGroupDetails } from "./special-group-details";
 
 export class SpecialGroup implements Group {
   groupId: string;
@@ -14,9 +14,9 @@ export class SpecialGroup implements Group {
   groupShortName: string;
   groupFreePlaces: number;
   groupAlwaysVisible: boolean;
-  details: GroupDetails;
+  details: SpecialGroupDetails;
 
-  constructor(group: Group, details: GroupDetails) {
+  constructor(group: Group, details: SpecialGroupDetails) {
     this.groupId = group.groupId;
     this.groupType = group.groupType;
     this.groupLevel = group.groupLevel;

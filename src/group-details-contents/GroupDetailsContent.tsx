@@ -1,28 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { GroupDetails } from "../models/group-details";
 import { dayMapping } from "../services/group-service";
-import styles from "./GroupDetailsModal.module.css";
+import styles from "../group-details/GroupDetailsModal.module.css";
+import { useShortNameSize } from "../hooks/useShortNameSize";
 
 export const GroupDetailsContent = ({ groupDetails }: {
     groupDetails: GroupDetails;
 }) => {
-    const shortNameRef = useRef<HTMLDivElement>(null);
+    const shortNameRef = useShortNameSize(220, 450, styles.medium, styles.small);
+
     const formatDate = (dateString: string): string => {
         const [year, month, day] = dateString.split("-");
         return `${day}/${month}/${year}`;
     };
-
-    useEffect(() => {
-        if (
-            shortNameRef.current &&
-            shortNameRef.current.offsetWidth > 220 &&
-            shortNameRef.current.offsetWidth < 500
-        ) {
-            shortNameRef.current.classList.add(styles.medium);
-        } else if (shortNameRef.current && shortNameRef.current.offsetWidth > 450) {
-            shortNameRef.current.classList.add(styles.small);
-        }
-    }, []);
 
     return (
         <>

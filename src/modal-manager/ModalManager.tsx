@@ -2,7 +2,7 @@ import { GroupDetails } from "../models/group-details";
 import { ExternalFormModal } from "../sign-in-modal/ExternalFormModal";
 import { GroupDetailsModal } from "../group-details/GroupDetailsModal";
 import { ModalType } from "../enums/modal-type";
-import { isSpecialGroup } from "../utils/group-utils";
+import { isDuettoGroup, isIndividualGroup } from "../utils/group-utils";
 
 export const ModalManager = ({
     groupDetails,
@@ -26,14 +26,17 @@ export const ModalManager = ({
     let formSectionId = "";
 
     if (modalType === ModalType.SignIn) {
-        if (isSpecialGroup(groupDetails.groupId)) {
-            formSectionId = groupDetails.groupId === "-1"
-                ? "signInIndividualFormSection"
-                : "signInDuettoFormSection";
-        } else {
+        if (isIndividualGroup(groupDetails.groupId)) {
+            formSectionId = "signInIndividualFormSection";;
+        }
+        else if (isDuettoGroup(groupDetails.groupId)) {
+            formSectionId = "signInDuettoFormSection";
+        }
+        else {
             formSectionId = "signInFormSection";
         }
-    } else if (modalType === ModalType.Notify) {
+    }
+    else if (modalType === ModalType.Notify) {
         formSectionId = "notifyFormSection";
     }
 

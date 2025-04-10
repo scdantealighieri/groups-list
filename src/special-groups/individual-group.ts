@@ -1,9 +1,9 @@
 import { GroupState } from "../enums/group-state";
 import { Group } from "../models/group";
-import { GroupDetails } from "../models/group-details";
 import { SpecialGroup } from "../models/special-group";
+import { SpecialGroupDetails } from "../models/special-group-details";
 
-const groupId = "special_individual"
+export const groupId = "special_individual"
 
 const individualGroupInfo: Group = {
     groupId: groupId,
@@ -19,10 +19,10 @@ const individualGroupInfo: Group = {
     groupAlwaysVisible: true,
 };
 
-const individualGroupDetails: GroupDetails = {
+const individualGroupDetails: SpecialGroupDetails = {
     groupDays: "",
-    groupDescription:
-        "Lekcje indywidualne to doskonała metoda, aby otrzymać podejście bardziej dopasowane do własnych potrzeb. Dzięki lekcjom indywidualnym będziecie mogli bezpośrednio ustalić z nauczycielem program, koncentrując się bardziej na swoich słabszych punktach. Ponadto, jest to idealne rozwiązanie dla osób, które mają dynamiczny czas pracy i mogą mieć trudności z regularnym uczestniczeniem w kursie grupowym. Wreszcie, jeśli w danym momencie nie ma dostępnych kursów grupowych na twoim poziomie, możesz szybciej osiągnąć wymagany poziom indywidualnie, a następnie dołączyć do lekcji grupowych.",
+    groupDescription: "Dla osób, których oczekiwania dotyczące np. tempa nauki czy zakresu leksykalnego są odmienne od programu nauczania grupowego lub których poziom zaawansowania nie pozwala na przyłączenie się od razu do grupy",
+    groupSubHeader: "Zalety kursów indywidualnych",
     groupFirstMeet: "",
     groupFreePlaces: 10,
     groupHours: "",
@@ -37,6 +37,20 @@ const individualGroupDetails: GroupDetails = {
     groupName: "Indywidualna",
     groupShortName: "Indywidualna",
     groupType: "Indywidualna",
+    bulletPoints: [
+        {
+            text: "Spersonalizowana struktura programu",
+            icon: "menu_book",
+        },
+        {
+            text: "Dopasowane godziny zajęć",
+            icon: "schedule",
+        },
+        {
+            text: "Całkowite skupienie się na indywidualnych potrzebach",
+            icon: "lightbulb",
+        }
+    ]
 }
 
 export const IndividualGroup = new SpecialGroup(individualGroupInfo, individualGroupDetails);

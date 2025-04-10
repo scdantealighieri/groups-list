@@ -10,6 +10,7 @@ export const BaseGroupDetailsModal = ({
     children: ReactNode;
     toolbar?: ReactNode;
 }) => {
+    
     return (
         <div className={styles.modal}>
             <div className={styles.modalClose}>
