@@ -23,7 +23,7 @@ export const GroupDetailsModal = ({
     <>
       {groupDetails.groupFreePlaces === 0 ? (
         <button
-          className={styles.signInButton}
+          className={`${styles.signInButton} ${styles.notifyButton}`}
           onClick={() => showNotifyModal(groupDetails.groupId)}
         >
           Powiadom mnie

@@ -170,6 +170,16 @@
   background-color: var(--dante-dark-brown);
 }
 
+.notifyButton,
+.notifyButton:focus {
+  background-color: var(--dante-inactive-grey);
+}
+
+.notifyButton:hover {
+  background-color: var(--dante-inactive-grey);
+  color: white;
+}
+
 .detailsBottom {
   display: flex;
   justify-content: space-between;
