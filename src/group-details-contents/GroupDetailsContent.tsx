@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { GroupDetails } from "../models/group-details";
 import { dayMapping } from "../services/group-service";
 import styles from "../group-details/GroupDetailsModal.module.css";

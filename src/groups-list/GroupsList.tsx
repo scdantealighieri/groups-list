@@ -274,6 +274,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
             groups={filteredGroups}
             onShowGroupDetails={onShowGroupDetails}
             onShowSignIn={onShowSignIn}
+            onShowNotify={onShowNotify}
           ></GroupsTable>
         ) : (
           <div className={styles.groupList}>

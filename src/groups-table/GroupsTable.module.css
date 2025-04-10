@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.tableBody > .tableRow:nth-child(2n) > div {
+.tableBody>.tableRow:nth-child(2n)>div {
   background-color: white;
 }
 
@@ -30,7 +30,7 @@
   margin-top: 25px;
 }
 
-.tableHeader > div {
+.tableHeader>div {
   width: var(--cell-width);
   padding: 10px 0px;
 }
@@ -39,21 +39,23 @@
   border-left-style: solid;
   border-left-width: 1px;
   border-left-color: var(--dante-grey);
+  position: relative;
+  overflow: hidden;
 }
 
 .icon {
   color: var(--dante-black);
 }
 
-.tableRow > div {
+.tableRow>div {
   width: var(--cell-width);
   text-align: center;
   padding: 10px 0px;
   color: var(--dante-black);
 }
 
-.tableHeader > div,
-.tableRow > div {
+.tableHeader>div,
+.tableRow>div {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: var(--dante-grey);
@@ -63,7 +65,7 @@
   border-right-color: var(--dante-grey);
 }
 
-.tableRow > .danteButton {
+.tableRow>.danteButton {
   cursor: pointer;
   font-weight: 700;
   color: var(--dante-dark-brown);
@@ -73,7 +75,19 @@
   cursor: pointer;
 }
 
-.tableRow > .specialRow {
+.tableRow>.specialRow {
   width: calc(var(--cell-width) * 3);
   padding-right: 2px;
+}
+
+.fullTag {
+  background-color: var(--dante-inactive-grey);
+  position: absolute;
+  top: 5px;
+  left: -25px;
+  rotate: -45deg;
+  width: 80px;
+  font-size: 12px;
+  color: var(--dante-white);
+  font-weight: 600;
 }

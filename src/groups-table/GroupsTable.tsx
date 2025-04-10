@@ -7,10 +7,12 @@ export const GroupsTable = ({
   groups,
   onShowGroupDetails,
   onShowSignIn,
+  onShowNotify,
 }: {
   groups: Group[];
   onShowGroupDetails: (groupId: string) => Promise<void>;
   onShowSignIn: (groupId: string) => Promise<void>;
+  onShowNotify: (groupId: string) => Promise<void>;
 }) => {
   return (
     <div className={styles.groupsTable}>
@@ -29,6 +31,7 @@ export const GroupsTable = ({
         {groups.map((group) => (
           <div key={group.groupId} className={styles.tableRow}>
             <div className={`${styles.firstColumn} ${styles.level}`}>
+              {group.groupFreePlaces === 0 && <div className={styles.fullTag}>Pełna</div>}
               {group.groupShortName}
             </div>
             {!group.groupDays && (
@@ -80,12 +83,21 @@ export const GroupsTable = ({
             >
               <span className="material-symbols-outlined">info</span>
             </div>
-            <div
-              className={`${styles.signInBtn} ${styles.danteButton} ${styles.signIn}`}
-              onClick={() => onShowSignIn(group.groupId)}
-            >
-              Zapisz się
-            </div>
+            {group.groupFreePlaces === 0 ? (
+              <div
+                className={`${styles.signInBtn} ${styles.danteButton} ${styles.signIn}`}
+                onClick={() => onShowNotify(group.groupId)}
+              >
+                Powiadom mnie
+              </div>
+            ) : (
+              <div
+                className={`${styles.signInBtn} ${styles.danteButton} ${styles.signIn}`}
+                onClick={() => onShowSignIn(group.groupId)}
+              >
+                Zapisz się
+              </div>
+            )}
           </div>
         ))}
       </div>
