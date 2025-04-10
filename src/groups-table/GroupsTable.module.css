@@ -33,6 +33,19 @@
 .tableHeader>div {
   width: var(--cell-width);
   padding: 10px 0px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableHeader>.nonSortable {
+  cursor: default;
+}
+
+.sortIcon {
+  margin-left: 4px;
+  font-size: 18px;
 }
 
 .firstColumn {
