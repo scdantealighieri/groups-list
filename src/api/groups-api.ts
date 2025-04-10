@@ -1,6 +1,7 @@
 import { GroupState } from "../enums/group-state";
 import { Group } from "../models/group";
 import { GroupDetails } from "../models/group-details";
+import { Lector } from "../models/lector";
 
 const domain = () => process.env.NODE_ENV === "development" ? "" : "https://dantealighieri.appblue.pl"
 
@@ -46,5 +47,19 @@ export async function fetchGroup(groupId: string): Promise<GroupDetails | null> 
     } catch (error) {
         console.error("Error fetching data:", error);
         return null;
+    }
+}
+
+export async function fetchLectors(): Promise<Lector[]> {
+    try {
+        const response = await fetch(
+            `${domain()}/api/get_lectors.php`,
+        );
+        const data: Lector[] = await response.json();
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
     }
 }

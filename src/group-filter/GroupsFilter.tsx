@@ -14,17 +14,20 @@ import styles from "./GroupsFilter.module.css";
 import { MultiSelect } from "react-multi-select-component";
 import { FilterDropdownOption } from "../models/filter-dropdown-option";
 import { GroupState } from "../enums/group-state";
+import { Lector } from "../models/lector";
 
 export const GroupsFilter = ({
   groups,
   filterGroups,
   handleSetFilter,
   filter,
+  lectors,
 }: {
   groups: Group[];
   filterGroups: (filter: Filter) => void;
   handleSetFilter: (filter: Filter) => void;
   filter: Filter;
+  lectors: Lector[];
 }) => {
   const [isFiltersListVisible, setIsFiltersListVisible] = useState(false);
 
@@ -52,12 +55,9 @@ export const GroupsFilter = ({
 
   const groupDays = ["pon", "wto", "sro", "czw", "pia", "sob"];
 
-  const groupLectors = Array.from(
-    new Set(
-      groups
-        .filter((group) => group.groupLector && !group.groupAlwaysVisible)
-        .map((group) => group.groupLector)
-    )
+  const groupLectors = lectors.map(
+    (lector) =>
+      `${lector.lectorFirstName} ${lector.lectorLastName}`
   );
 
   const groupPeriods = Array.from(

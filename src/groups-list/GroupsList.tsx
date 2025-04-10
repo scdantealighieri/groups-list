@@ -20,8 +20,9 @@ import { fetchGroup } from "../api/groups-api";
 import { SpecialGroup } from "../models/special-group";
 import { ModalManager } from "../modal-manager/ModalManager";
 import { ModalType } from "../enums/modal-type";
+import { Lector } from "../models/lector";
 
-export const GroupsList = ({ groups }: { groups: Group[] }) => {
+export const GroupsList = ({ groups, lectors }: { groups: Group[], lectors: Lector[] }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
@@ -243,6 +244,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
               filterGroups={filterGroups}
               handleSetFilter={setFilter}
               filter={filter}
+              lectors={lectors}
             />
           </div>
         )}
@@ -261,6 +263,7 @@ export const GroupsList = ({ groups }: { groups: Group[] }) => {
           filterGroups={filterGroups}
           handleSetFilter={setFilter}
           filter={filter}
+          lectors={lectors}
         />
       </div>
 
