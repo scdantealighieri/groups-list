@@ -29,6 +29,7 @@
   padding-top: 7px;
   color: var(--dante-black);
   font-size: 45px;
+  white-space: nowrap;
 }
 
 .groupDays {
