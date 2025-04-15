@@ -49,6 +49,12 @@ export const GroupsList = ({ groups, lectors }: { groups: Group[], lectors: Lect
   const filterGroups = (filter: Filter) => {
     let filteredGroups = groups;
 
+    if (filter.groupLector.length > 0) {
+      filteredGroups = filteredGroups.filter(
+        (group) => !group.groupAlwaysVisible
+      );
+    }
+
     if (filter.groupType.length > 0) {
       filteredGroups = filteredGroups.filter(
         (group) =>
