@@ -8,7 +8,7 @@ import { DuettoGroup } from "./special-groups/duetto-group";
 import { Lector } from "./models/lector";
 import { GroupsOverview } from "./groups-overview/GroupsOverview";
 
-function App({ mode = "list" }: { mode?: "list" | "overview" }) {
+function App({ mode = "list", rootElement }: { mode?: "list" | "overview", rootElement?: HTMLElement }) {
   const [groups, setGroups] = useState<Group[]>([]);
   const [lectors, setLectors] = useState<Lector[]>([]);
 
@@ -39,7 +39,7 @@ function App({ mode = "list" }: { mode?: "list" | "overview" }) {
       {mode === "list" ? (
         <GroupsList groups={groups} lectors={lectors} />
       ) : (
-        <GroupsOverview groups={groups} />
+        <GroupsOverview groups={groups} rootElement={rootElement} />
       )}
     </div>
   );

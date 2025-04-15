@@ -19,7 +19,7 @@ Array.from(overviewElements).forEach(element => {
   const root = ReactDOM.createRoot(element);
   root.render(
     <React.StrictMode>
-      <App mode="overview" />
+      <App mode="overview" rootElement={element as HTMLElement} />
     </React.StrictMode>
   );
 });
