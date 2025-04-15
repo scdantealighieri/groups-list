@@ -48,7 +48,7 @@ const duettoGroupDetails: SpecialGroupDetails = {
             icon: "bolt",
         },
         {
-            text: "Tańsze od lekcji indywidualnych, ale zawierające pozytywne strony kursu",
+            text: "Tańsze niż indywidualne, z zaletami kursu grupowego",
             icon: "attach_money",
         }
     ]

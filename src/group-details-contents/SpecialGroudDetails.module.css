@@ -23,7 +23,7 @@
     color: var(--dante-grey);
     white-space: pre-wrap;
     text-align: justify;
-    margin-top: 10px;
+    margin-top: 20px;
     font-family: "Rubik", sans-serif;
 }
 
@@ -38,6 +38,7 @@
     flex-direction: column;
     align-items: start;
     width: 100%;
+    font-family: "Rubik", sans-serif;
 }
 
 .bulletPoints span {
