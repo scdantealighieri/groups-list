@@ -14,16 +14,19 @@ export const BaseGroupDetailsModal = ({
 }) => {
 
     return (
-        <div className={styles.modal}>
-            <div className={styles.modalClose}>
-                <span className="material-symbols-outlined" onClick={onClose}>
-                    close
-                </span>
+        <>
+            <div className={styles.modalOverlay} onClick={onClose} />
+            <div className={styles.modal}>
+                <div className={styles.modalClose}>
+                    <span className="material-symbols-outlined" onClick={onClose}>
+                        close
+                    </span>
+                </div>
+                <div className={styles.modalContent}>
+                    {children}
+                </div>
+                {toolbar && <div className={`${styles.toolbar} ${centerToolbar ? styles.centeredToolbar : ''}`}>{toolbar}</div>}
             </div>
-            <div className={styles.modalContent}>
-                {children}
-            </div>
-            {toolbar && <div className={`${styles.toolbar} ${centerToolbar ? styles.centeredToolbar : ''}`}>{toolbar}</div>}
-        </div>
+        </>
     );
 };

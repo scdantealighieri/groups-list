@@ -86,35 +86,38 @@ export const ExternalFormModal = ({
   };
 
   return (
-    <div className={styles.modal} id="externalFormModal">
-      <div className={styles.modalClose}>
-        <span className="material-symbols-outlined" onClick={handleClose}>
-          close
-        </span>
-      </div>
-      <div className={styles.modalContent} ref={modalContentRef}>
-        <div className={styles.header}>
-          <div className={styles.groupName}>{groupDetails.groupShortName}</div>
-          {groupDetails.groupDays && (
-            <div className={styles.details} ref={groupDetailsRef}>
-              <span>
-                {groupDetails.groupDays
-                  .split("-")
-                  .map((d) => dayMapping[d])
-                  .join(", ")}{" "}
-              </span>
-              <span>{groupDetails.groupHours.split("$")[0]}</span> |{" "}
-              <span>{groupDetails.groupLector}</span>
-            </div>
+    <>
+      <div className={styles.modalOverlay} onClick={handleClose} />
+      <div className={styles.modal} id="externalFormModal">
+        <div className={styles.modalClose}>
+          <span className="material-symbols-outlined" onClick={handleClose}>
+            close
+          </span>
+        </div>
+        <div className={styles.modalContent} ref={modalContentRef}>
+          <div className={styles.header}>
+            <div className={styles.groupName}>{groupDetails.groupShortName}</div>
+            {groupDetails.groupDays && (
+              <div className={styles.details} ref={groupDetailsRef}>
+                <span>
+                  {groupDetails.groupDays
+                    .split("-")
+                    .map((d) => dayMapping[d])
+                    .join(", ")}{" "}
+                </span>
+                <span>{groupDetails.groupHours.split("$")[0]}</span> |{" "}
+                <span>{groupDetails.groupLector}</span>
+              </div>
+            )}
+          </div>
+          {externalFormSection && modalContentRef.current && (
+            <div
+              className={styles.externalFormContainer}
+              ref={(el) => el?.appendChild(externalFormSection)}
+            />
           )}
         </div>
-        {externalFormSection && modalContentRef.current && (
-          <div
-            className={styles.externalFormContainer}
-            ref={(el) => el?.appendChild(externalFormSection)}
-          />
-        )}
       </div>
-    </div>
+    </>
   );
 };
