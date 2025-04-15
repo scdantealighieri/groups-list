@@ -6,8 +6,9 @@ import { fetchGroups, fetchLectors } from "./api/groups-api";
 import { IndividualGroup } from "./special-groups/individual-group";
 import { DuettoGroup } from "./special-groups/duetto-group";
 import { Lector } from "./models/lector";
+import { GroupsOverview } from "./groups-overview/GroupsOverview";
 
-function App() {
+function App({ mode = "list" }: { mode?: "list" | "overview" }) {
   const [groups, setGroups] = useState<Group[]>([]);
   const [lectors, setLectors] = useState<Lector[]>([]);
 
@@ -35,7 +36,11 @@ function App() {
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         rel="stylesheet"
       />
-      <GroupsList groups={groups} lectors={lectors} />
+      {mode === "list" ? (
+        <GroupsList groups={groups} lectors={lectors} />
+      ) : (
+        <GroupsOverview groups={groups} />
+      )}
     </div>
   );
 }

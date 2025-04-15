@@ -1,0 +1,14 @@
+.overviewContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.groupList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 25px 20px;
+  max-width: 1160px;
+}
