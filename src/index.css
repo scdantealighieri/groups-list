@@ -11,7 +11,8 @@
 }
 
 body,
-#root {
+#root,
+div.dante-groups-overview {
   font-family: "Plus Jakarta Sans", sans-serif;
   background-color: var(--dante-main-background);
   color: black;
@@ -19,12 +20,15 @@ body,
   line-height: normal;
 }
 
-#root * {
+#root *,
+div.dante-groups-overview * {
   box-sizing: content-box !important;
 }
 
 #root section,
-#root section * {
+#root section *,
+div.dante-groups-overview section,
+div.dante-groups-overview section * {
   box-sizing: border-box !important;
 }
 
