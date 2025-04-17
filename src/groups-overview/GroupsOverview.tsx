@@ -6,8 +6,12 @@ import { fetchGroup } from "../api/groups-api";
 import { SpecialGroup } from "../models/special-group";
 import { ModalManager } from "../modal-manager/ModalManager";
 import { ModalType } from "../enums/modal-type";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 
 import styles from "./GroupsOverview.module.css";
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootElement?: HTMLElement }) => {
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
@@ -82,17 +86,27 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
 
   return (
     <div className={styles.overviewContainer}>
-      <div className={styles.groupList}>
+      <Swiper
+        modules={[ Navigation ]}
+        spaceBetween={30}
+        slidesPerView={'auto'}
+        centeredSlides={false}
+        navigation={true}
+        className={styles.groupList}
+        slidesOffsetAfter={30}
+        slidesOffsetBefore={30}
+      >
         {filteredGroups.map((group) => (
-          <GroupCard
-            group={group}
-            onShowGroupDetails={onShowGroupDetails}
-            onShowSignIn={onShowSignIn}
-            onShowNotify={onShowNotify}
-            key={group.groupId}
-          />
+          <SwiperSlide key={group.groupId} className={styles.swiperSlide}>
+            <GroupCard
+              group={group}
+              onShowGroupDetails={onShowGroupDetails}
+              onShowSignIn={onShowSignIn}
+              onShowNotify={onShowNotify}
+            />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
       <ModalManager
         groupDetails={groupDetails}
         onCloseModal={closeModals}
