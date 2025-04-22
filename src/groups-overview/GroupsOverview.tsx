@@ -86,28 +86,32 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
 
   return (
     <div className={styles.overviewContainer}>
-      <Swiper
-        modules={[ Navigation ]}
-        spaceBetween={30}
-        slidesPerView={'auto'}
-        centeredSlides={false}
-        navigation={true}
-        className={styles.groupList}
-        slidesOffsetAfter={30}
-        slidesOffsetBefore={30}
-        centerInsufficientSlides={true}
-      >
-        {filteredGroups.map((group) => (
-          <SwiperSlide key={group.groupId} className={styles.swiperSlide}>
-            <GroupCard
-              group={group}
-              onShowGroupDetails={onShowGroupDetails}
-              onShowSignIn={onShowSignIn}
-              onShowNotify={onShowNotify}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {filteredGroups.length === 0 ? (
+        <p className={styles.noGroupsMessage}>W tej chwili dla wybranego lektora nie ma dostępnych kursów</p>
+      ) : (
+        <Swiper
+          modules={[ Navigation ]}
+          spaceBetween={30}
+          slidesPerView={'auto'}
+          centeredSlides={false}
+          navigation={true}
+          className={styles.groupList}
+          slidesOffsetAfter={30}
+          slidesOffsetBefore={30}
+          centerInsufficientSlides={true}
+        >
+          {filteredGroups.map((group) => (
+            <SwiperSlide key={group.groupId} className={styles.swiperSlide}>
+              <GroupCard
+                group={group}
+                onShowGroupDetails={onShowGroupDetails}
+                onShowSignIn={onShowSignIn}
+                onShowNotify={onShowNotify}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
       <ModalManager
         groupDetails={groupDetails}
         onCloseModal={closeModals}

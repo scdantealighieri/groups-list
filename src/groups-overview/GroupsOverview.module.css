@@ -15,6 +15,14 @@
   justify-content: center;
 }
 
+.noGroupsMessage {
+  margin: 40px 0;
+  font-size: 18px;
+  color: var(--dante-black);
+  text-align: center;
+  font-weight: 500;
+}
+
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   color: var(--dante-dark-brown) !important;
