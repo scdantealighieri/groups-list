@@ -19,9 +19,3 @@
 :global(.swiper-button-prev) {
   color: var(--dante-dark-brown) !important;
 }
-
-@media screen and (max-width: 630px) {
-  .groupList {
-    padding: 20px;
-  }
-}
