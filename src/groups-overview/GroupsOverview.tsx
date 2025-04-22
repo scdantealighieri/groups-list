@@ -12,6 +12,8 @@ import { Navigation } from 'swiper/modules';
 import styles from "./GroupsOverview.module.css";
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { IndividualGroup } from "../special-groups/individual-group";
+import { DuettoGroup } from "../special-groups/duetto-group";
 
 export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootElement?: HTMLElement }) => {
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
@@ -24,6 +26,8 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
     const level = rootElement.getAttribute('dante-level')?.toLowerCase();
     const type = rootElement.getAttribute('dante-type')?.toLowerCase();
     const lector = rootElement.getAttribute('dante-lector')?.toLowerCase();
+    const hideInd = rootElement.getAttribute('dante-hide-ind')?.toLowerCase();
+    const hideDuetto = rootElement.getAttribute('dante-hide-duetto')?.toLowerCase();
 
     let filtered = [...groups];
 
@@ -43,6 +47,14 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
       filtered = filtered.filter(group => 
         group.groupLector.toLowerCase().startsWith(lector)
       );
+    }
+
+    if(!hideInd) {
+      filtered = [...filtered, IndividualGroup];
+    }
+
+    if(!hideDuetto) {
+      filtered = [...filtered, DuettoGroup];
     }
 
     return filtered;
