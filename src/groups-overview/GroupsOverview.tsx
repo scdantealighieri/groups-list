@@ -95,6 +95,7 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
         className={styles.groupList}
         slidesOffsetAfter={30}
         slidesOffsetBefore={30}
+        centerInsufficientSlides={true}
       >
         {filteredGroups.map((group) => (
           <SwiperSlide key={group.groupId} className={styles.swiperSlide}>
