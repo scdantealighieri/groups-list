@@ -11,8 +11,8 @@
 
 .swiperSlide {
   width: auto !important;
-  display: flex;
-  justify-content: center;
+  display: flex !important;
+  height: auto !important;
 }
 
 .noGroupsMessage {
