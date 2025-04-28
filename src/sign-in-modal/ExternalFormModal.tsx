@@ -41,6 +41,12 @@ export const ExternalFormModal = ({
         if (groupNameInput) {
           groupNameInput.value = groupDetails.groupName;
         }
+
+        const groupLectorContainer = externalForm?.querySelector(".group-lector");
+        const groupLectorInput = groupLectorContainer?.querySelector("input");
+        if (groupLectorInput) {
+          groupLectorInput.value = groupDetails.groupLector;
+        }
       }
 
       setExternalFormSection(externalFormSectionElement as HTMLElement);

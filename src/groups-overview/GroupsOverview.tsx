@@ -50,10 +50,18 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
     }
 
     if(!hideInd) {
+      const thisLectorIndividualGroup = {...IndividualGroup};
+      if (lector) {
+        thisLectorIndividualGroup.groupLector = lector.toUpperCase();
+      }
       filtered = [...filtered, IndividualGroup];
     }
 
     if(!hideDuetto) {
+      const thisLectorDuettoGroup = {...DuettoGroup};
+      if (lector) {
+        thisLectorDuettoGroup.groupLector = lector.toUpperCase();
+      }
       filtered = [...filtered, DuettoGroup];
     }
 
