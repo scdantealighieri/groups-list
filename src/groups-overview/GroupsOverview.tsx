@@ -54,7 +54,7 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
       if (lector) {
         thisLectorIndividualGroup.groupLector = lector.toUpperCase();
       }
-      filtered = [...filtered, IndividualGroup];
+      filtered = [...filtered, thisLectorIndividualGroup];
     }
 
     if(!hideDuetto) {
@@ -62,7 +62,7 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
       if (lector) {
         thisLectorDuettoGroup.groupLector = lector.toUpperCase();
       }
-      filtered = [...filtered, DuettoGroup];
+      filtered = [...filtered, thisLectorDuettoGroup];
     }
 
     return filtered;
