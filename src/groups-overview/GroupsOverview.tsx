@@ -29,7 +29,7 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
     const hideInd = rootElement.getAttribute('dante-hide-ind')?.toLowerCase();
     const hideDuetto = rootElement.getAttribute('dante-hide-duetto')?.toLowerCase();
 
-    let filtered = [...groups];
+    let filtered =  groups.filter(group => !(group instanceof SpecialGroup));
 
     if (level) {
       filtered = filtered.filter(group => 
