@@ -6,16 +6,23 @@ import { fetchGroup } from "../api/groups-api";
 import { SpecialGroup } from "../models/special-group";
 import { ModalManager } from "../modal-manager/ModalManager";
 import { ModalType } from "../enums/modal-type";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 
 import styles from "./GroupsOverview.module.css";
-import 'swiper/css';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/navigation";
 import { IndividualGroup } from "../special-groups/individual-group";
 import { DuettoGroup } from "../special-groups/duetto-group";
+import { dayMappingToNumber } from "../services/group-service";
 
-export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootElement?: HTMLElement }) => {
+export const GroupsOverview = ({
+  groups,
+  rootElement,
+}: {
+  groups: Group[];
+  rootElement?: HTMLElement;
+}) => {
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(ModalType.None);
@@ -23,42 +30,55 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
   const getFilteredGroups = () => {
     if (!rootElement) return groups;
 
-    const level = rootElement.getAttribute('dante-level')?.toLowerCase();
-    const type = rootElement.getAttribute('dante-type')?.toLowerCase();
-    const lector = rootElement.getAttribute('dante-lector')?.toLowerCase();
-    const hideInd = rootElement.getAttribute('dante-hide-ind')?.toLowerCase();
-    const hideDuetto = rootElement.getAttribute('dante-hide-duetto')?.toLowerCase();
+    groups.sort((a, b) => {
+      const res = a.groupShortName.localeCompare(b.groupShortName);
+      if (res === 0) {
+        return (
+          dayMappingToNumber[a.groupDays.split("-")[0]] -
+          dayMappingToNumber[b.groupDays.split("-")[0]]
+        );
+      }
+      return res;
+    });
 
-    let filtered =  groups.filter(group => !(group instanceof SpecialGroup));
+    const level = rootElement.getAttribute("dante-level")?.toLowerCase();
+    const type = rootElement.getAttribute("dante-type")?.toLowerCase();
+    const lector = rootElement.getAttribute("dante-lector")?.toLowerCase();
+    const hideInd = rootElement.getAttribute("dante-hide-ind")?.toLowerCase();
+    const hideDuetto = rootElement
+      .getAttribute("dante-hide-duetto")
+      ?.toLowerCase();
+
+    let filtered = groups.filter((group) => !(group instanceof SpecialGroup));
 
     if (level) {
-      filtered = filtered.filter(group => 
+      filtered = filtered.filter((group) =>
         group.groupLevel.toLowerCase().startsWith(level)
       );
     }
 
     if (type) {
-      filtered = filtered.filter(group => 
+      filtered = filtered.filter((group) =>
         group.groupType.toLowerCase().startsWith(type)
       );
     }
 
     if (lector) {
-      filtered = filtered.filter(group => 
+      filtered = filtered.filter((group) =>
         group.groupLector.toLowerCase().startsWith(lector)
       );
     }
 
-    if(!hideInd) {
-      const thisLectorIndividualGroup = {...IndividualGroup};
+    if (!hideInd) {
+      const thisLectorIndividualGroup = { ...IndividualGroup };
       if (lector) {
         thisLectorIndividualGroup.details.groupLector = lector.toUpperCase();
       }
       filtered = [...filtered, thisLectorIndividualGroup];
     }
 
-    if(!hideDuetto) {
-      const thisLectorDuettoGroup = {...DuettoGroup};
+    if (!hideDuetto) {
+      const thisLectorDuettoGroup = { ...DuettoGroup };
       if (lector) {
         thisLectorDuettoGroup.details.groupLector = lector.toUpperCase();
       }
@@ -107,12 +127,14 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
   return (
     <div className={styles.overviewContainer}>
       {filteredGroups.length === 0 ? (
-        <p className={styles.noGroupsMessage}>W tej chwili dla wybranego lektora nie ma dostępnych kursów</p>
+        <p className={styles.noGroupsMessage}>
+          W tej chwili dla wybranego lektora nie ma dostępnych kursów
+        </p>
       ) : (
         <Swiper
-          modules={[ Navigation ]}
+          modules={[Navigation]}
           spaceBetween={30}
-          slidesPerView={'auto'}
+          slidesPerView={"auto"}
           centeredSlides={false}
           navigation={true}
           className={styles.groupList}
