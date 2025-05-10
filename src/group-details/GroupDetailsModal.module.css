@@ -216,6 +216,9 @@
   cursor: pointer;
   font-size: 30px;
 }
+.infoValue.hours {
+  min-width: 95px;
+}
 
 @media screen and (max-width: 630px) {
   .modal {
