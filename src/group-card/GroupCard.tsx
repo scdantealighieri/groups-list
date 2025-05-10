@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Group } from "../models/group";
-import { dayMapping } from "../services/group-service";
 
 import styles from "./GroupCard.module.css";
+import { getFormattedGroupDays } from "../services/group-service";
 
 export const GroupCard = ({
   group,
@@ -17,13 +17,6 @@ export const GroupCard = ({
 }) => {
   const groupLevelRef = useRef<HTMLDivElement>(null);
   const cardWidth = 230;
-
-  const getFormattedGroupDays = (groupDays: string): string => {
-    return groupDays
-      .split("-")
-      .map((day) => dayMapping[day] || day)
-      .join("-");
-  };
 
   const getFormattedGroupHours = (groupHours: string): string => {
     return groupHours.split("$")[0];

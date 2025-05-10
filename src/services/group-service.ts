@@ -83,3 +83,14 @@ export const mapGroupHoursToPeriod = (groupHours: string): string => {
         disabled: false,
       }));
   };
+
+  export const getFormattedGroupDays = (groupDays: string): string => {
+    if(groupDays.split("-").length === 5) {
+      return "codziennie";
+    }
+
+    return groupDays
+    .split("-")
+    .map((day) => dayMapping[day] || day)
+    .join("-");
+  };
