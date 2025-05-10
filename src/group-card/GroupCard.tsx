@@ -9,11 +9,13 @@ export const GroupCard = ({
   onShowGroupDetails,
   onShowSignIn,
   onShowNotify,
+  isLandingPage,
 }: {
   group: Group;
   onShowGroupDetails: (groupId: string) => Promise<void>;
   onShowSignIn: (groupId: string) => Promise<void>;
   onShowNotify: (groupId: string) => Promise<void>;
+  isLandingPage?: boolean;
 }) => {
   const groupLevelRef = useRef<HTMLDivElement>(null);
   const cardWidth = 230;
@@ -58,13 +60,15 @@ export const GroupCard = ({
       </div>
       <div className={styles.groupLector}>{group.groupLector}</div>
       <div className={styles.buttonsContainer}>
-        <div
-          className={`${styles.showMoreBtn} ${styles.danteButton} ${styles.infoButton}`}
-          onClick={() => onShowGroupDetails(group.groupId)}
-        >
-          Info
-        </div>
-        {group.groupFreePlaces === 0 ? (
+        {!isLandingPage && (
+          <div
+            className={`${styles.showMoreBtn} ${styles.danteButton} ${styles.infoButton}`}
+            onClick={() => onShowGroupDetails(group.groupId)}
+          >
+            Info
+          </div>
+        )}
+        {group.groupFreePlaces === 0 && !isLandingPage ? (
           <div
             className={`${styles.signInBtn} ${styles.danteButton} ${styles.notifyButton}`}
             onClick={() => onShowNotify(group.groupId)}

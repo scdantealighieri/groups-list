@@ -27,6 +27,8 @@ export const GroupsOverview = ({
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(ModalType.None);
 
+  const isLandingPage = !!rootElement?.getAttribute("dante-lp");
+
   const getFilteredGroups = () => {
     if (!rootElement) return groups;
 
@@ -113,6 +115,11 @@ export const GroupsOverview = ({
   };
 
   const onShowSignIn = async (groupId: string) => {
+    if (isLandingPage) {
+      window.location.hash = "#zapisz-sie";
+      return;
+    }
+
     await fetchGroupDetails(groupId);
     setModalType(ModalType.SignIn);
   };
@@ -149,6 +156,7 @@ export const GroupsOverview = ({
                 onShowGroupDetails={onShowGroupDetails}
                 onShowSignIn={onShowSignIn}
                 onShowNotify={onShowNotify}
+                isLandingPage={isLandingPage}
               />
             </SwiperSlide>
           ))}
