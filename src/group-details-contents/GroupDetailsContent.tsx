@@ -1,7 +1,7 @@
 import { GroupDetails } from "../models/group-details";
-import { dayMapping, getFormattedGroupDays } from "../services/group-service";
+import { getFormattedGroupDays } from "../services/group-service";
 import styles from "../group-details/GroupDetailsModal.module.css";
-import { useShortNameSize } from "../hooks/useShortNameSize";
+import { useFontSize } from "../hooks/useFontSize";
 import { useRef, useEffect } from "react";
 
 export const GroupDetailsContent = ({
@@ -9,7 +9,7 @@ export const GroupDetailsContent = ({
 }: {
   groupDetails: GroupDetails;
 }) => {
-  const shortNameRef = useShortNameSize(220, 450, styles.medium, styles.small);
+  const levelFontSizeRef = useFontSize(230);
   const headerRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +30,7 @@ export const GroupDetailsContent = ({
       <div className={styles.detailsTop}>
         <div className={styles.detailsLeft}>
           <div className={styles.header} ref={headerRef}>
-            <div className={styles.level} ref={shortNameRef}>
+            <div className={styles.level} ref={levelFontSizeRef}>
               {groupDetails.groupShortName}
             </div>
             <div className={styles.separator}></div>
