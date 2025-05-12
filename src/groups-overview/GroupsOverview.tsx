@@ -32,17 +32,6 @@ export const GroupsOverview = ({
   const getFilteredGroups = () => {
     if (!rootElement) return groups;
 
-    groups.sort((a, b) => {
-      const res = a.groupShortName.localeCompare(b.groupShortName);
-      if (res === 0) {
-        return (
-          dayMappingToNumber[a.groupDays.split("-")[0]] -
-          dayMappingToNumber[b.groupDays.split("-")[0]]
-        );
-      }
-      return res;
-    });
-
     const level = rootElement.getAttribute("dante-level")?.toLowerCase();
     const type = rootElement.getAttribute("dante-type")?.toLowerCase();
     const lector = rootElement.getAttribute("dante-lector")?.toLowerCase();
@@ -86,6 +75,20 @@ export const GroupsOverview = ({
       }
       filtered = [...filtered, thisLectorDuettoGroup];
     }
+
+    filtered.sort((a, b) => {
+      const res = a.groupShortName
+        .trim()
+        .localeCompare(b.groupShortName.trim());
+
+      if (res === 0) {
+        return (
+          dayMappingToNumber[a.groupDays.split("-")[0]] -
+          dayMappingToNumber[b.groupDays.split("-")[0]]
+        );
+      }
+      return res;
+    });
 
     return filtered;
   };
