@@ -1,29 +1,24 @@
 import { useEffect, useRef } from "react";
 import { Group } from "../models/group";
-import { dayMapping } from "../services/group-service";
 
 import styles from "./GroupCard.module.css";
+import { getFormattedGroupDays } from "../services/group-service";
 
 export const GroupCard = ({
   group,
   onShowGroupDetails,
   onShowSignIn,
   onShowNotify,
+  isLandingPage,
 }: {
   group: Group;
   onShowGroupDetails: (groupId: string) => Promise<void>;
   onShowSignIn: (groupId: string) => Promise<void>;
   onShowNotify: (groupId: string) => Promise<void>;
+  isLandingPage?: boolean;
 }) => {
   const groupLevelRef = useRef<HTMLDivElement>(null);
   const cardWidth = 230;
-
-  const getFormattedGroupDays = (groupDays: string): string => {
-    return groupDays
-      .split("-")
-      .map((day) => dayMapping[day] || day)
-      .join("-");
-  };
 
   const getFormattedGroupHours = (groupHours: string): string => {
     return groupHours.split("$")[0];
@@ -65,13 +60,15 @@ export const GroupCard = ({
       </div>
       <div className={styles.groupLector}>{group.groupLector}</div>
       <div className={styles.buttonsContainer}>
-        <div
-          className={`${styles.showMoreBtn} ${styles.danteButton} ${styles.infoButton}`}
-          onClick={() => onShowGroupDetails(group.groupId)}
-        >
-          Info
-        </div>
-        {group.groupFreePlaces === 0 ? (
+        {!isLandingPage && (
+          <div
+            className={`${styles.showMoreBtn} ${styles.danteButton} ${styles.infoButton}`}
+            onClick={() => onShowGroupDetails(group.groupId)}
+          >
+            Info
+          </div>
+        )}
+        {group.groupFreePlaces === 0 && !isLandingPage ? (
           <div
             className={`${styles.signInBtn} ${styles.danteButton} ${styles.notifyButton}`}
             onClick={() => onShowNotify(group.groupId)}

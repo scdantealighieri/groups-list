@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { GroupDetails } from "../models/group-details";
 
 import styles from "./ExternalFormModal.module.css";
-import { dayMapping } from "../services/group-service";
+import { getFormattedGroupDays } from "../services/group-service";
 
 export const ExternalFormModal = ({
   groupDetails,
@@ -42,7 +42,8 @@ export const ExternalFormModal = ({
           groupNameInput.value = groupDetails.groupName;
         }
 
-        const groupLectorContainer = externalForm?.querySelector(".group-lector");
+        const groupLectorContainer =
+          externalForm?.querySelector(".group-lector");
         const groupLectorInput = groupLectorContainer?.querySelector("input");
         if (groupLectorInput) {
           groupLectorInput.value = groupDetails.groupLector;
@@ -51,7 +52,12 @@ export const ExternalFormModal = ({
 
       setExternalFormSection(externalFormSectionElement as HTMLElement);
     }
-  }, [groupDetails.groupId, groupDetails.groupName, groupDetails.groupLector, formSectionId]);
+  }, [
+    groupDetails.groupId,
+    groupDetails.groupName,
+    groupDetails.groupLector,
+    formSectionId,
+  ]);
 
   useEffect(() => {
     if (modalContentRef.current) {
@@ -102,15 +108,12 @@ export const ExternalFormModal = ({
         </div>
         <div className={styles.modalContent} ref={modalContentRef}>
           <div className={styles.header}>
-            <div className={styles.groupName}>{groupDetails.groupShortName}</div>
+            <div className={styles.groupName}>
+              {groupDetails.groupShortName}
+            </div>
             {groupDetails.groupDays && (
               <div className={styles.details} ref={groupDetailsRef}>
-                <span>
-                  {groupDetails.groupDays
-                    .split("-")
-                    .map((d) => dayMapping[d])
-                    .join(", ")}{" "}
-                </span>
+                <span>{getFormattedGroupDays(groupDetails.groupDays)} </span>
                 <span>{groupDetails.groupHours.split("$")[0]}</span> |{" "}
                 <span>{groupDetails.groupLector}</span>
               </div>

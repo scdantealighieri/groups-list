@@ -22,7 +22,13 @@ import { ModalManager } from "../modal-manager/ModalManager";
 import { ModalType } from "../enums/modal-type";
 import { Lector } from "../models/lector";
 
-export const GroupsList = ({ groups, lectors }: { groups: Group[], lectors: Lector[] }) => {
+export const GroupsList = ({
+  groups,
+  lectors,
+}: {
+  groups: Group[];
+  lectors: Lector[];
+}) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
@@ -173,32 +179,35 @@ export const GroupsList = ({ groups, lectors }: { groups: Group[], lectors: Lect
     );
     switch (sortBy) {
       case GroupSortType.Level:
-        sortedGroups =
-          [...nonSpecialGroups].sort((a, b) =>
-            a.groupShortName.localeCompare(b.groupShortName)
-          );
-        break;
-      case GroupSortType.Day:
-        sortedGroups =
-          [...nonSpecialGroups].sort(
-            (a, b) =>
+        sortedGroups = [...nonSpecialGroups].sort((a, b) => {
+          const res = a.groupShortName.localeCompare(b.groupShortName);
+          if (res === 0) {
+            return (
               dayMappingToNumber[a.groupDays.split("-")[0]] -
               dayMappingToNumber[b.groupDays.split("-")[0]]
-          );
+            );
+          }
+          return res;
+        });
+        break;
+      case GroupSortType.Day:
+        sortedGroups = [...nonSpecialGroups].sort(
+          (a, b) =>
+            dayMappingToNumber[a.groupDays.split("-")[0]] -
+            dayMappingToNumber[b.groupDays.split("-")[0]]
+        );
         break;
       case GroupSortType.StartDate:
-        sortedGroups =
-          [...nonSpecialGroups].sort(
-            (a, b) =>
-              parseDateToNumber(a.groupFirstMeet) -
-              parseDateToNumber(b.groupFirstMeet)
-          );
+        sortedGroups = [...nonSpecialGroups].sort(
+          (a, b) =>
+            parseDateToNumber(a.groupFirstMeet) -
+            parseDateToNumber(b.groupFirstMeet)
+        );
         break;
       case GroupSortType.Lector:
-        sortedGroups =
-          [...nonSpecialGroups].sort((a, b) =>
-            a.groupLector.localeCompare(b.groupLector)
-          );
+        sortedGroups = [...nonSpecialGroups].sort((a, b) =>
+          a.groupLector.localeCompare(b.groupLector)
+        );
         break;
     }
     setFilteredGroups([...sortedGroups, ...specialGroups]);
@@ -223,19 +232,21 @@ export const GroupsList = ({ groups, lectors }: { groups: Group[], lectors: Lect
         </div>
         <div className={styles.displayTypeContainer}>
           <div
-            className={`${styles.displayTypeItem} ${selectedListDisplayType === ListDisplayType.Grid
-              ? styles.selected
-              : ""
-              }`}
+            className={`${styles.displayTypeItem} ${
+              selectedListDisplayType === ListDisplayType.Grid
+                ? styles.selected
+                : ""
+            }`}
             onClick={() => setSelectedListDisplayType(ListDisplayType.Grid)}
           >
             Kafelki
           </div>
           <div
-            className={`${styles.displayTypeItem} ${selectedListDisplayType === ListDisplayType.List
-              ? styles.selected
-              : ""
-              }`}
+            className={`${styles.displayTypeItem} ${
+              selectedListDisplayType === ListDisplayType.List
+                ? styles.selected
+                : ""
+            }`}
             onClick={() => setSelectedListDisplayType(ListDisplayType.List)}
           >
             Lista
