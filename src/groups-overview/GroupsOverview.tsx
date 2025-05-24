@@ -107,7 +107,7 @@ export const GroupsOverview = ({ groups, rootElement }: { groups: Group[], rootE
   return (
     <div className={styles.overviewContainer}>
       {filteredGroups.length === 0 ? (
-        <p className={styles.noGroupsMessage}>W tej chwili dla wybranego lektora nie ma dostępnych kursów</p>
+        <p className={styles.noGroupsMessage}>W tej chwili brak dostępnych kursów</p>
       ) : (
         <Swiper
           modules={[ Navigation ]}
