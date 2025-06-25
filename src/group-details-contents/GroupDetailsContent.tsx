@@ -94,12 +94,11 @@ export const GroupDetailsContent = ({
             </div>
           </div>
         )}
-        {groupDetails.groupFreePlaces < 3 &&
-          groupDetails.groupFreePlaces > 0 && (
+        {groupDetails.groupFreePlaces > 0 && (
             <div className={styles.freePlacesContainer}>
               <div className={styles.freePlacesHeader}>Wolne miejsca</div>
               <div className={styles.freePlaces}>
-                Ostatnie {groupDetails.groupFreePlaces}!
+                {groupDetails.groupFreePlaces}
               </div>
             </div>
           )}
