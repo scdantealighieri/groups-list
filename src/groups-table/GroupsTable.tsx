@@ -1,5 +1,5 @@
 import { Group } from "../models/group";
-import { dayMappingShort } from "../services/group-service";
+import { getFormattedGroupDays } from "../services/group-service";
 import { useState } from "react";
 
 import styles from "./GroupsTable.module.css";
@@ -154,10 +154,7 @@ export const GroupsTable = ({
               <>
                 {" "}
                 <div className={styles.day}>
-                  {group.groupDays
-                    .split("-")
-                    .map((d) => dayMappingShort[d])
-                    .join(", ")}
+                  {getFormattedGroupDays(group.groupDays)}
                 </div>
                 <div className={styles.hour}>
                   {group.groupHours.split("$")[0]}
