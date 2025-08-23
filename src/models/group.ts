@@ -15,4 +15,5 @@ export interface Group {
   groupAlwaysVisible: boolean;
   groupPremises: GroupPremise[];
   groupCity: string;
+  groupCityOrType: string;
 }

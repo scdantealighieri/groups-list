@@ -18,6 +18,7 @@ export class SpecialGroup implements Group {
   details: SpecialGroupDetails;
   groupPremises: GroupPremise[];
   groupCity: string;
+  groupCityOrType: string;
 
   constructor(group: Group, details: SpecialGroupDetails) {
     this.groupId = group.groupId;
@@ -34,5 +35,7 @@ export class SpecialGroup implements Group {
     this.details = details;
     this.groupPremises = group.groupPremises;
     this.groupCity = group.groupCity;
+    this.groupCityOrType = group.groupCityOrType;
   }
+
 }

@@ -65,7 +65,7 @@ export const GroupsList = ({
     if (filter.groupType.length > 0) {
       filteredGroups = filteredGroups.filter(
         (group) =>
-          filter.groupType.includes(group.groupType) || group.groupAlwaysVisible
+          filter.groupType.includes(group.groupCityOrType) || group.groupAlwaysVisible
       );
     }
 

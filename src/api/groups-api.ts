@@ -1,4 +1,5 @@
 import { GroupState } from "../enums/group-state";
+import { GroupType } from "../enums/group-type";
 import { Group } from "../models/group";
 import { GroupDetails } from "../models/group-details";
 import { Lector } from "../models/lector";
@@ -17,6 +18,12 @@ export async function fetchGroups(): Promise<Group[]> {
                 group.groupState = GroupState.Icoming;
             } else {
                 group.groupState = GroupState.Active;
+            }
+
+            if(group.groupType === GroupType.OnSite){
+                group.groupCityOrType = group.groupCity;
+            } else {
+                group.groupCityOrType = group.groupType;
             }
         });
 
