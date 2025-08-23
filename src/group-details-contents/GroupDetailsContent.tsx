@@ -1,7 +1,6 @@
 import { GroupDetails } from "../models/group-details";
 import { getFormattedGroupDays } from "../services/group-service";
 import styles from "../group-details/GroupDetailsModal.module.css";
-import stylesContent from "../group-details-contents/GroupDetailsContent.module.css";
 import { useFontSize } from "../hooks/useFontSize";
 import { useRef, ReactNode } from "react";
 import { GroupType } from "../enums/group-type";
