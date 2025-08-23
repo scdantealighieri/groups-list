@@ -6,14 +6,17 @@ import { SpecialGroupDetailsContent } from "../group-details-contents/SpecialGro
 import styles from "./GroupDetailsModal.module.css";
 import { isSpecialGroup } from "../utils/group-utils";
 import { SpecialGroupDetails } from "../models/special-group-details";
+import { Group } from "../models/group";
 
 export const GroupDetailsModal = ({
   groupDetails,
+  group,
   onClose,
   showSignInModal,
   showNotifyModal,
 }: {
   groupDetails: GroupDetails;
+  group: Group | null;
   onClose: () => void;
   showSignInModal: (groupId: string) => void;
   showNotifyModal: (groupId: string) => void;
@@ -40,11 +43,11 @@ export const GroupDetailsModal = ({
   );
 
   return (
-    <BaseGroupDetailsModal onClose={onClose} toolbar={toolbar} centerToolbar={isSpecialGroup(groupDetails.groupId)}>
+    <BaseGroupDetailsModal onClose={onClose} toolbar={toolbar} showToolbar={isSpecialGroup(groupDetails.groupId)}>
       {isSpecialGroup(groupDetails.groupId) ? (
         <SpecialGroupDetailsContent groupDetails={groupDetails as SpecialGroupDetails} />
       ) : (
-        <GroupDetailsContent groupDetails={groupDetails} />
+        <GroupDetailsContent groupDetails={groupDetails} toolbar ={toolbar} group={group} />
       )}
     </BaseGroupDetailsModal>
   );

@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 
 export const useFontSize = (
-    maxWidth = 230
+    maxWidth = 230,
+    minFontSize = 40
 ) => {
     const elementRef = useRef<HTMLDivElement>(null);
 
@@ -12,13 +13,13 @@ export const useFontSize = (
         if (element.offsetWidth > maxWidth) {
             const computedStyle = window.getComputedStyle(element);
             let fontSize = parseFloat(computedStyle.fontSize);
-            
-            while (element.offsetWidth > maxWidth && fontSize > 0) {
+
+            while (element.offsetWidth > maxWidth && fontSize > minFontSize) {
                 fontSize--;
                 element.style.fontSize = `${fontSize}px`;
             }
         }
-    }, [maxWidth]); 
+    }, [maxWidth, minFontSize]);
 
     return elementRef;
 };

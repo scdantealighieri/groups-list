@@ -17,6 +17,8 @@ const individualGroupInfo: Group = {
     groupShortName: "Indywidualna ",
     groupFreePlaces: 5,
     groupAlwaysVisible: true,
+    groupPremises: [],
+    groupCity: ""
 };
 
 const individualGroupDetails: SpecialGroupDetails = {

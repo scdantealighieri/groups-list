@@ -26,10 +26,15 @@
   flex-direction: column;
 }
 
+.modalContentWithPadding {
+  padding-bottom: 48px;
+}
+
 .detailsTop {
   display: flex;
+  flex-direction: column;
   gap: 25px;
-  justify-content: space-between;
+  margin-top: -35px;
 }
 
 .header {
@@ -37,16 +42,19 @@
   align-items: center;
   gap: 10px;
   color: var(--dante-grey);
+  flex-direction: column;
 }
 
 .infoContainer {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  gap: 15px;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .info {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -66,7 +74,7 @@
 }
 
 .level {
-  font-size: 110px;
+  font-size: 80px;
   font-weight: 700;
   color: var(--dante-black);
   line-height: 1;
@@ -88,7 +96,7 @@
 
 .description {
   color: var(--dante-grey);
-  max-width: 300px;
+  max-width: 350px;
   white-space: pre-wrap;
   text-align: justify;
   margin-top: 10px;
@@ -97,14 +105,14 @@
 
 .datesHeader,
 .freePlacesHeader {
-  font-size: 25px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--dante-black);
 }
 
 .dates,
 .freePlaces {
-  margin-top: 10px;
+  margin-left: 5px;
   color: var(--dante-grey);
   font-family: "Rubik", sans-serif;
 }
@@ -128,6 +136,12 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+.detailsLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .detailsRight,
@@ -192,12 +206,18 @@
 
 .detailsBottom {
   display: flex;
+  gap: 15px;
   justify-content: space-between;
+  margin-top: 10px;
+}
+
+.classDates {
+  display: flex;
+  align-items: center;
 }
 
 .freePlacesContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
@@ -216,11 +236,31 @@
   cursor: pointer;
   font-size: 30px;
 }
+
 .infoValue.hours {
   min-width: 95px;
 }
 
+.toolbar.hidden {
+  display: none;
+}
+
+.standardToolbar {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 @media screen and (max-width: 630px) {
+  .toolbar.hidden {
+    display: flex;
+  }
+
+  .standardToolbar {
+    display: none;
+  }
+
   .modal {
     width: 90%;
     max-height: 90vh;
@@ -245,6 +285,10 @@
     margin-bottom: 15px;
   }
 
+  .detailsBottom {
+    flex-direction: column-reverse;
+  }
+
   .photo {
     align-items: center;
   }
@@ -263,6 +307,7 @@
 
   .level {
     font-size: 70px;
+    text-align: center;
   }
 
   .separator {
@@ -271,6 +316,7 @@
 
   .info {
     gap: 5px;
+    flex-direction: column;
   }
 
   .infoContainer {
@@ -281,6 +327,7 @@
   .infoValue {
     display: flex;
     align-items: center;
+    text-align: center;
   }
 
   .infoValue.hours {
@@ -297,12 +344,7 @@
 
   .dates,
   .freePlaces {
-    font-size: 12px;
-  }
-
-  .dates {
-    display: flex;
-    justify-content: center;
+    font-size: 14px;
   }
 
   .dates span:last-child {
@@ -316,7 +358,7 @@
 
   .classDates {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
 

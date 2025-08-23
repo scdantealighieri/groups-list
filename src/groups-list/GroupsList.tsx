@@ -30,6 +30,7 @@ export const GroupsList = ({
   lectors: Lector[];
 }) => {
   const [filteredGroups, setFilteredGroups] = useState<Group[]>(groups);
+  const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(ModalType.None);
@@ -130,9 +131,12 @@ export const GroupsList = ({
     setIsGroupDetailsOpen(false);
     setModalType(ModalType.None);
     setGroupDetails(null);
+    setSelectedGroup(null);
   };
 
   const onShowGroupDetails = async (groupId: string) => {
+    const group = groups.find((g) => g.groupId === groupId) || null;
+    setSelectedGroup(group);
     await fetchGroupDetails(groupId);
     setIsGroupDetailsOpen(true);
     setModalType(ModalType.Details);
@@ -312,6 +316,7 @@ export const GroupsList = ({
       </div>
       <ModalManager
         groupDetails={groupDetails}
+        group={selectedGroup}
         onCloseModal={closeModals}
         modalType={modalType}
         isGroupDetailsOpen={isGroupDetailsOpen}

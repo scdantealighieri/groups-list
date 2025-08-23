@@ -3,9 +3,11 @@ import { ExternalFormModal } from "../sign-in-modal/ExternalFormModal";
 import { GroupDetailsModal } from "../group-details/GroupDetailsModal";
 import { ModalType } from "../enums/modal-type";
 import { isDuettoGroup, isIndividualGroup } from "../utils/group-utils";
+import { Group } from "../models/group";
 
 export const ModalManager = ({
     groupDetails,
+    group,
     onCloseModal,
     modalType,
     isGroupDetailsOpen,
@@ -13,6 +15,7 @@ export const ModalManager = ({
     onShowNotify
 }: {
     groupDetails: GroupDetails | null;
+    group: Group | null;
     onCloseModal: () => void;
     modalType: ModalType;
     isGroupDetailsOpen?: boolean;
@@ -49,6 +52,7 @@ export const ModalManager = ({
                 onShowNotify && (
                     <GroupDetailsModal
                         groupDetails={groupDetails}
+                        group={group}
                         onClose={onCloseModal}
                         showSignInModal={onShowSignIn}
                         showNotifyModal={onShowNotify}

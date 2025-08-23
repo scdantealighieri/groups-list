@@ -1,5 +1,6 @@
 import { GroupState } from "../enums/group-state";
 import { Group } from "./group";
+import { GroupPremise } from "./group-premise";
 import { SpecialGroupDetails } from "./special-group-details";
 
 export class SpecialGroup implements Group {
@@ -15,6 +16,8 @@ export class SpecialGroup implements Group {
   groupFreePlaces: number;
   groupAlwaysVisible: boolean;
   details: SpecialGroupDetails;
+  groupPremises: GroupPremise[];
+  groupCity: string;
 
   constructor(group: Group, details: SpecialGroupDetails) {
     this.groupId = group.groupId;
@@ -29,5 +32,7 @@ export class SpecialGroup implements Group {
     this.groupFreePlaces = group.groupFreePlaces;
     this.groupAlwaysVisible = group.groupAlwaysVisible;
     this.details = details;
+    this.groupPremises = group.groupPremises;
+    this.groupCity = group.groupCity;
   }
 }

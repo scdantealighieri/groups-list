@@ -1,4 +1,5 @@
 import { GroupState } from "../enums/group-state";
+import { GroupPremise } from "./group-premise";
 
 export interface Group {
   groupId: string;
@@ -12,4 +13,6 @@ export interface Group {
   groupShortName: string;
   groupFreePlaces: number;
   groupAlwaysVisible: boolean;
+  groupPremises: GroupPremise[];
+  groupCity: string;
 }

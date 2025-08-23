@@ -5,12 +5,12 @@ export const BaseGroupDetailsModal = ({
     onClose,
     children,
     toolbar,
-    centerToolbar = false,
+    showToolbar = false,
 }: {
     onClose: () => void;
     children: ReactNode;
     toolbar?: ReactNode;
-    centerToolbar?: boolean;
+    showToolbar?: boolean;
 }) => {
 
     return (
@@ -22,10 +22,10 @@ export const BaseGroupDetailsModal = ({
                         close
                     </span>
                 </div>
-                <div className={styles.modalContent}>
+                <div className={` ${styles.modalContent} ${ !showToolbar ? styles.modalContentWithPadding : ''}`}>
                     {children}
                 </div>
-                {toolbar && <div className={`${styles.toolbar} ${centerToolbar ? styles.centeredToolbar : ''}`}>{toolbar}</div>}
+                {toolbar && <div className={`${styles.toolbar} ${styles.centeredToolbar} ${!showToolbar ? styles.hidden : ''}`}>{toolbar}</div>}
             </div>
         </>
     );

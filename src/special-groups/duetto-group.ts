@@ -17,6 +17,8 @@ const duettoGroupInfo: Group = {
     groupShortName: "Duetto",
     groupFreePlaces: 5,
     groupAlwaysVisible: true,
+    groupPremises: [],
+    groupCity: ""
 };
 
 const duettoGroupDetails: SpecialGroupDetails = {

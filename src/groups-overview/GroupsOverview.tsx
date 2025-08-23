@@ -24,6 +24,7 @@ export const GroupsOverview = ({
   rootElement?: HTMLElement;
 }) => {
   const [groupDetails, setGroupDetails] = useState<GroupDetails | null>(null);
+  const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
   const [isGroupDetailsOpen, setIsGroupDetailsOpen] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(ModalType.None);
 
@@ -94,13 +95,14 @@ export const GroupsOverview = ({
   };
 
   const fetchGroupDetails = async (groupId: string) => {
-    const group = groups.find((group) => group.groupId === groupId);
+    const group = groups.find((group) => group.groupId === groupId) ?? null;
 
     if (group && group instanceof SpecialGroup) {
       setGroupDetails(group.details);
       return;
     }
 
+    setSelectedGroup(group);
     const data = await fetchGroup(groupId);
     setGroupDetails(data);
   };
@@ -165,6 +167,7 @@ export const GroupsOverview = ({
       )}
       <ModalManager
         groupDetails={groupDetails}
+        group={selectedGroup}
         onCloseModal={closeModals}
         modalType={modalType}
         isGroupDetailsOpen={isGroupDetailsOpen}
