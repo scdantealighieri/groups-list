@@ -52,7 +52,7 @@ export const GroupDetailsContent = ({
                   <span className="material-symbols-outlined">location_on</span>
                 </div>
                 <div className={styles.infoValue}>
-                  {group?.groupPremises[0]?.premiseAddress}
+                  {group?.groupType === GroupType.OnSite ? group?.groupPremises[0]?.premiseAddress : "Zoom"}
                 </div>
               </div>
 

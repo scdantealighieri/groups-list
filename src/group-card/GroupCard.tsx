@@ -50,7 +50,7 @@ export const GroupCard = ({
       {group.groupFreePlaces === 0 && (
         <div className={styles.groupFullBanner}>Pełna</div>
       )}
-      <div className={styles.groupType}>{group.groupType}</div>
+      <div className={styles.groupType}>{group.groupCityOrType}</div>
       <div className={styles.groupLevel} ref={groupLevelRef}>
         {group.groupShortName}
       </div>
