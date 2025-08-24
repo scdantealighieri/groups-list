@@ -37,6 +37,7 @@ export const GroupsOverview = ({
     const type = rootElement.getAttribute("dante-type")?.toLowerCase();
     const lector = rootElement.getAttribute("dante-lector")?.toLowerCase();
     const hideInd = rootElement.getAttribute("dante-hide-ind")?.toLowerCase();
+    const name = rootElement.getAttribute("dante-name")?.toLowerCase();
     const hideDuetto = rootElement
       .getAttribute("dante-hide-duetto")
       ?.toLowerCase();
@@ -75,6 +76,12 @@ export const GroupsOverview = ({
         thisLectorDuettoGroup.details.groupLector = lector.toUpperCase();
       }
       filtered = [...filtered, thisLectorDuettoGroup];
+    }
+
+    if (name) {
+      filtered = filtered.filter((group) =>
+        group.groupShortName.toLowerCase().includes(name)
+      );
     }
 
     filtered.sort((a, b) => {
