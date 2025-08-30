@@ -1,0 +1,130 @@
+.group-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: var(--dante-white);
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 400ms linear;
+  overflow: hidden;
+  position: relative;
+}
+
+.group-card:hover {
+  transform: scale(1.1);
+}
+
+.group-type {
+  padding-top: 2px;
+  font-weight: 700;
+  color: var(--dante-dark-brown);
+  text-transform: uppercase;
+}
+
+.group-level {
+  font-weight: 700;
+  padding-top: 7px;
+  color: var(--dante-black);
+  font-size: 45px;
+  white-space: nowrap;
+}
+
+.group-days {
+  padding-top: 7px;
+  font-size: 14px;
+  font-family: "Rubik", sans-serif;
+  color: var(--dante-grey);
+  font-weight: 400;
+}
+
+.group-lector {
+  padding-top: 7px;
+  font-size: 14px;
+  font-family: "Rubik", sans-serif;
+  color: var(--dante-grey);
+  font-weight: 400;
+  text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.dante-button {
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 4px;
+  min-width: 80px;
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+  transition: 200ms linear;
+}
+
+.dante-button:hover {
+  background-color: var(--dante-white);
+  color: var(--dante-dark-brown);
+  border: 1px solid var(--dante-dark-brown);
+}
+
+.info-button {
+  background-color: var(--dante-white);
+  color: var(--dante-dark-brown);
+  border: 1px solid var(--dante-dark-brown);
+  transition: 200ms linear;
+}
+
+.info-button:hover {
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+}
+
+.group-full-banner {
+  position: absolute;
+  background-color: var(--dante-inactive-grey);
+  color: var(--dante-white);
+  top: 10px;
+  left: -45px;
+  rotate: -45deg;
+  font-size: 20px;
+  font-weight: 600;
+  width: 150px;
+  text-align: center;
+  padding: 5px;
+}
+
+.full-group-card .dante-button {
+  background-color: var(--dante-inactive-grey);
+}
+
+.full-group-card .dante-button:hover {
+  background-color: var(--dante-white);
+  color: var(--dante-inactive-grey);
+  border: 1px solid var(--dante-inactive-grey);
+}
+
+.full-group-card .info-button {
+  background-color: var(--dante-white);
+  color: var(--dante-inactive-grey);
+  border: 1px solid var(--dante-inactive-grey);
+  transition: 200ms linear;
+}
+
+.full-group-card .info-button:hover {
+  background-color: var(--dante-inactive-grey);
+  color: var(--dante-white);
+}
+
+.full-group-card .group-type {
+  color: var(--dante-inactive-grey);
+}

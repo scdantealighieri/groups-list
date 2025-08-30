@@ -1,0 +1,28 @@
+:root {
+  --dante-light-background: #f8f2e6;
+  --dante-dark-brown: #6f2b2c;
+  --dante-filter-option-background: #f4d09c;
+  --dante-main-background: #f8ead0;
+  --dante-black: #353f4f;
+  --dante-grey: #6c757d;
+  --dante-white: #faefdd;
+  --dante-red: red;
+  --dante-inactive-grey: #303633;
+}
+
+.app {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: var(--dante-main-background);
+  color: black;
+  font-size: 16px;
+  line-height: normal;
+}
+
+.app * {
+  box-sizing: content-box !important;
+}
+
+.app section,
+.app section * {
+  box-sizing: border-box !important;
+}
