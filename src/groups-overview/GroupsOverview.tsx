@@ -38,6 +38,8 @@ export const GroupsOverview = ({
     const lector = rootElement.getAttribute("dante-lector")?.toLowerCase();
     const hideInd = rootElement.getAttribute("dante-hide-ind")?.toLowerCase();
     const name = rootElement.getAttribute("dante-name")?.toLowerCase();
+    const city = rootElement.getAttribute("dante-city")?.toLowerCase();
+
     const hideDuetto = rootElement
       .getAttribute("dante-hide-duetto")
       ?.toLowerCase();
@@ -81,6 +83,12 @@ export const GroupsOverview = ({
     if (name) {
       filtered = filtered.filter((group) =>
         group.groupShortName.toLowerCase().includes(name)
+      );
+    }
+
+    if (city) {
+      filtered = filtered.filter((group) =>
+        group.groupCity.toLowerCase().includes(city)
       );
     }
 
