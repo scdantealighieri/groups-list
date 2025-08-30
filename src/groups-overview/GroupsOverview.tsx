@@ -146,7 +146,9 @@ export const GroupsOverview = ({
   return (
     <div className={styles.overviewContainer}>
       {filteredGroups.length === 0 ? (
-        <p className={styles.noGroupsMessage}>W tej chwili brak dostępnych kursów</p>
+        <p className={styles.noGroupsMessage}>
+          W tej chwili brak dostępnych kursów
+        </p>
       ) : (
         <Swiper
           modules={[Navigation]}

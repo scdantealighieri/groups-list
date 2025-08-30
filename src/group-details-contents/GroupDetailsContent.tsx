@@ -19,8 +19,8 @@ export const GroupDetailsContent = ({
   const descriptionRef = useRef<HTMLDivElement>(null);
 
   const formatDate = (dateString: string): string => {
-    const [ month, day] = dateString.split("-");
-    return `${day}/${month}`;
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
   };
 
   return (
