@@ -6,7 +6,8 @@
   "scripts": {
     "build": "ng build",
     "start": "ng serve",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "test": "ng test"
   },
   "keywords": ["angular", "groups", "dante", "italian", "courses"],
   "author": "Dante Alighieri Italian Language School",
@@ -33,6 +34,7 @@
   },
   "peerDependencies": {
     "@angular/core": "^17.0.0",
-    "@angular/common": "^17.0.0"
+    "@angular/common": "^17.0.0",
+    "@angular/forms": "^17.0.0"
   }
 }

@@ -1,0 +1,39 @@
+.overview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.group-list {
+  width: 100%;
+  padding: 25px 0px !important;
+}
+
+.swiper-slide {
+  width: auto !important;
+  display: flex !important;
+  height: auto !important;
+}
+
+.no-groups-message {
+  margin: 40px 0;
+  font-size: 18px;
+  color: var(--dante-black);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Swiper navigation button styling */
+:host ::ng-deep swiper-container .swiper-button-next,
+:host ::ng-deep swiper-container .swiper-button-prev {
+  color: var(--dante-dark-brown) !important;
+}
+
+:host ::ng-deep swiper-container {
+  --swiper-navigation-color: var(--dante-dark-brown);
+  --swiper-navigation-size: 30px;
+}
+
+.swiper-container {
+  width: 100%;
+}
