@@ -15,4 +15,5 @@ export interface GroupDetails {
     groupLectorFotoContent: string;
     groupShortName: string;
     groupFreePlaces: number;
+    groupForKids: boolean;
   }

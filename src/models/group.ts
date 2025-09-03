@@ -16,4 +16,5 @@ export interface Group {
   groupPremises: GroupPremise[];
   groupCity: string;
   groupCityOrType: string;
+  groupForKids: boolean;
 }

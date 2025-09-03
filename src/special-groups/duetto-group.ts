@@ -19,13 +19,13 @@ const duettoGroupInfo: Group = {
     groupAlwaysVisible: true,
     groupPremises: [],
     groupCity: "",
-    groupCityOrType: ""
+    groupCityOrType: "",
+    groupForKids: false
 };
 
 const duettoGroupDetails: SpecialGroupDetails = {
     groupDays: "",
-    groupDescription:
-        "Kursy Duetto to idealne połączenie lekcji grupowych i kursów indywidualnych. Jeśli nie lubisz zbyt bezpośredniego podejścia do nauczyciela, ale nie chcesz również uczyć się w zbyt dużej grupie, Duetto jest rozwiązaniem idealnym dla Ciebie. Jeśli masz już partnera, zapiszcie się razem i otrzymajcie zniżkę, w przeciwnym razie postaramy się dopasować Cię do innych osób, które wyraziły chęć dołączenia!",
+    groupDescription: "Kursy Duetto to idealne połączenie lekcji grupowych i kursów indywidualnych. Jeśli nie lubisz zbyt bezpośredniego podejścia do nauczyciela, ale nie chcesz również uczyć się w zbyt dużej grupie, Duetto jest rozwiązaniem idealnym dla Ciebie. Jeśli masz już partnera, zapiszcie się razem i otrzymajcie zniżkę, w przeciwnym razie postaramy się dopasować Cię do innych osób, które wyraziły chęć dołączenia!",
     groupSubHeader: "Zalety kursów duetto",
     groupFirstMeet: "",
     groupFreePlaces: 10,
@@ -54,7 +54,8 @@ const duettoGroupDetails: SpecialGroupDetails = {
             text: "Tańsze niż indywidualne, z zaletami kursu grupowego",
             icon: "attach_money",
         }
-    ]
+    ],
+    groupForKids: false
 }
 
 export const DuettoGroup = new SpecialGroup(duettoGroupInfo, duettoGroupDetails);

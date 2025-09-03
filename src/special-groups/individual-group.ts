@@ -19,7 +19,8 @@ const individualGroupInfo: Group = {
     groupAlwaysVisible: true,
     groupPremises: [],
     groupCity: "",
-    groupCityOrType: ""
+    groupCityOrType: "",
+    groupForKids: false
 };
 
 const individualGroupDetails: SpecialGroupDetails = {
@@ -53,7 +54,8 @@ const individualGroupDetails: SpecialGroupDetails = {
             text: "Całkowite skupienie się na indywidualnych potrzebach",
             icon: "lightbulb",
         }
-    ]
+    ],
+    groupForKids: false
 }
 
 export const IndividualGroup = new SpecialGroup(individualGroupInfo, individualGroupDetails);
