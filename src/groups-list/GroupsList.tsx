@@ -144,6 +144,7 @@ export const GroupsList = ({
 
   const onShowSignIn = async (groupId: string) => {
     await fetchGroupDetails(groupId);
+    setSelectedGroup(groups.find((g) => g.groupId === groupId) || null);
     setModalType(ModalType.SignIn);
   };
 
