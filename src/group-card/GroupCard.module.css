@@ -58,8 +58,8 @@
 }
 
 .danteButton {
-  background-color: var(--dante-dark-brown);
-  color: var(--dante-white);
+  background-color: lime !important;
+  color: black !important;
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
