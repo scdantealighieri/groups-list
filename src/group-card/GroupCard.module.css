@@ -58,9 +58,18 @@
 }
 
 .danteButton {
-  background-color: lime !important;
-  color: black !important;
-  border: 5px solid cyan !important;
+  background-color: var(--dante-dark-brown);
+  color: var(--dante-white);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 4px;
+  min-width: 80px;
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+  transition: 200ms linear;
+}
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
