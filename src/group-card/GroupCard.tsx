@@ -80,7 +80,7 @@ export const GroupCard = ({
             className={`${styles.signInBtn} ${styles.danteButton}`}
             onClick={() => onShowSignIn(group.groupId)}
           >
-            Zapisz się
+            Prova
           </div>
         )}
       </div>
