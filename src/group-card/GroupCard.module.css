@@ -70,16 +70,6 @@
   font-family: "Rubik", sans-serif;
   transition: 200ms linear;
 }
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-  padding: 7px 12px;
-  border-radius: 4px;
-  min-width: 80px;
-  text-align: center;
-  font-family: "Rubik", sans-serif;
-  transition: 200ms linear;
-}
 
 .danteButton:hover {
   background-color: var(--dante-white);
