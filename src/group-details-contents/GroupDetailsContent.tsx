@@ -119,9 +119,15 @@ export const GroupDetailsContent = ({
 
         {groupDetails.groupLectorFotoContent && (
           <div className={styles.detailsRight}>
-            <div className={styles.description}>
-              {groupDetails.groupDescription}
-            </div>
+            <div
+              className={styles.description}
+              dangerouslySetInnerHTML={{
+                __html: groupDetails.groupDescription.replace(
+                  /\[\[(.*?)\]\]/g,
+                  "<strong>$1</strong>"
+                ),
+              }}
+            />
             <div className={styles.photo}>
               <img
                 src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
