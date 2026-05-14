@@ -8,16 +8,38 @@
   z-index: 9998;
 }
 
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -47%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalOverlay {
+  animation: overlayIn 200ms ease;
+}
+
 .modal {
   position: fixed;
   background-color: white;
   z-index: 9999;
   width: fit-content;
   border-radius: 20px;
-  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+  border-top: 4px solid var(--dante-dark-brown);
+  box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.18), 0px 2px 8px rgba(0, 0, 0, 0.08);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation: modalIn 200ms ease;
 }
 
 .modalContent {
@@ -27,7 +49,7 @@
 }
 
 .modalContentWithPadding {
-  padding-bottom: 48px;
+  padding-bottom: 28px;
 }
 
 .detailsTop {
@@ -47,15 +69,19 @@
 
 .infoContainer {
   display: flex;
-  gap: 15px;
-  justify-content: space-evenly;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
 }
 
 .info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  background-color: var(--dante-light-background);
+  padding: 5px 10px;
+  border-radius: 20px;
 }
 
 .infoValue {
@@ -170,28 +196,44 @@
 }
 
 .signInButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background-color: var(--dante-dark-brown);
   color: white;
-  font-size: 14px;
-  font-weight: 400;
   cursor: pointer;
-  padding: 7px 12px;
-  border-radius: 4px;
-  min-width: 80px;
-  text-align: center;
-  font-family: "Rubik", sans-serif;
+  padding: 14px 20px;
+  border-radius: 12px;
   border: none !important;
-  transition: linear 200ms;
+  width: 100%;
+  font-family: "Rubik", sans-serif;
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 
 .signInButton:hover {
-  background-color: var(--dante-dark-brown);
-  color: var(--dante-white);
-  transform: scale(1.1);
+  opacity: 0.9;
+  transform: scale(1.02);
 }
 
 .signInButton:focus {
   background-color: var(--dante-dark-brown);
+}
+
+.signInContent {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.signInTitle {
+  font-size: 17px;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.signInSubtitle {
+  font-size: 12px;
+  opacity: 0.82;
 }
 
 .notifyButton,
@@ -200,8 +242,8 @@
 }
 
 .notifyButton:hover {
-  background-color: var(--dante-inactive-grey);
-  color: white;
+  opacity: 0.9;
+  transform: scale(1.02);
 }
 
 .detailsBottom {
@@ -209,6 +251,8 @@
   gap: 15px;
   justify-content: space-between;
   margin-top: 10px;
+  padding-top: 15px;
+  border-top: 1px solid var(--dante-light-background);
 }
 
 .classDates {
@@ -235,6 +279,11 @@
 .modalClose span {
   cursor: pointer;
   font-size: 30px;
+  transition: color 150ms ease;
+}
+
+.modalClose span:hover {
+  color: var(--dante-dark-brown);
 }
 
 .infoValue.hours {
@@ -253,14 +302,6 @@
 }
 
 @media screen and (max-width: 630px) {
-  .toolbar.hidden {
-    display: flex;
-  }
-
-  .standardToolbar {
-    display: none;
-  }
-
   .modal {
     width: 90%;
     max-height: 90vh;
@@ -322,6 +363,9 @@
   .infoContainer {
     flex-direction: row;
     font-size: 11px;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .infoValue {
@@ -366,20 +410,6 @@
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
-  }
-
-  .signInButton {
-    width: 100%;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border: none;
-    height: 30px;
-    transition: unset;
-    font-weight: 500;
-  }
-
-  .signInButton:hover {
-    transform: unset;
   }
 
   .freePlacesContainer {

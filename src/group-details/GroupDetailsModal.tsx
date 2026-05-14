@@ -29,14 +29,22 @@ export const GroupDetailsModal = ({
           className={`${styles.signInButton} ${styles.notifyButton}`}
           onClick={() => showNotifyModal(groupDetails.groupId)}
         >
-          Powiadom mnie
+          <span className="material-symbols-outlined">notifications</span>
+          <div className={styles.signInContent}>
+            <span className={styles.signInTitle}>Powiadom mnie</span>
+            <span className={styles.signInSubtitle}>Gdy pojawią się wolne miejsca</span>
+          </div>
         </button>
       ) : (
         <button
           className={styles.signInButton}
           onClick={() => showSignInModal(groupDetails.groupId)}
         >
-          Zapisz się
+          <span className="material-symbols-outlined">arrow_forward</span>
+          <div className={styles.signInContent}>
+            <span className={styles.signInTitle}>Zapisz się teraz!</span>
+            <span className={styles.signInSubtitle}>Dołącz do kursu</span>
+          </div>
         </button>
       )}
     </>
