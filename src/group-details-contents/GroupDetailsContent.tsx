@@ -79,9 +79,16 @@ export const GroupDetailsContent = ({
       </div>
       <div className={styles.detailsBottom}>
         <div className={styles.detailsLeft}>
-          <div className={styles.description} ref={descriptionRef}>
-            {groupDetails.groupDescription}
-          </div>
+          <div
+              className={styles.description}
+              ref={descriptionRef}
+              dangerouslySetInnerHTML={{
+                __html: groupDetails.groupDescription.replace(
+                  /\[\[(.*?)\]\]/g,
+                  "<strong>$1</strong>"
+                ),
+              }}
+            />
           <div>
           {groupDetails.groupFirstMeet && (
           <div className={styles.classDates}>
