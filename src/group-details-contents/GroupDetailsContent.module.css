@@ -17,13 +17,14 @@
   line-height: 1.1;
 }
 
-
 /* ---- Info row ---- */
 .infoRow {
   display: flex;
   align-items: center;
-  background: var(--dante-light-background);
+  background-color: transparent;
   border-radius: 40px;
+  border: 1px solid #fae9ea;
+  box-shadow: 0 0 12px rgba(250, 233, 234, 0.4);
   padding: 10px 16px;
 }
 
@@ -108,7 +109,7 @@
 }
 
 .photoCard::before {
-  content: '';
+  content: "";
   position: absolute;
   right: -40px;
   bottom: -40px;
@@ -121,7 +122,7 @@
 }
 
 .photoCard::after {
-  content: '';
+  content: "";
   position: absolute;
   left: -20px;
   top: 20px;
@@ -289,7 +290,6 @@
   .title {
     font-size: 30px;
   }
-
 
   .infoRow {
     flex-wrap: wrap;
