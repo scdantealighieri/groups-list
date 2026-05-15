@@ -28,6 +28,19 @@ export const GroupDetailsContent = ({
   const hours = groupDetails.groupHours.split("$")[0];
   const days = getFormattedGroupDays(groupDetails.groupDays);
 
+  const applyMarkdown = (text: string) =>
+    text.replace(/\[\[(.*?)\]\]/g, "<strong>$1</strong>");
+
+  const kosztIndex = groupDetails.groupDescription.indexOf("Koszt");
+  const beforeKoszt =
+    kosztIndex !== -1
+      ? groupDetails.groupDescription.slice(0, kosztIndex).trimEnd()
+      : groupDetails.groupDescription;
+  const fromKoszt =
+    kosztIndex !== -1
+      ? groupDetails.groupDescription.slice(kosztIndex).trim()
+      : "";
+
   const totalSeats = groupDetails.groupType === GroupType.Online ? 10 : 12;
   const takenSeats = totalSeats - groupDetails.groupFreePlaces;
   const filledPercent = Math.min(100, Math.round((takenSeats / totalSeats) * 100));
@@ -76,13 +89,26 @@ export const GroupDetailsContent = ({
         <div className={styles.contentLeft}>
           <div
             className={styles.description}
-            dangerouslySetInnerHTML={{
-              __html: groupDetails.groupDescription.replace(
-                /\[\[(.*?)\]\]/g,
-                "<strong>$1</strong>"
-              ),
-            }}
+            dangerouslySetInnerHTML={{ __html: applyMarkdown(beforeKoszt) }}
           />
+          {fromKoszt && (
+            <div className={styles.priceCard}>
+              <span
+                className={`material-symbols-outlined ${styles.priceCardIcon}`}
+              >
+                sell
+              </span>
+              <div
+                className={styles.priceCardText}
+                dangerouslySetInnerHTML={{
+                  __html: applyMarkdown(fromKoszt).replace(
+                    /^Koszt/,
+                    '<span style="font-weight:700;color:var(--dante-dark-brown)">Koszt</span>'
+                  ),
+                }}
+              />
+            </div>
+          )}
         </div>
         {groupDetails.groupLectorFotoContent && (
           <div className={styles.photoCard}>
