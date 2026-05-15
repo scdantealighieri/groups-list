@@ -157,10 +157,10 @@ export const GroupDetailsContent = ({
             group
           </span>
           <div className={styles.placesContainer}>
-            <div className={styles.footerLabel}>Wolne miejsca</div>
+            <div className={styles.footerLabel}>Zajęte miejsca</div>
             <div className={styles.footerValueFraction}>
               <span className={styles.footerValueLarge}>
-                {groupDetails.groupFreePlaces}
+                {takenSeats}
               </span>
               <span className={styles.footerValueTotal}>z {totalSeats}</span>
             </div>
@@ -171,7 +171,7 @@ export const GroupDetailsContent = ({
               />
             </div>
             <div className={styles.availablePercent}>
-              {availablePercent}% dostępnych miejsc
+              {filledPercent}% zajętych miejsc
             </div>
           </div>
         </div>
