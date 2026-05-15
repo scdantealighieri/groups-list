@@ -1,9 +1,9 @@
-import { GroupDetails } from "../models/group-details";
-import { getFormattedGroupDays } from "../services/group-service";
-import styles from "./GroupDetailsContent.module.css";
 import { ReactNode } from "react";
 import { GroupType } from "../enums/group-type";
 import { Group } from "../models/group";
+import { GroupDetails } from "../models/group-details";
+import { getFormattedGroupDays } from "../services/group-service";
+import styles from "./GroupDetailsContent.module.css";
 
 export const GroupDetailsContent = ({
   groupDetails,
@@ -43,8 +43,14 @@ export const GroupDetailsContent = ({
 
   const totalSeats = groupDetails.groupType === GroupType.Online ? 10 : 12;
   const takenSeats = totalSeats - groupDetails.groupFreePlaces;
-  const filledPercent = Math.min(100, Math.round((takenSeats / totalSeats) * 100));
-  const availablePercent = Math.min(100, Math.round((groupDetails.groupFreePlaces / totalSeats) * 100));
+  const filledPercent = Math.min(
+    100,
+    Math.round((takenSeats / totalSeats) * 100),
+  );
+  const availablePercent = Math.min(
+    100,
+    Math.round((groupDetails.groupFreePlaces / totalSeats) * 100),
+  );
 
   return (
     <div className={styles.container}>
@@ -103,7 +109,7 @@ export const GroupDetailsContent = ({
                 dangerouslySetInnerHTML={{
                   __html: applyMarkdown(fromKoszt).replace(
                     /^Koszt/,
-                    '<span style="font-weight:700;color:var(--dante-dark-brown)">Koszt</span>'
+                    '<span style="font-weight:700;color:var(--dante-dark-brown)">Koszt</span>',
                   ),
                 }}
               />
@@ -118,7 +124,9 @@ export const GroupDetailsContent = ({
               className={styles.photo}
             />
             <div className={styles.lectorOverlay}>
-              <div className={styles.lectorName}>{groupDetails.groupLector}</div>
+              <div className={styles.lectorName}>
+                {groupDetails.groupLector}
+              </div>
               <div className={styles.lectorRole}>Lektor</div>
             </div>
           </div>
@@ -136,7 +144,7 @@ export const GroupDetailsContent = ({
               <div className={styles.footerLabel}>Terminy zajęć</div>
               <div className={styles.footerValue}>
                 {`${formatDate(groupDetails.groupFirstMeet)} – ${formatDate(
-                  groupDetails.groupLastMeet
+                  groupDetails.groupLastMeet,
                 )}`}
               </div>
             </div>
@@ -149,9 +157,7 @@ export const GroupDetailsContent = ({
           <div className={styles.placesContainer}>
             <div className={styles.footerLabel}>Zajęte miejsca</div>
             <div className={styles.footerValueFraction}>
-              <span className={styles.footerValueLarge}>
-                {takenSeats}
-              </span>
+              <span className={styles.footerValueLarge}>{takenSeats}</span>
               <span className={styles.footerValueTotal}>z {totalSeats}</span>
             </div>
             <div className={styles.progressBar}>

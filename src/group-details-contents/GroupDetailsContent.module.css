@@ -183,9 +183,11 @@
 }
 
 .footerIcon {
-  font-size: 26px !important;
-  color: var(--dante-grey);
-  margin-top: 2px;
+  font-size: 22px !important;
+  color: var(--dante-dark-brown);
+  background: #fae9ea;
+  border-radius: 50%;
+  padding: 8px;
   flex-shrink: 0;
 }
 
