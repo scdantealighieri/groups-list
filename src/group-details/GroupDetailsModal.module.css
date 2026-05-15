@@ -379,34 +379,136 @@
   align-items: stretch;
 }
 
-
-
 @media screen and (max-width: 630px) {
   .modal {
-    width: 90%;
-    max-height: 90vh;
-    overflow: auto;
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    max-height: 92vh;
+    min-height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 18px;
   }
 
   .modalContent {
-    padding: 0px 25px 0px 25px;
+    padding: 0 14px 22px 14px;
   }
 
-  .detailsRight {
-    flex-direction: column-reverse;
-    width: unset;
+  .detailsTop {
+    margin-top: -20px;
+    gap: 18px;
+  }
+
+  .header {
     align-items: center;
+    text-align: center;
+  }
+
+  .level {
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+  }
+
+  .infoContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 12px 10px;
+    box-sizing: border-box;
+  }
+
+  .info {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+  }
+
+  .infoValue {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .infoValue.hours {
+    min-width: auto;
+  }
+
+  .detailsBottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .classDates,
+  .freePlacesContainer {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .toolbar {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 14px 0 0 0;
+    justify-content: center;
+  }
+
+  .standardToolbar {
+    width: 100%;
+    align-items: center;
+  }
+
+  .signInButton {
+    width: 100%;
+    min-height: 58px;
+    justify-content: center;
+    border-radius: 16px;
+  }
+
+  .signInContent {
+    text-align: center;
+  }
+
+  .signInButton:hover > span:first-child {
+    transform: none;
+  }
+
+  .signInButton:hover .signInContent {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hoverText {
+    display: none;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .detailsLeft .description {
+    display: none;
   }
 
   .detailsRight .description {
     display: block;
-    padding-right: 25px;
+    padding-right: 0;
     font-size: 14px;
-    padding-right: 0px;
     margin-bottom: 15px;
   }
 
-  .detailsBottom {
+  .detailsRight {
+    width: 100%;
+    align-items: center;
     flex-direction: column-reverse;
   }
 
@@ -415,84 +517,17 @@
   }
 
   .photo img {
-    width: 50%;
-  }
-
-  .description {
-    margin-top: unset;
-  }
-
-  .header {
-    flex-direction: column;
-  }
-
-  .level {
-    font-size: 70px;
-    text-align: center;
-  }
-
-  .separator {
-    display: none;
-  }
-
-  .info {
-    gap: 5px;
-    flex-direction: column;
-  }
-
-  .infoContainer {
-    flex-direction: row;
-    font-size: 11px;
-    gap: 5px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .infoValue {
-    display: flex;
-    align-items: center;
-    text-align: center;
-  }
-
-  .infoValue.hours {
-    min-width: 65px;
-  }
-
-  .detailsLeft .description {
-    display: none;
-  }
-
-  .detailsTop {
-    flex-direction: column;
-  }
-
-  .dates,
-  .freePlaces {
-    font-size: 14px;
-  }
-
-  .dates span:last-child {
-    margin-right: unset;
-  }
-
-  .freePlacesHeader,
-  .datesHeader {
-    font-size: 18px;
-  }
-
-  .classDates {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .toolbar {
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+    width: 100%;
   }
 
   .freePlacesContainer {
-    width: unset;
+    width: 100%;
   }
+}
+
+.modal,
+.modalContent,
+.toolbar,
+.signInButton {
+  box-sizing: border-box;
 }
