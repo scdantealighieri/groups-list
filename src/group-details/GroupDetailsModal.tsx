@@ -41,10 +41,13 @@ export const GroupDetailsModal = ({
           onClick={() => showSignInModal(groupDetails.groupId)}
         >
           <span className="material-symbols-outlined">arrow_forward</span>
+
           <div className={styles.signInContent}>
             <span className={styles.signInTitle}>Zapisz się teraz!</span>
             <span className={styles.signInSubtitle}>Dołącz do kursu</span>
           </div>
+
+          <span className={styles.hoverText}>Kliknij tutaj</span>
         </button>
       )}
     </>

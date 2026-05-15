@@ -26,6 +26,15 @@ export const GroupDetailsContent = ({
       ? group?.groupPremises[0]?.premiseAddress
       : "Zoom";
   const hours = groupDetails.groupHours.split("$")[0];
+  const [startHour, endHour] = hours.split("-");
+
+const toMinutes = (time: string) => {
+  const [h, m] = time.split(":").map(Number);
+  return h * 60 + m;
+};
+
+const durationMinutes =
+  toMinutes(endHour) - toMinutes(startHour);
   const days = getFormattedGroupDays(groupDetails.groupDays);
 
   const applyMarkdown = (text: string) =>
@@ -143,10 +152,14 @@ export const GroupDetailsContent = ({
             <div>
               <div className={styles.footerLabel}>Terminy zajęć</div>
               <div className={styles.footerValue}>
-                {`${formatDate(groupDetails.groupFirstMeet)} – ${formatDate(
-                  groupDetails.groupLastMeet,
-                )}`}
+              {`${formatDate(groupDetails.groupFirstMeet)} – ${formatDate(
+                groupDetails.groupLastMeet,
+              )}`}
+
+              <div className={styles.meetingsCount}>
+                (10 spotkań x {durationMinutes} min)
               </div>
+            </div>
             </div>
           </div>
         )}
