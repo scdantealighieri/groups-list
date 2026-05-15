@@ -20,8 +20,12 @@
 }
 
 @keyframes overlayIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modalOverlay {
@@ -31,11 +35,16 @@
 .modal {
   position: fixed;
   background-color: white;
+  background-image: url("../assets/images/background_group_details.webp");
+  background-size: cover;
+  background-position: 80% center;
   z-index: 9999;
   width: fit-content;
   border-radius: 20px;
   border-top: 4px solid var(--dante-dark-brown);
-  box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.18), 0px 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0px 8px 40px rgba(0, 0, 0, 0.18),
+    0px 2px 8px rgba(0, 0, 0, 0.08);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -207,7 +216,9 @@
   border: none !important;
   width: 100%;
   font-family: "Rubik", sans-serif;
-  transition: opacity 200ms ease, transform 200ms ease;
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
 }
 
 .signInButton:hover {

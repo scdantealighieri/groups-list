@@ -38,42 +38,6 @@ export const GroupDetailsContent = ({
       {/* Header with decorative background element */}
       <div className={styles.header}>
         <div className={styles.title}>{groupDetails.groupShortName}</div>
-        <div className={styles.headerDecoration} aria-hidden="true">
-          <svg
-            viewBox="0 0 220 130"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className={styles.decorationSvg}
-          >
-            <ellipse
-              cx="170"
-              cy="20"
-              rx="100"
-              ry="75"
-              stroke="rgba(111,43,44,0.1)"
-              strokeWidth="32"
-              fill="none"
-            />
-            <ellipse
-              cx="195"
-              cy="65"
-              rx="70"
-              ry="55"
-              stroke="rgba(111,43,44,0.07)"
-              strokeWidth="22"
-              fill="none"
-            />
-            <ellipse
-              cx="145"
-              cy="-5"
-              rx="50"
-              ry="38"
-              stroke="rgba(111,43,44,0.05)"
-              strokeWidth="18"
-              fill="none"
-            />
-          </svg>
-        </div>
       </div>
 
       {/* Info row */}

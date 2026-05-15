@@ -17,20 +17,6 @@
   line-height: 1.1;
 }
 
-.headerDecoration {
-  position: absolute;
-  right: -48px;
-  top: -10px;
-  width: 220px;
-  height: 130px;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.decorationSvg {
-  width: 100%;
-  height: 100%;
-}
 
 /* ---- Info row ---- */
 .infoRow {
@@ -276,11 +262,6 @@
     font-size: 30px;
   }
 
-  .headerDecoration {
-    width: 140px;
-    height: 100px;
-    right: -20px;
-  }
 
   .infoRow {
     flex-wrap: wrap;
