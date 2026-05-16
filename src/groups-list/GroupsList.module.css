@@ -93,7 +93,7 @@
 .displayTypeContainer {
   display: flex;
   padding: 5px;
-  border-radius: 16px;
+  border-radius: 99px;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(10px);
 }
@@ -101,7 +101,7 @@
 .displayTypeItem {
   min-height: 44px;
   padding: 0 18px;
-  border-radius: 12px;
+  border-radius: 99px;
   color: rgba(255, 255, 255, 0.78);
   font-weight: 800;
   font-size: 14px;
