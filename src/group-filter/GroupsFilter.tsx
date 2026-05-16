@@ -35,7 +35,7 @@ export const GroupsFilter = ({
     setIsFiltersListVisible(!isFiltersListVisible);
   };
 
-  const groupTypes = Array.from(
+  const groupLocations = Array.from(
     new Set(
       groups
         .filter((group) => group.groupCityOrType && !group.groupAlwaysVisible)
@@ -56,8 +56,7 @@ export const GroupsFilter = ({
   const groupDays = ["pon", "wto", "sro", "czw", "pia", "sob"];
 
   const groupLectors = lectors.map(
-    (lector) =>
-      `${lector.lectorFirstName} ${lector.lectorLastName}`
+    (lector) => `${lector.lectorFirstName} ${lector.lectorLastName}`
   );
 
   const groupPeriods = Array.from(
@@ -68,33 +67,45 @@ export const GroupsFilter = ({
     )
   ).sort((a, b) => periodOrder.indexOf(a) - periodOrder.indexOf(b));
 
-  const filterList = (filterType: FilterType, value: string) => {
-    const idx = filter[filterType].indexOf(value);
-
-    if (idx === -1) {
-      filter[filterType].push(value);
-    } else {
-      filter[filterType].splice(idx, 1);
-    }
-
-    handleSetFilter({ ...filter });
-    filterGroups(filter);
-  };
-
   const constFilterListByArray = (
     filterType: FilterType,
     value: FilterDropdownOption[]
   ) => {
-    filter[filterType] = value.map((option) => option.value) as (
-      | string
-      | undefined
-    )[];
-    handleSetFilter({ ...filter });
-    filterGroups(filter);
+    const updatedFilter = {
+      ...filter,
+      [filterType]: value.map((option) => option.value) as (
+        | string
+        | undefined
+      )[],
+    };
+
+    handleSetFilter(updatedFilter);
+    filterGroups(updatedFilter);
   };
 
-  const isSelected = (filterType: FilterType, value: string): boolean => {
-    return filter[filterType].includes(value);
+  const clearFilters = () => {
+    const emptyFilter: Filter = {
+      groupType: [],
+      groupLevel: [],
+      groupDays: [],
+      groupPeriod: [],
+      groupState: [],
+      groupLector: [],
+    };
+
+    handleSetFilter(emptyFilter);
+    filterGroups(emptyFilter);
+  };
+
+  const renderFilterLabel = (label: string) => (selected: any[]) => {
+    const count = selected.length;
+
+    return (
+      <span className={styles.filterValue}>
+        <span>{label}</span>
+        {count > 0 && <span className={styles.filterCount}>{count}</span>}
+      </span>
+    );
   };
 
   return (
@@ -107,6 +118,7 @@ export const GroupsFilter = ({
           <span className="material-symbols-outlined">tune</span>
           <span>Filtry</span>
         </div>
+
         <div
           className={
             isFiltersListVisible
@@ -116,72 +128,98 @@ export const GroupsFilter = ({
         >
           <div className={styles.filterLists}>
             <MultiSelect
-              options={convertToOptions(groupTypes)}
+              options={convertToOptions(groupLocations)}
               value={convertToOptions(filter.groupType)}
-              labelledBy={"Wybierz tryb nauki"}
+              labelledBy="Wszystkie lokalizacje"
               className="group-filters-multi-select"
               disableSearch={true}
               hasSelectAll={false}
               ClearSelectedIcon={null}
+              valueRenderer={renderFilterLabel("Wszystkie lokalizacje")}
               overrideStrings={{
-                allItemsAreSelected: "Wszystkie tryby nauki zostały wybrane",
-                selectSomeItems: "Wybierz tryb nauki",
+                allItemsAreSelected: "Wszystkie lokalizacje",
+                selectSomeItems: "Wszystkie lokalizacje",
               }}
               onChange={(selected: any) =>
                 constFilterListByArray(FilterType.GroupType, selected)
               }
             />
+
             <MultiSelect
               options={convertToOptions(groupLevels)}
               value={convertToOptions(filter.groupLevel)}
+              labelledBy="Poziom"
               className="group-filters-multi-select"
-              labelledBy={"Wybierz poziom zajęć"}
               disableSearch={true}
               hasSelectAll={false}
               ClearSelectedIcon={null}
+              valueRenderer={renderFilterLabel("Poziom")}
               overrideStrings={{
-                allItemsAreSelected: "Wszystkie poziomy zajęć zostały wybrane",
-                selectSomeItems: "Wybierz poziom zajęć",
+                allItemsAreSelected: "Wszystkie poziomy",
+                selectSomeItems: "Poziom",
               }}
               onChange={(selected: any) =>
                 constFilterListByArray(FilterType.GroupLevel, selected)
               }
             />
+
             <MultiSelect
               options={convertToOptions(groupDays, (day) => dayMapping[day])}
               value={convertToOptions(
                 filter.groupDays,
                 (day) => dayMapping[day]
               )}
+              labelledBy="Dzień tygodnia"
               className="group-filters-multi-select"
-              labelledBy={"Wybierz dzień tygodnia"}
               disableSearch={true}
               hasSelectAll={false}
               ClearSelectedIcon={null}
+              valueRenderer={renderFilterLabel("Dzień tygodnia")}
               overrideStrings={{
-                allItemsAreSelected: "Wszystkie dni tygodnia zostały wybrane",
-                selectSomeItems: "Wybierz dzień tygodnia",
+                allItemsAreSelected: "Wszystkie dni tygodnia",
+                selectSomeItems: "Dzień tygodnia",
               }}
               onChange={(selected: any) =>
                 constFilterListByArray(FilterType.GroupDays, selected)
               }
             />
+
             <MultiSelect
               options={convertToOptions(groupPeriods)}
               value={convertToOptions(filter.groupPeriod)}
+              labelledBy="Godzina"
               className="group-filters-multi-select"
-              labelledBy={"Wybierz porę dnia"}
               disableSearch={true}
               hasSelectAll={false}
               ClearSelectedIcon={null}
+              valueRenderer={renderFilterLabel("Godzina")}
               overrideStrings={{
-                allItemsAreSelected: "Wszystkie pory dnia zostały wybrane",
-                selectSomeItems: "Wybierz porę dnia",
+                allItemsAreSelected: "Wszystkie godziny",
+                selectSomeItems: "Godzina",
               }}
               onChange={(selected: any) =>
                 constFilterListByArray(FilterType.GroupPeriod, selected)
               }
             />
+
+            <MultiSelect
+              options={convertToOptions(groupLectors)}
+              value={convertToOptions(filter.groupLector)}
+              labelledBy="Lektor"
+              className="group-filters-multi-select"
+              disableSearch={true}
+              hasSelectAll={false}
+              ClearSelectedIcon={null}
+              valueRenderer={renderFilterLabel("Lektor")}
+              overrideStrings={{
+                allItemsAreSelected: "Wszyscy lektorzy",
+                selectSomeItems: "Lektor",
+              }}
+              onChange={(selected: any) =>
+                constFilterListByArray(FilterType.GroupLector, selected)
+              }
+            />
+
             <MultiSelect
               options={convertToOptions(groupStates, (val) =>
                 mapGroupState(val as GroupState)
@@ -189,11 +227,12 @@ export const GroupsFilter = ({
               value={convertToOptions(filter.groupState, (val) =>
                 mapGroupState(val as GroupState)
               )}
+              labelledBy="Wybierz datę rozpoczęcia"
               className="group-filters-multi-select"
-              labelledBy={"Wybierz datę rozpoczęcia"}
               disableSearch={true}
               hasSelectAll={false}
               ClearSelectedIcon={null}
+              valueRenderer={renderFilterLabel("Data rozpoczęcia")}
               overrideStrings={{
                 allItemsAreSelected:
                   "Wszystkie daty rozpoczęcia zostały wybrane",
@@ -203,23 +242,8 @@ export const GroupsFilter = ({
                 constFilterListByArray(FilterType.GroupState, selected)
               }
             />
-            <MultiSelect
-              options={convertToOptions(groupLectors)}
-              value={convertToOptions(filter.groupLector)}
-              className="group-filters-multi-select"
-              labelledBy={"Wybierz lektora"}
-              disableSearch={true}
-              hasSelectAll={false}
-              ClearSelectedIcon={null}
-              overrideStrings={{
-                allItemsAreSelected: "Wszyscy lektorzy zostali wybrani",
-                selectSomeItems: "Wybierz lektora",
-              }}
-              onChange={(selected: any) =>
-                constFilterListByArray(FilterType.GroupLector, selected)
-              }
-            />
           </div>
+
           <div
             className={styles.acceptFiltersButton}
             onClick={toggleFiltersListVisibility}
@@ -228,114 +252,106 @@ export const GroupsFilter = ({
           </div>
         </div>
       </div>
+
       <div className={styles.filterDesktopContainer}>
-        <div className={styles.filterLine}>
-          <label className={styles.filterTitle}>Tryb nauki</label>
-          <div className={styles.filterOptionsContainer}>
-            {groupTypes.map((groupType) => (
-              <div
-                key={groupType}
-                onClick={() => filterList(FilterType.GroupType, groupType)}
-                className={`${styles.filterOption} ${isSelected(FilterType.GroupType, groupType)
-                  ? styles.selected
-                  : ""
-                  }`}
-              >
-                {groupType}
-              </div>
-            ))}
-          </div>
-        </div>
+        <MultiSelect
+          options={convertToOptions(groupLocations)}
+          value={convertToOptions(filter.groupType)}
+          labelledBy="Wszystkie lokalizacje"
+          className="group-filters-multi-select desktop-filter-select"
+          disableSearch={true}
+          hasSelectAll={false}
+          ClearSelectedIcon={null}
+          valueRenderer={renderFilterLabel("Wszystkie lokalizacje")}
+          overrideStrings={{
+            allItemsAreSelected: "Wszystkie lokalizacje",
+            selectSomeItems: "Wszystkie lokalizacje",
+          }}
+          onChange={(selected: any) =>
+            constFilterListByArray(FilterType.GroupType, selected)
+          }
+        />
 
-        <div className={styles.filterLine}>
-          <label className={styles.filterTitle}>Poziom zajęć</label>
-          <div className={styles.filterOptionsContainer}>
-            {groupLevels.map((groupLevel) => (
-              <div
-                key={groupLevel}
-                onClick={() => filterList(FilterType.GroupLevel, groupLevel)}
-                className={`${styles.filterOption} ${isSelected(FilterType.GroupLevel, groupLevel)
-                  ? styles.selected
-                  : ""
-                  }`}
-              >
-                {groupLevel}
-              </div>
-            ))}
-          </div>
-        </div>
+        <MultiSelect
+          options={convertToOptions(groupLevels)}
+          value={convertToOptions(filter.groupLevel)}
+          labelledBy="Poziom"
+          className="group-filters-multi-select desktop-filter-select"
+          disableSearch={true}
+          hasSelectAll={false}
+          ClearSelectedIcon={null}
+          valueRenderer={renderFilterLabel("Poziom")}
+          overrideStrings={{
+            allItemsAreSelected: "Wszystkie poziomy",
+            selectSomeItems: "Poziom",
+          }}
+          onChange={(selected: any) =>
+            constFilterListByArray(FilterType.GroupLevel, selected)
+          }
+        />
 
-        <div className={styles.filterLine}>
-          <label className={styles.filterTitle}>Dzień tygodnia</label>
-          <div className={styles.filterOptionsContainer}>
-            {groupDays.map((groupDay) => (
-              <div
-                key={groupDay}
-                onClick={() => filterList(FilterType.GroupDays, groupDay)}
-                className={`${styles.filterOption} ${isSelected(FilterType.GroupDays, groupDay)
-                  ? styles.selected
-                  : ""
-                  }`}
-              >
-                {dayMapping[groupDay]}
-              </div>
-            ))}
-          </div>
-        </div>
+        <MultiSelect
+          options={convertToOptions(groupDays, (day) => dayMapping[day])}
+          value={convertToOptions(filter.groupDays, (day) => dayMapping[day])}
+          labelledBy="Dzień tygodnia"
+          className="group-filters-multi-select desktop-filter-select"
+          disableSearch={true}
+          hasSelectAll={false}
+          ClearSelectedIcon={null}
+          valueRenderer={renderFilterLabel("Dzień tygodnia")}
+          overrideStrings={{
+            allItemsAreSelected: "Wszystkie dni tygodnia",
+            selectSomeItems: "Dzień tygodnia",
+          }}
+          onChange={(selected: any) =>
+            constFilterListByArray(FilterType.GroupDays, selected)
+          }
+        />
 
-        <div className={styles.filterLine}>
-          <label className={styles.filterTitle}>Pora dnia</label>
-          <div className={styles.filterOptionsContainer}>
-            {groupPeriods.map((groupPeriod) => (
-              <div
-                key={groupPeriod}
-                onClick={() => filterList(FilterType.GroupPeriod, groupPeriod)}
-                className={`${styles.filterOption} ${isSelected(FilterType.GroupPeriod, groupPeriod)
-                  ? styles.selected
-                  : ""
-                  }`}
-              >
-                {groupPeriod}
-              </div>
-            ))}
-          </div>
-        </div>
+        <MultiSelect
+          options={convertToOptions(groupPeriods)}
+          value={convertToOptions(filter.groupPeriod)}
+          labelledBy="Godzina"
+          className="group-filters-multi-select desktop-filter-select"
+          disableSearch={true}
+          hasSelectAll={false}
+          ClearSelectedIcon={null}
+          valueRenderer={renderFilterLabel("Godzina")}
+          overrideStrings={{
+            allItemsAreSelected: "Wszystkie godziny",
+            selectSomeItems: "Godzina",
+          }}
+          onChange={(selected: any) =>
+            constFilterListByArray(FilterType.GroupPeriod, selected)
+          }
+        />
 
-        <div className={styles.filterLine}>
-          <label className={styles.filterTitle}>Data rozpoczęcia</label>
-          <div className={styles.filterOptionsContainer}>
-            {groupStates.map((groupState) => (
-              <div
-                key={groupState}
-                onClick={() => filterList(FilterType.GroupState, groupState)}
-                className={`${styles.filterOption} ${isSelected(FilterType.GroupState, groupState)
-                  ? styles.selected
-                  : ""
-                  }`}
-              >
-                {mapGroupState(groupState)}
-              </div>
-            ))}
-          </div>
-        </div>
+        <MultiSelect
+          options={convertToOptions(groupLectors)}
+          value={convertToOptions(filter.groupLector)}
+          labelledBy="Lektor"
+          className="group-filters-multi-select desktop-filter-select"
+          disableSearch={true}
+          hasSelectAll={false}
+          ClearSelectedIcon={null}
+          valueRenderer={renderFilterLabel("Lektor")}
+          overrideStrings={{
+            allItemsAreSelected: "Wszyscy lektorzy",
+            selectSomeItems: "Lektor",
+          }}
+          onChange={(selected: any) =>
+            constFilterListByArray(FilterType.GroupLector, selected)
+          }
+        />
 
-        <div className={styles.filterLine}>
-          <label className={styles.filterTitle}>Lektor</label>
-          <div className={styles.filterOptionsContainer}>
-            {groupLectors.map((groupLector) => (
-              <div
-                key={groupLector}
-                onClick={() => filterList(FilterType.GroupLector, groupLector)}
-                className={`${styles.filterOption} ${isSelected(FilterType.GroupLector, groupLector)
-                  ? styles.selected
-                  : ""
-                  }`}
-              >
-                {groupLector}
-              </div>
-            ))}
-          </div>
-        </div>
+        <button
+          type="button"
+          className={styles.clearFiltersButton}
+          onClick={clearFilters}
+        >
+          <span className="material-symbols-outlined">sync</span>
+          Wyczyść filtry
+        </button>
       </div>
     </div>
   );

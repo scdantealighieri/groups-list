@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  background-color: var(--dante-white);
+  background-color: #fff;
+  border-color: #252525;
   padding: 12px 20px 18px;
   border-radius: 10px;
   border-top: 4px solid var(--dante-dark-brown);

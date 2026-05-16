@@ -221,64 +221,70 @@ export const GroupsList = ({
   return (
     <div className={styles.listContainer}>
       <div className={styles.toolbar}>
-        <div
-          className={styles.toolbarItem}
-          onClick={() => onToggleFilterTab(FilterTabs.Filters)}
-        >
-          <span className="material-symbols-outlined">tune</span>
-          Filtry
-        </div>
-        <div
-          className={styles.toolbarItem}
-          onClick={() => onToggleFilterTab(FilterTabs.Sort)}
-        >
-          <span className="material-symbols-outlined">swap_vert</span>
-          Sortuj
-        </div>
-        <div className={styles.displayTypeContainer}>
-          <div
-            className={`${styles.displayTypeItem} ${
-              selectedListDisplayType === ListDisplayType.Grid
-                ? styles.selected
-                : ""
-            }`}
-            onClick={() => setSelectedListDisplayType(ListDisplayType.Grid)}
-          >
-            Kafelki
-          </div>
-          <div
-            className={`${styles.displayTypeItem} ${
-              selectedListDisplayType === ListDisplayType.List
-                ? styles.selected
-                : ""
-            }`}
-            onClick={() => setSelectedListDisplayType(ListDisplayType.List)}
-          >
-            Lista
-          </div>
-        </div>
+
+  <div className={styles.toolbarLeft}>
+    <div
+      className={styles.toolbarItem}
+      onClick={() => onToggleFilterTab(FilterTabs.Sort)}
+    >
+      <span className="material-symbols-outlined">swap_vert</span>
+      Sortuj
+    </div>
+  </div>
+
+  <div className={styles.toolbarCenter}>
+    <div className={styles.displayTypeContainer}>
+
+      <div
+        className={`${styles.displayTypeItem} ${
+          selectedListDisplayType === ListDisplayType.Grid
+            ? styles.selected
+            : ""
+        }`}
+        onClick={() => setSelectedListDisplayType(ListDisplayType.Grid)}
+      >
+        <span className="material-symbols-outlined">grid_view</span>
+        Kafelki
       </div>
-      <div className={styles.toolbarTab}>
-        {selectedFilterTab === FilterTabs.Filters && (
-          <div className={styles.filters}>
-            <GroupsFilter
-              groups={groups}
-              filterGroups={filterGroups}
-              handleSetFilter={setFilter}
-              filter={filter}
-              lectors={lectors}
-            />
-          </div>
-        )}
-        {selectedFilterTab === FilterTabs.Sort && (
-          <div className={styles.sort}>
-            <GroupSort
-              onSortChange={onToggleSort}
-              sortType={selectedSortType}
-            ></GroupSort>
-          </div>
-        )}
+
+      <div
+        className={`${styles.displayTypeItem} ${
+          selectedListDisplayType === ListDisplayType.List
+            ? styles.selected
+            : ""
+        }`}
+        onClick={() => setSelectedListDisplayType(ListDisplayType.List)}
+      >
+        <span className="material-symbols-outlined">view_list</span>
+        Lista
       </div>
+
+    </div>
+  </div>
+
+  <div className={styles.toolbarRight}>
+    <div className={styles.searchBox}>
+      <span className="material-symbols-outlined">search</span>
+
+      <input
+        type="text"
+        placeholder="Szukaj kursu lub wykładowcy..."
+      />
+    </div>
+  </div>
+
+</div>
+
+<div className={styles.filtersDesktop}>
+  <GroupsFilter
+    groups={groups}
+    filterGroups={filterGroups}
+    handleSetFilter={setFilter}
+    filter={filter}
+    lectors={lectors}
+  />
+</div>
+    
       <div className={`${styles.filters} ${styles.filtersMobile}`}>
         <GroupsFilter
           groups={groups}
