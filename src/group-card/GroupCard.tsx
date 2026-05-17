@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import React from "react";
 import { Group } from "../models/group";
 
 import styles from "./GroupCard.module.css";
 import { getFormattedGroupDays } from "../services/group-service";
+
 
 export const GroupCard = ({
   group,
@@ -17,48 +18,88 @@ export const GroupCard = ({
   onShowNotify: (groupId: string) => Promise<void>;
   isLandingPage?: boolean;
 }) => {
-  const groupLevelRef = useRef<HTMLDivElement>(null);
   const cardWidth = 230;
 
   const getFormattedGroupHours = (groupHours: string): string => {
     return groupHours.split("$")[0];
   };
 
-  useEffect(() => {
-    if (groupLevelRef.current) {
-      const width = groupLevelRef.current.offsetWidth;
-      if (width > cardWidth) {
-        let fontSize = parseFloat(
-          window.getComputedStyle(groupLevelRef.current).fontSize
-        );
-
-        while (groupLevelRef.current.offsetWidth > cardWidth && fontSize > 0) {
-          fontSize -= 1;
-          groupLevelRef.current.style.fontSize = `${fontSize}px`;
-        }
-      }
-    }
-  }, []);
-
   return (
     <div
       className={`${styles.groupCard} ${
         group.groupFreePlaces === 0 ? styles.fullGroupCard : ""
-      } `}
+      }`}
       style={{ width: `${cardWidth}px` }}
     >
       {group.groupFreePlaces === 0 && (
         <div className={styles.groupFullBanner}>Pełna</div>
       )}
-      <div className={styles.groupType}>{group.groupCityOrType}</div>
-      <div className={styles.groupLevel} ref={groupLevelRef}>
+
+      <div className={styles.groupType}>
+        {group.groupId === "special_individual" ||
+group.groupId === "special_duetto" ? (
+  <>
+    <span className={`material-symbols-outlined ${styles.groupTypeIcon}`}>
+      location_on
+    </span>
+
+    <span className={`material-symbols-outlined ${styles.groupTypeIcon}`}>
+      wifi
+    </span>
+  </>
+) : (
+  <>
+    <span className={`material-symbols-outlined ${styles.groupTypeIcon}`}>
+      {group.groupCityOrType.toLowerCase() === "online" ? "wifi" : "location_on"}
+    </span>
+
+    <span>{group.groupCityOrType}</span>
+  </>
+)}
+      </div>
+
+      <div className={styles.groupLevel}>
         {group.groupShortName}
       </div>
-      <div className={styles.groupDays}>
-        {getFormattedGroupDays(group.groupDays)}{" "}
-        {getFormattedGroupHours(group.groupHours)}
-      </div>
-      <div className={styles.groupLector}>{group.groupLector}</div>
+
+      {group.groupId === "special_individual" ||
+group.groupId === "special_duetto" ? (
+
+<div className={styles.specialDescription}>
+  Stwórz swoją grupę, podając swoje preferencje!
+</div>
+
+) : (
+  <>
+    <div className={styles.groupDays}>
+            <span className={`material-symbols-outlined ${styles.cardIcon}`}>
+              calendar_month
+            </span>
+
+            <span>
+              {getFormattedGroupDays(group.groupDays)}{" "}
+              {getFormattedGroupHours(group.groupHours)}
+            </span>
+          </div>
+
+          <div className={styles.groupLector}>
+            {group.groupLectorFotoContent ? (
+              <img
+                src={`data:${group.groupLectorFotoType};base64,${group.groupLectorFotoContent}`}
+                alt={group.groupLector}
+                className={styles.lectorAvatar}
+              />
+            ) : (
+              <span className={`material-symbols-outlined ${styles.cardIcon}`}>
+                person
+              </span>
+            )}
+
+            <span>{group.groupLector}</span>
+          </div>
+        </>
+      )}
+
       <div className={styles.buttonsContainer}>
         {!isLandingPage && (
           <div
@@ -68,6 +109,7 @@ export const GroupCard = ({
             Info
           </div>
         )}
+
         {group.groupFreePlaces === 0 && !isLandingPage ? (
           <div
             className={`${styles.signInBtn} ${styles.danteButton} ${styles.notifyButton}`}

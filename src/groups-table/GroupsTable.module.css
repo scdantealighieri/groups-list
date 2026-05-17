@@ -1,7 +1,13 @@
 .groupsTable {
   --cell-width: 15%;
-  max-width: 1410px;
-  width: 100%;
+  max-width: 1320px;
+  width: calc(100% - 32px);
+  margin: 28px auto 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fffaf6;
+  border: 1px solid rgba(111, 31, 40, 0.12);
+  box-shadow: 0 22px 55px rgba(34, 20, 18, 0.12);
 }
 
 .tableBody {
@@ -9,98 +15,141 @@
   flex-direction: column;
 }
 
-.tableBody>.tableRow:nth-child(2n)>div {
-  background-color: white;
-}
-
+.tableHeader,
 .tableRow {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr 1.2fr 0.65fr 0.65fr 1fr;
 }
 
 .tableHeader {
-  background-color: var(--dante-dark-brown);
-  color: var(--dante-white);
-
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
+  background: linear-gradient(135deg, #741f2a 0%, #8b2835 100%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
 }
 
-.tableHeader>div {
-  width: var(--cell-width);
-  padding: 10px 0px;
-  cursor: pointer;
+.tableHeader > div {
+  min-width: 0;
+  padding: 17px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-.tableHeader>.nonSortable {
+.tableHeader > .nonSortable {
   cursor: default;
 }
 
+.tableRow {
+  min-height: 70px;
+  background: #fffdfb;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.tableBody > .tableRow:nth-child(even) {
+  background: #fff7f3;
+}
+
+.tableRow:hover {
+  background: #fff0eb;
+}
+
+.tableRow > div {
+  min-width: 0;
+  padding: 14px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #10233f;
+  font-size: 15px;
+  line-height: 1.25;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(111, 31, 40, 0.1);
+  border-right: 1px solid rgba(111, 31, 40, 0.09);
+}
+
+.tableRow > div:last-child,
+.tableHeader > div:last-child {
+  border-right: 0;
+}
+
+.tableRow > div:first-child {
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.tableRow > div:nth-child(4) {
+  font-size: 14px;
+}
+
+.tableRow > div:nth-child(5),
+.tableRow > div:nth-child(6) {
+  font-size: 22px;
+}
+
 .sortIcon {
-  margin-left: 4px;
-  font-size: 18px;
+  margin-left: 5px;
+  font-size: 16px;
+  opacity: 0.9;
 }
 
 .firstColumn {
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-left-color: var(--dante-grey);
   position: relative;
   overflow: hidden;
 }
 
 .icon {
-  color: var(--dante-black);
-}
-
-.tableRow>div {
-  width: var(--cell-width);
-  text-align: center;
-  padding: 10px 0px;
-  color: var(--dante-black);
-}
-
-.tableHeader>div,
-.tableRow>div {
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: var(--dante-grey);
-
-  border-right-style: solid;
-  border-right-width: 1px;
-  border-right-color: var(--dante-grey);
-}
-
-.tableRow>.danteButton {
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--dante-dark-brown);
+  color: #10233f;
+  font-size: 23px;
 }
 
 .infoIcon {
   cursor: pointer;
+  color: #10233f;
+  transition: transform 160ms ease, color 160ms ease;
 }
 
-.tableRow>.specialRow {
-  width: calc(var(--cell-width) * 3);
-  padding-right: 2px;
+.infoIcon:hover {
+  transform: scale(1.14);
+  color: #8b2835;
+}
+
+.tableRow > .danteButton {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 850;
+  color: #7b1c27;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.tableRow > .danteButton:hover {
+  background: #7b1c27;
+  color: #fff;
+}
+
+.tableRow > .specialRow {
+  grid-column: span 3;
+  width: auto;
 }
 
 .fullTag {
-  background-color: var(--dante-inactive-grey);
   position: absolute;
-  top: 5px;
-  left: -25px;
+  top: 7px;
+  left: -30px;
   rotate: -45deg;
-  width: 80px;
-  font-size: 12px;
-  color: var(--dante-white);
-  font-weight: 600;
+  width: 94px;
+  padding: 3px 0;
+  background: linear-gradient(135deg, #a6a6a6, #626262);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.14);
 }

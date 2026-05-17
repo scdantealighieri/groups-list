@@ -37,8 +37,10 @@ const durationMinutes =
   toMinutes(endHour) - toMinutes(startHour);
   const days = getFormattedGroupDays(groupDetails.groupDays);
 
-  const applyMarkdown = (text: string) =>
-    text.replace(/\[\[(.*?)\]\]/g, "<strong>$1</strong>");
+const applyMarkdown = (text: string) =>
+  text
+    .replace(/\{\{(.*?)\}\}/g, "")
+    .replace(/\[\[(.*?)\]\]/g, "<strong>$1</strong>");
 
   const kosztIndex = groupDetails.groupDescription.indexOf("Koszt");
   const beforeKoszt =

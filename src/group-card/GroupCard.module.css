@@ -1,17 +1,31 @@
 .groupCard {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fafafa 55%,
+    #f4f4f4 100%
+  );
+box-shadow:
+  0px 4px 20px rgba(0, 0, 0, 0.08),
+  inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+
   padding: 12px 20px 18px;
   border-radius: 10px;
-  border-top: 4px solid var(--dante-dark-brown);
+
   transition: box-shadow 300ms ease, transform 300ms ease;
+
   overflow: hidden;
+  box-sizing: border-box;
   position: relative;
 }
+
+
 
 .groupCard:hover {
   transform: scale(1.04);
@@ -29,10 +43,14 @@
 
 .groupLevel {
   font-weight: 700;
-  padding-top: 6px;
+  padding-top: 10px;
   color: var(--dante-black);
-  font-size: 45px;
-  white-space: nowrap;
+  font-size: 17px;
+  line-height: 1.15;
+  width: 100%;
+  min-height: 28px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .groupDays {
@@ -49,7 +67,7 @@
   font-family: "Rubik", sans-serif;
   color: var(--dante-grey);
   font-weight: 400;
-  text-align: center;
+  text-align: left;
 }
 
 .buttonsContainer {
@@ -57,19 +75,25 @@
   justify-content: center;
   gap: 10px;
   width: 100%;
-  margin-top: 16px;
-  padding-top: 14px;
+
+  margin-top: 10px;
+  padding-top: 10px;
+
   border-top: 1px solid var(--dante-light-background);
 }
 
 .danteButton {
-  background-color: var(--dante-dark-brown);
+    background: linear-gradient(
+    135deg,
+    #631b24 0%,
+    #7e1f2d 100%
+  );
   color: var(--dante-white);
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   padding: 7px 14px;
-  border-radius: 6px;
+  border-radius: 99px;
   border: 1px solid var(--dante-dark-brown);
   min-width: 80px;
   text-align: center;
@@ -78,18 +102,69 @@
 }
 
 .danteButton:hover {
-  background-color: var(--dante-white);
-  color: var(--dante-dark-brown);
-}
+  background: transparent;
 
-.infoButton {
-  background-color: var(--dante-white);
   color: var(--dante-dark-brown);
+
   border: 1px solid var(--dante-dark-brown);
 }
 
+.infoButton {
+  background: transparent;
+
+  color: var(--dante-dark-brown);
+
+  border: 1px solid var(--dante-dark-brown);
+}
+
+.specialDescription {
+  margin-top: 14px;
+
+  width: 100%;
+
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+}
+
+.specialRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.specialIcons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.specialText {
+  font-family: "Rubik", sans-serif;
+  text-align: left;
+}
+
+.specialDescription {
+  margin-top: 14px;
+  width: 100%;
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #6f7782;
+  text-align: left;
+  min-height: 52px;
+}
 .infoButton:hover {
-  background-color: var(--dante-dark-brown);
+  background: linear-gradient(
+    135deg,
+    #631b24 0%,
+    #7e1f2d 100%
+  );
+
   color: var(--dante-white);
 }
 
@@ -106,6 +181,48 @@
   text-align: center;
   padding: 5px;
   letter-spacing: 0.5px;
+}
+.groupType {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  padding: 5px 10px;
+  border-radius: 999px;
+
+  background-color: #fff7f8;
+  border: 1px solid #f1d9dd;
+
+  font-weight: 700;
+  color: var(--dante-dark-brown);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+
+
+.groupTypeIcon {
+  font-size: 12px !important;
+  width: 11px;
+  height: 11px;
+  line-height: 11px;
+}
+
+.groupDays,
+.groupLector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cardIcon {
+  font-size: 16px !important;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  color: var(--dante-grey);
+  flex-shrink: 0;
 }
 
 .fullGroupCard {

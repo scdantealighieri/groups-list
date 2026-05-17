@@ -17,4 +17,7 @@ export interface Group {
   groupCity: string;
   groupCityOrType: string;
   groupForKids: boolean;
+  groupLectorFotoContent?: string;
+  groupDescription?: string;
+  groupLectorFotoType?: string;
 }

@@ -49,9 +49,40 @@ export const GroupsList = ({
     groupState: [],
   });
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [groupDescriptions, setGroupDescriptions] = useState<
+  Record<string, string>
+>({});
+
   useEffect(() => {
     sort(GroupSortType.Level, groups);
   }, [groups]);
+
+  useEffect(() => {
+  const loadGroupDescriptions = async () => {
+    const descriptions: Record<string, string> = {};
+
+    await Promise.all(
+      groups.map(async (group) => {
+        try {
+          const details = await fetchGroup(group.groupId);
+          descriptions[group.groupId] =
+  details?.groupDescription || "";
+        } catch (e) {
+          descriptions[group.groupId] = "";
+        }
+      })
+    );
+
+    setGroupDescriptions(descriptions);
+  };
+
+  loadGroupDescriptions();
+}, [groups]);
+
+useEffect(() => {
+  filterGroups(filter);
+}, [searchTerm, groupDescriptions]);
 
   const filterGroups = (filter: Filter) => {
     let filteredGroups = groups;
@@ -111,6 +142,27 @@ export const GroupsList = ({
           group.groupAlwaysVisible
       );
     }
+
+    if (searchTerm.trim().length > 0) {
+  filteredGroups = filteredGroups.filter((group) => {
+
+    const description = groupDescriptions[group.groupId] || "";
+
+    const matches = description.match(/\{\{(.*?)\}\}/g) || [];
+
+    const tags = matches.map((match) =>
+      match
+        .replace("{{", "")
+        .replace("}}", "")
+        .toLowerCase()
+        .trim()
+    );
+
+    return tags.some((tag) =>
+      tag.includes(searchTerm.toLowerCase())
+    );
+  });
+}
 
     sort(selectedSortType, filteredGroups);
   };
@@ -266,9 +318,13 @@ export const GroupsList = ({
     <div className={styles.searchBox}>
       <span className="material-symbols-outlined">search</span>
 
-      <input
+            <input
         type="text"
         placeholder="Szukaj kursu lub wykładowcy..."
+        value={searchTerm}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
       />
     </div>
   </div>
