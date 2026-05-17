@@ -290,6 +290,10 @@
   font-size: 16px !important;
 }
 
+.hiddenKeyword {
+  display: none;
+}
+
 @media screen and (max-width: 630px) {
   .header {
     padding-right: 0;
@@ -310,6 +314,7 @@
     font-size: 18px !important;
     margin-top: 0;
   }
+  
   
 
   .title {

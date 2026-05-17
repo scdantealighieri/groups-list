@@ -24,6 +24,15 @@ export const GroupCard = ({
     return groupHours.split("$")[0];
   };
 
+  const maxPlaces = group.groupType === "stacjonarna" ? 12 : 10;
+
+const occupiedPlaces = maxPlaces - group.groupFreePlaces;
+
+const fillPercent = Math.min(
+  100,
+  Math.max(0, (occupiedPlaces / maxPlaces) * 100)
+);
+
   return (
     <div
       className={`${styles.groupCard} ${
@@ -36,6 +45,7 @@ export const GroupCard = ({
       )}
 
       <div className={styles.groupType}>
+
         {group.groupId === "special_individual" ||
 group.groupId === "special_duetto" ? (
   <>
@@ -56,7 +66,33 @@ group.groupId === "special_duetto" ? (
     <span>{group.groupCityOrType}</span>
   </>
 )}
-      </div>
+            </div>
+
+      {group.groupId !== "special_individual" &&
+        group.groupId !== "special_duetto" && (
+          <div className={styles.capacityWrapper}>
+            <div className={styles.capacityBar}>
+              <div
+                className={styles.capacityFill}
+                style={{ width: `${fillPercent}%` }}
+              />
+
+              <div className={styles.capacityTextDark}>
+                {occupiedPlaces}/{maxPlaces}
+              </div>
+
+              <div
+                className={styles.capacityTextLight}
+                style={{ width: `${fillPercent}%` }}
+              >
+                <span>
+                  {occupiedPlaces}/{maxPlaces}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
 
       <div className={styles.groupLevel}>
         {group.groupShortName}

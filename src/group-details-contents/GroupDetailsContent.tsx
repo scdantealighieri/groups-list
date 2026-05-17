@@ -39,8 +39,13 @@ const durationMinutes =
 
 const applyMarkdown = (text: string) =>
   text
+    // rimuove intere righe di keyword {{...}}
+    .replace(/^\s*(\{\{.*?\}\}\s*)+\n?/gm, "")
+    // sicurezza: rimuove eventuali keyword inline rimaste
     .replace(/\{\{(.*?)\}\}/g, "")
-    .replace(/\[\[(.*?)\]\]/g, "<strong>$1</strong>");
+    // trasforma [[...]] in bold
+    .replace(/\[\[(.*?)\]\]/g, "<strong>$1</strong>")
+    .trim();
 
   const kosztIndex = groupDetails.groupDescription.indexOf("Koszt");
   const beforeKoszt =
