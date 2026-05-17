@@ -244,12 +244,22 @@ export const GroupsFilter = ({
             />
           </div>
 
-          <div
-            className={styles.acceptFiltersButton}
-            onClick={toggleFiltersListVisibility}
-          >
-            Potwierdź zmiany
-          </div>
+          <div className={styles.mobileFilterActions}>
+  <button
+    type="button"
+    className={styles.clearMobileFiltersButton}
+    onClick={clearFilters}
+  >
+    Anuluj wszystkie filtry
+  </button>
+
+  <div
+    className={styles.acceptFiltersButton}
+    onClick={toggleFiltersListVisibility}
+  >
+    Potwierdź zmiany
+  </div>
+</div>
         </div>
       </div>
 

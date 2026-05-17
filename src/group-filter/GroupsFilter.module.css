@@ -332,20 +332,35 @@
 .filtersListsContainerHidden {
   display: none;
 }
-
 @media screen and (max-width: 630px) {
+
+  /* =========================
+     WRAPPER
+  ========================= */
+
+  .filters {
+    position: relative;
+    z-index: 9999999;
+  }
+
   .filterDesktopContainer {
     display: none;
   }
 
   .filterMobileContainer {
     display: block;
+
     position: relative;
+    z-index: 9999999;
+
     width: 100%;
-    z-index: 999999;
 
     font-family: "Rubik", sans-serif;
   }
+
+  /* =========================
+     BUTTON FILTRY
+  ========================= */
 
   .filtersButton {
     width: 100%;
@@ -355,7 +370,11 @@
     border-radius: 16px;
 
     background:
-      linear-gradient(135deg, #a82343, #5b1d38);
+      linear-gradient(
+        135deg,
+        #7d1d2b,
+        #5e1822
+      );
 
     color: var(--dante-white);
 
@@ -364,27 +383,35 @@
     justify-content: center;
     gap: 10px;
 
-    cursor: pointer;
-
     font-weight: 800;
+    font-size: 15px;
+
+    cursor: pointer;
 
     box-shadow:
       0 12px 28px rgba(105, 30, 55, 0.22);
+
+    position: relative;
+    z-index: 99999999;
   }
 
   .filtersButton .material-symbols-outlined {
     font-size: 20px;
   }
 
+  /* =========================
+     OPEN PANEL
+  ========================= */
+
   .filtersListsContainer {
     position: absolute;
 
-    top: calc(100% + 6px);
+    top: calc(100% + 8px);
     left: 0;
 
     width: 100%;
 
-    z-index: 9999999;
+    z-index: 99999999;
 
     display: flex;
     flex-direction: column;
@@ -392,7 +419,7 @@
 
     padding: 14px;
 
-    border-radius: 0 0 18px 18px;
+    border-radius: 0 0 22px 22px;
 
     background: rgba(255, 253, 249, 0.99);
 
@@ -402,36 +429,282 @@
     box-sizing: border-box;
   }
 
+  .filtersListsContainerHidden {
+    display: none;
+  }
+
+  /* =========================
+     LISTA FILTRI
+  ========================= */
+
   .filterLists {
     width: 100%;
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+
+    position: relative;
+    z-index: 99999999;
   }
+
+  /* =========================
+     MULTISELECT
+  ========================= */
 
   .filterLists :global(.group-filters-multi-select) {
     width: 100% !important;
+
+    position: relative !important;
+    z-index: 99999999 !important;
   }
 
   .filterLists :global(.group-filters-multi-select .dropdown-container) {
     width: 100% !important;
+
+    min-height: 46px !important;
+    height: 46px !important;
+
+    border-radius: 999px !important;
+
+    background: #ffffff !important;
+
+    border:
+      1px solid rgba(95, 45, 50, 0.08) !important;
+
+    box-shadow:
+      0 6px 18px rgba(50, 25, 25, 0.06) !important;
+
+    position: relative !important;
+    z-index: 99999999 !important;
+
+    overflow: visible !important;
   }
+
+  /* hover */
+
+  .filterLists :global(.group-filters-multi-select .dropdown-container:hover) {
+    border-color:
+      rgba(170, 36, 68, 0.25) !important;
+  }
+
+  /* testo */
+
+  .filterLists :global(.group-filters-multi-select .dropdown-heading) {
+    height: 46px !important;
+
+    padding:
+      0 44px 0 18px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    font-size: 13px !important;
+    font-weight: 700 !important;
+
+    color: #8b8581 !important;
+  }
+
+  .filterLists :global(.group-filters-multi-select .dropdown-heading-value) {
+    width: 100% !important;
+
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* freccia */
+
+  .filterLists :global(.group-filters-multi-select .dropdown-heading svg),
+  .filterLists :global(.group-filters-multi-select .dropdown-heading-dropdown-arrow) {
+    display: none !important;
+  }
+
+  .filterLists :global(.group-filters-multi-select .dropdown-container::after) {
+    content: "";
+
+    position: absolute;
+
+    right: 18px;
+    top: 50%;
+
+    width: 7px;
+    height: 7px;
+
+    border-right: 2px solid #7d5159;
+    border-bottom: 2px solid #7d5159;
+
+    transform:
+      translateY(-65%)
+      rotate(45deg);
+
+    pointer-events: none;
+  }
+
+  /* =========================
+     DROPDOWN PANEL
+  ========================= */
+
+  .filterLists :global(.group-filters-multi-select .dropdown-content) {
+    position: absolute !important;
+
+    z-index: 999999999 !important;
+  }
+
+  .filterLists :global(.group-filters-multi-select .panel-content) {
+    border-radius: 18px !important;
+
+    border:
+      1px solid rgba(95, 45, 50, 0.08) !important;
+
+    background:
+      rgba(255, 253, 249, 0.995) !important;
+
+    box-shadow:
+      0 22px 55px rgba(45, 20, 25, 0.2) !important;
+
+    padding: 8px !important;
+
+    overflow: visible !important;
+
+    position: relative !important;
+    z-index: 999999999 !important;
+  }
+
+  .filterLists :global(.group-filters-multi-select .options),
+  .filterLists :global(.group-filters-multi-select .select-panel) {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  /* =========================
+     OPTION
+  ========================= */
+
+  .filterLists :global(.group-filters-multi-select .select-item) {
+    min-height: 34px !important;
+
+    padding: 4px 10px !important;
+
+    border-radius: 10px !important;
+
+    font-size: 13px !important;
+    font-weight: 500 !important;
+
+    color: #33272a !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    transition:
+      background 150ms ease,
+      transform 150ms ease;
+  }
+
+  .filterLists :global(.group-filters-multi-select .select-item:hover) {
+    background:
+      rgba(170, 36, 68, 0.08) !important;
+  }
+
+  .filterLists :global(.group-filters-multi-select .select-item input) {
+    width: 14px !important;
+    height: 14px !important;
+
+    margin-right: 8px !important;
+
+    accent-color: #aa2444;
+  }
+
+  /* =========================
+     SEARCH
+  ========================= */
+
+  .filterLists :global(.group-filters-multi-select .search) {
+    padding: 6px 8px !important;
+  }
+
+  .filterLists :global(.group-filters-multi-select .search input) {
+    height: 36px !important;
+
+    border-radius: 10px !important;
+
+    border:
+      1px solid rgba(95, 45, 50, 0.08) !important;
+
+    font-size: 13px !important;
+  }
+
+  /* =========================
+     COUNT BADGE
+  ========================= */
+
+  .filterValue {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+
+    padding-right: 22px;
+  }
+
+  .filterValue span:first-child {
+    flex: 1;
+    min-width: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .filterCount {
+    min-width: 22px;
+    height: 18px;
+
+    padding: 0 6px;
+
+    margin-left: 8px;
+
+    border-radius: 999px;
+
+    background: #aa2444;
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 18px;
+
+    text-align: center;
+
+    flex: 0 0 auto;
+
+    box-shadow:
+      0 4px 10px rgba(170, 36, 68, 0.22);
+  }
+
+  /* =========================
+     BUTTON POTWIERDZ
+  ========================= */
 
   .acceptFiltersButton {
     width: 100%;
 
-    padding: 12px 0;
+    padding: 13px 0;
 
     border-radius: 14px;
 
     text-align: center;
 
     background:
-      linear-gradient(135deg, #a82343, #5b1d38);
+      linear-gradient(
+        135deg,
+        #7d1d2b,
+        #5e1822
+      );
 
     color: var(--dante-white);
 
+    font-size: 15px;
     font-weight: 800;
 
     cursor: pointer;
@@ -439,44 +712,48 @@
     box-shadow:
       0 10px 24px rgba(105, 30, 55, 0.2);
   }
-}
 
-.filterValue {
+  /* =========================
+     ABBASSA CARD SOTTO
+  ========================= */
+
+  .groupList,
+  .groupsListContainer,
+  .groupCard {
+    position: relative;
+    z-index: 1;
+  }
+  .mobileFilterActions {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
   width: 100%;
-  min-width: 0;
-  padding-right: 24px;
 }
 
-.filterValue span:first-child {
-  flex: 1;
-  min-width: 0;
+.clearMobileFiltersButton {
+  width: 100%;
 
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+  padding: 12px 0;
 
-.filterCount {
-  position: static;
+  border-radius: 14px;
+  border: 1px solid rgba(125, 29, 43, 0.35);
 
-  min-width: 20px;
-  height: 18px;
-  padding: 0 6px;
+  background: #fffaf7;
 
-  border-radius: 999px;
+  color: #7d1d2b;
 
-  background: #aa2444;
-  color: #fff;
-
-  font-size: 10px;
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
   font-weight: 800;
-  line-height: 18px;
-  text-align: center;
 
-  margin-left: 8px;
-  flex: 0 0 auto;
+  cursor: pointer;
 
-  box-shadow: 0 4px 10px rgba(170, 36, 68, 0.22);
+  box-shadow:
+    0 8px 18px rgba(60, 25, 25, 0.07);
+}
+
+.clearMobileFiltersButton:active {
+  transform: scale(0.98);
+}
 }

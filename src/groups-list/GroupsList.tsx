@@ -320,7 +320,7 @@ useEffect(() => {
 
             <input
         type="text"
-        placeholder="Szukaj kursu lub wykładowcy..."
+        placeholder="Szukaj temat..."
         value={searchTerm}
         onChange={(e) => {
           setSearchTerm(e.target.value);

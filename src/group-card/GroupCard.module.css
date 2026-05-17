@@ -333,3 +333,119 @@ box-shadow:
 
   color: white;
 }
+
+@media (max-width: 768px) {
+  .groupCard {
+    width: 100% !important;
+    max-width: 360px;
+    min-height: auto;
+    padding: 16px 18px 18px;
+    border-radius: 18px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfaf8 60%, #f3f0ec 100%);
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.10),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .groupCard:hover {
+    transform: none;
+  }
+
+  .groupType {
+    max-width: calc(100% - 112px);
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 1;
+    gap: 4px;
+  }
+
+  .groupTypeIcon {
+    font-size: 13px !important;
+  }
+
+  .capacityWrapper {
+    top: 16px;
+    right: 16px;
+  }
+
+  .capacityBar {
+    width: 86px;
+    height: 18px;
+  }
+
+  .capacityTextDark,
+  .capacityTextLight {
+    font-size: 10px;
+  }
+
+  .capacityTextLight span {
+    width: 86px;
+  }
+
+  .groupLevel {
+    padding-top: 14px;
+    font-size: 19px;
+    line-height: 1.15;
+    min-height: auto;
+  }
+
+  .groupDays,
+  .groupLector {
+    width: 100%;
+    padding-top: 9px;
+    font-size: 14px;
+    line-height: 1.3;
+    gap: 7px;
+  }
+
+  .cardIcon {
+    font-size: 18px !important;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+  }
+
+  .lectorAvatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .specialDescription {
+    margin-top: 14px;
+    min-height: auto;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .buttonsContainer {
+    margin-top: 16px;
+    padding-top: 14px;
+    gap: 10px;
+  }
+
+  .danteButton {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 999px;
+  }
+
+  .showMoreBtn,
+  .signInBtn {
+    width: 100%;
+  }
+
+  .groupFullBanner {
+    top: 13px;
+    left: -48px;
+    width: 150px;
+    font-size: 13px;
+    padding: 4px;
+  }
+}

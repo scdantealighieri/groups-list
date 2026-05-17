@@ -362,12 +362,12 @@
 
   .description {
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
   }
 
   .priceCard {
-    width: 100%;
+    width: 93%;
     box-sizing: border-box;
   }
 
@@ -447,7 +447,7 @@
   .footerCta button,
   .footerCta a {
     width: 100%;
-    max-width: 270px;
+    max-width: 340px;
   }
 
   .secureLabel {
