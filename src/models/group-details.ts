@@ -16,4 +16,5 @@ export interface GroupDetails {
     groupShortName: string;
     groupFreePlaces: number;
     groupForKids: boolean;
+    groupLessUnits: string;
   }

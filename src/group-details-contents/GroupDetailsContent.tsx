@@ -37,6 +37,13 @@ const durationMinutes =
   toMinutes(endHour) - toMinutes(startHour);
   const days = getFormattedGroupDays(groupDetails.groupDays);
 
+const lessonsUnits = Number(group?.groupLessUnits || 0);
+
+const lessonsCount =
+  durationMinutes > 0
+    ? Math.round(lessonsUnits / (durationMinutes / 45))
+    : 0;
+
 const applyMarkdown = (text: string) =>
   text
     // rimuove intere righe di keyword {{...}}
@@ -164,8 +171,8 @@ const applyMarkdown = (text: string) =>
               )}`}
 
               <div className={styles.meetingsCount}>
-                (10 spotkań x {durationMinutes} min)
-              </div>
+              ({lessonsCount} spotkań x {durationMinutes} min)
+            </div>
             </div>
             </div>
           </div>

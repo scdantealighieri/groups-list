@@ -10,6 +10,7 @@ const duettoGroupInfo: Group = {
     groupType: "STACJONARNA/ONLINE",
     groupLevel: "",
     groupDays: "",
+    
     groupHours: "",
     groupLector: "Stwórz swoją grupę, podając swoje preferencje!",
     groupFirstMeet: "",
@@ -18,6 +19,7 @@ const duettoGroupInfo: Group = {
     groupFreePlaces: 5,
     groupAlwaysVisible: true,
     groupPremises: [],
+    groupLessUnits: "0",
     groupCity: "",
     groupCityOrType: "",
     groupForKids: false
@@ -40,6 +42,7 @@ const duettoGroupDetails: SpecialGroupDetails = {
     groupLevel: "",
     groupName: "Duetto",
     groupShortName: "Duetto",
+    groupLessUnits: "0",
     groupType: "Duetto",
     bulletPoints: [
         {

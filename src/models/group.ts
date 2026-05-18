@@ -20,4 +20,5 @@ export interface Group {
   groupLectorFotoContent?: string;
   groupDescription?: string;
   groupLectorFotoType?: string;
+  groupLessUnits: string;
 }
