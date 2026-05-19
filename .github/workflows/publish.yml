@@ -33,13 +33,11 @@ jobs:
     - name: Rename css file
       run: |
         mkdir -p groups-list
-        cd build/static/css
-        cp $(ls main*.css | head -n 1) ../../../groups-list/main.groupslist.css
-
+        find build/static/css -name 'main*.css' ! -name '*.map' -exec cp {} groups-list/main.groupslist.css \;
+    
     - name: Rename js file
       run: |
-        cd build/static/js
-        cp $(ls main*.js | head -n 1) ../../../groups-list/main.groupslist.js
+        find build/static/js -name 'main*.js' ! -name '*.map' ! -name '*.LICENSE.txt' -exec cp {} groups-list/main.groupslist.js \;
 
     - name: Checkout storage repository
       uses: actions/checkout@v4.2.2
