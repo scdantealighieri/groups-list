@@ -32,7 +32,7 @@ jobs:
 
     - name: Rename css file
       run: | 
-        mkdir groups-list
+        mkdir -p groups-list
         cd build/static/css
         mv main.*.css ../../../groups-list/main.groupslist.css
 
