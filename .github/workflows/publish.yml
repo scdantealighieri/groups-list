@@ -57,7 +57,7 @@ jobs:
         git config --global user.email "scdantealighieri6@gmail.com"
         git config --global user.name "scdantealighieri"
         git add --all
-        git commit -a -m store
+        git diff --cached --quiet || git commit -m store
     
     - name: Push changes to public-store
       uses: ad-m/github-push-action@master
