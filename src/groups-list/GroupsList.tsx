@@ -82,8 +82,8 @@ export const GroupsList = ({
 
 useEffect(() => {
   filterGroups(filter);
-}, [searchTerm, groupDescriptions]);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [searchTerm, groupDescriptions, filter]);
   const filterGroups = (filter: Filter) => {
     let filteredGroups = groups;
 

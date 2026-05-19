@@ -70,10 +70,6 @@ const applyMarkdown = (text: string) =>
     100,
     Math.round((takenSeats / totalSeats) * 100),
   );
-  const availablePercent = Math.min(
-    100,
-    Math.round((groupDetails.groupFreePlaces / totalSeats) * 100),
-  );
 
   return (
     <div className={styles.container}>
