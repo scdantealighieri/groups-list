@@ -8,16 +8,53 @@
   z-index: 9998;
 }
 
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -47%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalOverlay {
+  animation: overlayIn 200ms ease;
+}
+
 .modal {
   position: fixed;
   background-color: white;
+  background-image: url("../assets/images/bg22.webp");
+  background-size: cover;
+  background-position: 80% center;
   z-index: 9999;
-  width: fit-content;
+
+  width: 940px;
+  max-width: calc(100vw - 64px);
+  min-height: 690px;
+
   border-radius: 20px;
-  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+  border-top: 4px solid var(--dante-dark-brown);
+  box-shadow:
+    0px 8px 40px rgba(0, 0, 0, 0.18),
+    0px 2px 8px rgba(0, 0, 0, 0.08);
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation: modalIn 200ms ease;
+  overflow: hidden;
 }
 
 .modalContent {
@@ -27,7 +64,7 @@
 }
 
 .modalContentWithPadding {
-  padding-bottom: 48px;
+  padding-bottom: 28px;
 }
 
 .detailsTop {
@@ -47,15 +84,19 @@
 
 .infoContainer {
   display: flex;
-  gap: 15px;
-  justify-content: space-evenly;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
 }
 
 .info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  background-color: var(--dante-light-background);
+  padding: 5px 10px;
+  border-radius: 20px;
 }
 
 .infoValue {
@@ -170,28 +211,107 @@
 }
 
 .signInButton {
-  background-color: var(--dante-dark-brown);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(
+    135deg,
+    #cf4d5f 0%,
+    #a92d3d 55%,
+    #7e1f2d 100%
+  );
   color: white;
-  font-size: 14px;
-  font-weight: 400;
   cursor: pointer;
-  padding: 7px 12px;
-  border-radius: 4px;
-  min-width: 80px;
-  text-align: center;
-  font-family: "Rubik", sans-serif;
+  padding: 14px 20px;
+  border-radius: 12px;
   border: none !important;
-  transition: linear 200ms;
+  width: 230px;
+  flex-shrink: 0;
+
+  font-family: "Rubik", sans-serif;
+  transition:
+    filter 200ms ease,
+    transform 200ms ease;
+    position: relative;
+  overflow: hidden;
+  transition:
+  background 320ms ease,
+  filter 200ms ease;
 }
 
 .signInButton:hover {
-  background-color: var(--dante-dark-brown);
-  color: var(--dante-white);
-  transform: scale(1.1);
+  filter: brightness(1.05);
 }
 
+.signInButton > span:first-child {
+  transition:
+    transform 320ms ease,
+    margin-left 320ms ease;
+
+  position: relative;
+  z-index: 2;
+}
+
+.signInButton:hover > span:first-child {
+  transform: translateX(210px);
+}
+
+.signInContent {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+.signInButton:hover .signInContent {
+  opacity: 0;
+  transform: translateX(-10px);
+}
 .signInButton:focus {
-  background-color: var(--dante-dark-brown);
+  background: linear-gradient(
+    135deg,
+    #cf4d5f 0%,
+    #a92d3d 55%,
+    #7e1f2d 100%
+  );
+}
+.signInContent {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.signInTitle {
+  font-size: 17px;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.hoverText {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  text-align: center;
+  line-height: 1.05;
+  white-space: normal;
+
+  transform: translate(-50%, -50%);
+
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+
+.signInButton:hover .hoverText {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+.signInSubtitle {
+  font-size: 12px;
+  opacity: 0.82;
 }
 
 .notifyButton,
@@ -200,8 +320,8 @@
 }
 
 .notifyButton:hover {
-  background-color: var(--dante-inactive-grey);
-  color: white;
+  opacity: 0.9;
+  transform: scale(1.02);
 }
 
 .detailsBottom {
@@ -209,6 +329,8 @@
   gap: 15px;
   justify-content: space-between;
   margin-top: 10px;
+  padding-top: 15px;
+  border-top: 1px solid var(--dante-light-background);
 }
 
 .classDates {
@@ -235,6 +357,11 @@
 .modalClose span {
   cursor: pointer;
   font-size: 30px;
+  transition: color 150ms ease;
+}
+
+.modalClose span:hover {
+  color: var(--dante-dark-brown);
 }
 
 .infoValue.hours {
@@ -247,45 +374,141 @@
 
 .standardToolbar {
   display: flex;
-  width: 100%;
+  width: 250px;
   flex-direction: column;
   align-items: stretch;
 }
 
 @media screen and (max-width: 630px) {
-  .toolbar.hidden {
-    display: flex;
-  }
-
-  .standardToolbar {
-    display: none;
-  }
-
   .modal {
-    width: 90%;
-    max-height: 90vh;
-    overflow: auto;
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    max-height: 92vh;
+    min-height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 18px;
   }
 
   .modalContent {
-    padding: 0px 25px 0px 25px;
+    padding: 0 14px 22px 14px;
   }
 
-  .detailsRight {
-    flex-direction: column-reverse;
-    width: unset;
+  .detailsTop {
+    margin-top: -20px;
+    gap: 18px;
+  }
+
+  .header {
     align-items: center;
+    text-align: center;
+  }
+
+  .level {
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+  }
+
+  .infoContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 12px 10px;
+    box-sizing: border-box;
+  }
+
+  .info {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+  }
+
+  .infoValue {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .infoValue.hours {
+    min-width: auto;
+  }
+
+  .detailsBottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .classDates,
+  .freePlacesContainer {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .toolbar {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 14px 0 0 0;
+    justify-content: center;
+  }
+
+  .standardToolbar {
+    width: 100%;
+    align-items: center;
+  }
+
+  .signInButton {
+    width: 100%;
+    min-height: 58px;
+    justify-content: center;
+    border-radius: 16px;
+  }
+
+  .signInContent {
+    text-align: center;
+  }
+
+  .signInButton:hover > span:first-child {
+    transform: none;
+  }
+
+  .signInButton:hover .signInContent {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hoverText {
+    display: none;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .detailsLeft .description {
+    display: none;
   }
 
   .detailsRight .description {
     display: block;
-    padding-right: 25px;
+    padding-right: 0;
     font-size: 14px;
-    padding-right: 0px;
     margin-bottom: 15px;
   }
 
-  .detailsBottom {
+  .detailsRight {
+    width: 100%;
+    align-items: center;
     flex-direction: column-reverse;
   }
 
@@ -294,95 +517,17 @@
   }
 
   .photo img {
-    width: 50%;
-  }
-
-  .description {
-    margin-top: unset;
-  }
-
-  .header {
-    flex-direction: column;
-  }
-
-  .level {
-    font-size: 70px;
-    text-align: center;
-  }
-
-  .separator {
-    display: none;
-  }
-
-  .info {
-    gap: 5px;
-    flex-direction: column;
-  }
-
-  .infoContainer {
-    flex-direction: row;
-    font-size: 11px;
-  }
-
-  .infoValue {
-    display: flex;
-    align-items: center;
-    text-align: center;
-  }
-
-  .infoValue.hours {
-    min-width: 65px;
-  }
-
-  .detailsLeft .description {
-    display: none;
-  }
-
-  .detailsTop {
-    flex-direction: column;
-  }
-
-  .dates,
-  .freePlaces {
-    font-size: 14px;
-  }
-
-  .dates span:last-child {
-    margin-right: unset;
-  }
-
-  .freePlacesHeader,
-  .datesHeader {
-    font-size: 18px;
-  }
-
-  .classDates {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .toolbar {
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .signInButton {
     width: 100%;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border: none;
-    height: 30px;
-    transition: unset;
-    font-weight: 500;
-  }
-
-  .signInButton:hover {
-    transform: unset;
   }
 
   .freePlacesContainer {
-    width: unset;
+    width: 100%;
   }
+}
+
+.modal,
+.modalContent,
+.toolbar,
+.signInButton {
+  box-sizing: border-box;
 }

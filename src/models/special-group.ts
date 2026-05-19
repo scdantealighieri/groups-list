@@ -19,6 +19,7 @@ export class SpecialGroup implements Group {
   groupPremises: GroupPremise[];
   groupCity: string;
   groupCityOrType: string;
+  groupLessUnits: string;
   groupForKids: boolean;
 
   constructor(group: Group, details: SpecialGroupDetails) {
@@ -38,5 +39,6 @@ export class SpecialGroup implements Group {
     this.groupCity = group.groupCity;
     this.groupCityOrType = group.groupCityOrType;
     this.groupForKids = group.groupForKids;
+    this.groupLessUnits = group.groupLessUnits;
   }
 }

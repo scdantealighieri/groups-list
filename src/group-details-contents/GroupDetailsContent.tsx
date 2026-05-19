@@ -1,135 +1,213 @@
-import { GroupDetails } from "../models/group-details";
-import { getFormattedGroupDays } from "../services/group-service";
-import styles from "../group-details/GroupDetailsModal.module.css";
-import { useFontSize } from "../hooks/useFontSize";
-import { useRef, ReactNode } from "react";
+import { ReactNode } from "react";
 import { GroupType } from "../enums/group-type";
 import { Group } from "../models/group";
+import { GroupDetails } from "../models/group-details";
+import { getFormattedGroupDays } from "../services/group-service";
+import styles from "./GroupDetailsContent.module.css";
 
 export const GroupDetailsContent = ({
   groupDetails,
   group,
-  toolbar
+  toolbar,
 }: {
   groupDetails: GroupDetails;
   group: Group | null;
   toolbar: ReactNode;
 }) => {
-  const levelFontSizeRef = useFontSize(200);
-  const descriptionRef = useRef<HTMLDivElement>(null);
-
   const formatDate = (dateString: string): string => {
     const [year, month, day] = dateString.split("-");
     return `${day}/${month}/${year}`;
   };
 
-  return (
-    <>
-      <div className={styles.detailsTop}>
-          <div className={styles.header} >
-            <div className={styles.level} ref={levelFontSizeRef}>
-              {groupDetails.groupShortName}
-            </div>
-            <div className={styles.infoContainer}>
-              <div className={styles.info}>
-                <div className={styles.icon}>
-                  {groupDetails.groupType === GroupType.OnSite ? (
-                    <div className={styles.icon}>
-                      <span className="material-symbols-outlined">home</span>
-                    </div>
-                  ) : (
-                    <div className={ styles.icon}>
-                      <span className="material-symbols-outlined">
-                        computer
-                      </span>
-                    </div>
-                  )} 
-                </div>
-                <div className={styles.infoValue}>{groupDetails.groupType === GroupType.OnSite ? group?.groupCity : "Online"}</div>
-              </div>
-              <div className={styles.info}>
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">location_on</span>
-                </div>
-                <div className={styles.infoValue}>
-                  {group?.groupType === GroupType.OnSite ? group?.groupPremises[0]?.premiseAddress : "Zoom"}
-                </div>
-              </div>
+  const city =
+    groupDetails.groupType === GroupType.OnSite ? group?.groupCity : "Online";
+  const address =
+    groupDetails.groupType === GroupType.OnSite
+      ? group?.groupPremises[0]?.premiseAddress
+      : "Zoom";
+  const hours = groupDetails.groupHours.split("$")[0];
+  const [startHour, endHour] = hours.split("-");
 
-              <div className={styles.info}>
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">schedule</span>
-                </div>
-                <div className={`${styles.infoValue} ${styles.hours}`}>
-                  {groupDetails.groupHours.split("$")[0]}
-                </div>
-              </div>
-              <div className={styles.info}>
-                <div className={styles.icon}>
-                  <span className="material-symbols-outlined">
-                    calendar_month
-                  </span>
-                </div>
-                <div className={styles.infoValue}>
-                  {getFormattedGroupDays(groupDetails.groupDays)}
-                </div>
-              </div>
-            </div>
-          </div>
+const toMinutes = (time: string) => {
+  const [h, m] = time.split(":").map(Number);
+  return h * 60 + m;
+};
+
+const durationMinutes =
+  toMinutes(endHour) - toMinutes(startHour);
+  const days = getFormattedGroupDays(groupDetails.groupDays);
+
+const lessonsUnits = Number(group?.groupLessUnits || 0);
+
+const lessonsCount =
+  durationMinutes > 0
+    ? Math.round(lessonsUnits / (durationMinutes / 45))
+    : 0;
+
+const applyMarkdown = (text: string) =>
+  text
+    // rimuove intere righe di keyword {{...}}
+    .replace(/^\s*(\{\{.*?\}\}\s*)+\n?/gm, "")
+    // sicurezza: rimuove eventuali keyword inline rimaste
+    .replace(/\{\{(.*?)\}\}/g, "")
+    // trasforma [[...]] in bold
+    .replace(/\[\[(.*?)\]\]/g, "<strong>$1</strong>")
+    .trim();
+
+  const kosztIndex = groupDetails.groupDescription.indexOf("Koszt");
+  const beforeKoszt =
+    kosztIndex !== -1
+      ? groupDetails.groupDescription.slice(0, kosztIndex).trimEnd()
+      : groupDetails.groupDescription;
+  const fromKoszt =
+    kosztIndex !== -1
+      ? groupDetails.groupDescription.slice(kosztIndex).trim()
+      : "";
+
+  const totalSeats = groupDetails.groupType === GroupType.Online ? 10 : 12;
+  const takenSeats = totalSeats - groupDetails.groupFreePlaces;
+  const filledPercent = Math.min(
+    100,
+    Math.round((takenSeats / totalSeats) * 100),
+  );
+  const availablePercent = Math.min(
+    100,
+    Math.round((groupDetails.groupFreePlaces / totalSeats) * 100),
+  );
+
+  return (
+    <div className={styles.container}>
+      {/* Header with decorative background element */}
+      <div className={styles.header}>
+        <div className={styles.title}>{groupDetails.groupShortName}</div>
       </div>
-      <div className={styles.detailsBottom}>
-        <div className={styles.detailsLeft}>
-          <div className={styles.description} ref={descriptionRef}>
-            {groupDetails.groupDescription}
-          </div>
-          <div>
-          {groupDetails.groupFirstMeet && (
-          <div className={styles.classDates}>
-            <div className={styles.datesHeader}>Terminy zajęć: </div>
-            <div className={styles.dates}>
-              {`${formatDate(groupDetails.groupFirstMeet)} - ${formatDate(
-                groupDetails.groupLastMeet
-              )}`}
-            </div>
-          </div>
-        )}
-        {groupDetails.groupFreePlaces > 0 && (
-            <div className={styles.freePlacesContainer}>
-              <div className={styles.freePlacesHeader}>Wolne miejsca: </div>
-              <div className={styles.freePlaces}>
-                {groupDetails.groupFreePlaces}
-              </div>
+
+      {/* Info row */}
+      <div className={styles.infoRow}>
+        <div className={styles.infoItem}>
+          <span className={`material-symbols-outlined ${styles.infoIcon}`}>
+            location_city
+          </span>
+          <span>{city}</span>
+        </div>
+        <div className={styles.infoSeparator} />
+        <div className={styles.infoItem}>
+          <span className={`material-symbols-outlined ${styles.infoIcon}`}>
+            location_on
+          </span>
+          <span>{address}</span>
+        </div>
+        <div className={styles.infoSeparator} />
+        <div className={styles.infoItem}>
+          <span className={`material-symbols-outlined ${styles.infoIcon}`}>
+            schedule
+          </span>
+          <span>{hours}</span>
+        </div>
+        <div className={styles.infoSeparator} />
+        <div className={styles.infoItem}>
+          <span className={`material-symbols-outlined ${styles.infoIcon}`}>
+            calendar_month
+          </span>
+          <span>{days}</span>
+        </div>
+      </div>
+
+      {/* Two-column content: description + photo */}
+      <div className={styles.contentArea}>
+        <div className={styles.contentLeft}>
+          <div
+            className={styles.description}
+            dangerouslySetInnerHTML={{ __html: applyMarkdown(beforeKoszt) }}
+          />
+          {fromKoszt && (
+            <div className={styles.priceCard}>
+              <span
+                className={`material-symbols-outlined ${styles.priceCardIcon}`}
+              >
+                sell
+              </span>
+              <div
+                className={styles.priceCardText}
+                dangerouslySetInnerHTML={{
+                  __html: applyMarkdown(fromKoszt).replace(
+                    /^Koszt/,
+                    '<span style="font-weight:700;color:var(--dante-dark-brown)">Koszt</span>',
+                  ),
+                }}
+              />
             </div>
           )}
-        {groupDetails.groupFreePlaces === 0 && (
-          <div className={styles.freePlacesContainer}>
-            <div className={styles.freePlacesHeader}></div>
-            <div className={styles.freePlaces}>Brak wolnych miejsc</div>
-          </div>
-        )}
-          </div>
         </div>
-
         {groupDetails.groupLectorFotoContent && (
-          <div className={styles.detailsRight}>
-            <div className={styles.description}>
-              {groupDetails.groupDescription}
-            </div>
-            <div className={styles.photo}>
-              <img
-                src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
-                alt={groupDetails.groupLector}
-              />
-              <div className={styles.photoTitle}>
+          <div className={styles.photoCard}>
+            <img
+              src={`data:${groupDetails.groupLectorFotoType};base64,${groupDetails.groupLectorFotoContent}`}
+              alt={groupDetails.groupLector}
+              className={styles.photo}
+            />
+            <div className={styles.lectorOverlay}>
+              <div className={styles.lectorName}>
                 {groupDetails.groupLector}
               </div>
+              <div className={styles.lectorRole}>Lektor</div>
             </div>
-            <div></div>
-            <div className={styles.standardToolbar}>{toolbar}</div>
           </div>
         )}
-
       </div>
-    </>
+
+      {/* Footer: dates | free places | CTA */}
+      <div className={styles.footer}>
+        {groupDetails.groupFirstMeet && (
+          <div className={styles.footerSection}>
+            <span className={`material-symbols-outlined ${styles.footerIcon}`}>
+              calendar_month
+            </span>
+            <div>
+              <div className={styles.footerLabel}>Terminy zajęć</div>
+              <div className={styles.footerValue}>
+              {`${formatDate(groupDetails.groupFirstMeet)} – ${formatDate(
+                groupDetails.groupLastMeet,
+              )}`}
+
+              <div className={styles.meetingsCount}>
+              ({lessonsCount} spotkań x {durationMinutes} min)
+            </div>
+            </div>
+            </div>
+          </div>
+        )}
+        <div className={styles.footerSection}>
+          <span className={`material-symbols-outlined ${styles.footerIcon}`}>
+            group
+          </span>
+          <div className={styles.placesContainer}>
+            <div className={styles.footerLabel}>Zajęte miejsca</div>
+            <div className={styles.footerValueFraction}>
+              <span className={styles.footerValueLarge}>{takenSeats}</span>
+              <span className={styles.footerValueTotal}>z {totalSeats}</span>
+            </div>
+            <div className={styles.progressBar}>
+              <div
+                className={styles.progressFill}
+                style={{ width: `${filledPercent}%` }}
+              />
+            </div>
+            <div className={styles.availablePercent}>
+              {filledPercent}% zajętych miejsc
+            </div>
+          </div>
+        </div>
+        <div className={styles.footerCta}>
+          {toolbar}
+          <div className={styles.secureLabel}>
+            <span className={`material-symbols-outlined ${styles.secureIcon}`}>
+              verified_user
+            </span>
+            <span>Bezpieczne zapisy online</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

@@ -1,0 +1,465 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- Header ---- */
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--dante-black);
+  line-height: 1.1;
+}
+
+/* ---- Info row ---- */
+.infoRow {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 40px;
+  border: 1px solid #fae9ea;
+  box-shadow: 0 0 12px rgba(250, 233, 234, 0.4);
+  padding: 10px 16px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--dante-black);
+  font-family: "Rubik", sans-serif;
+}
+
+.infoIcon {
+  font-size: 18px !important;
+  color: var(--dante-dark-brown);
+}
+
+.infoSeparator {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+/* ---- Content area ---- */
+.contentArea {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.contentLeft {
+  flex: 1;
+  min-width: 0;
+}
+
+.description {
+  color: var(--dante-black);
+  font-family: "Rubik", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+/* ---- Price card ---- */
+.priceCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fae9ea;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+
+.priceCardIcon {
+  font-size: 24px !important;
+  color: var(--dante-dark-brown);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.priceCardText {
+  color: var(--dante-black);
+  font-family: "Rubik", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+/* ---- Photo card ---- */
+.photoCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 260px;
+  height: 340px;
+  flex-shrink: 0;
+  background: linear-gradient(145deg, #d4a0a8 0%, #a86070 40%, #7a3545 100%);
+}
+
+.photoCard::before {
+  content: "";
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.photoCard::after {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 20px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 1;
+}
+
+.lectorOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 16px 14px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+.lectorName {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.lectorRole {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* ---- Footer ---- */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 260px;
+  align-items: stretch;
+  padding-top: 20px;
+  border-top: 1px solid var(--dante-light-background);
+}
+
+.footerSection {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  flex: 1;
+
+  padding-right: 24px;
+  margin-right: 24px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footerIcon {
+  font-size: 22px !important;
+  color: var(--dante-dark-brown);
+  background: #fae9ea;
+  border-radius: 50%;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.footerLabel {
+  font-size: 12px;
+  color: var(--dante-grey);
+  font-family: "Rubik", sans-serif;
+  margin-bottom: 4px;
+}
+
+.footerValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dante-black);
+}
+
+.footerValueLarge {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--dante-black);
+  line-height: 1;
+}
+
+.footerValueEmpty {
+  font-size: 13px;
+  color: var(--dante-grey);
+  font-family: "Rubik", sans-serif;
+}
+
+.placesContainer {
+  flex: 1;
+  min-width: 0;
+}
+
+.footerValueFraction {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  line-height: 1;
+}
+
+.footerValueTotal {
+  font-size: 15px;
+  color: var(--dante-grey);
+  font-family: "Rubik", sans-serif;
+}
+
+.progressBar {
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--dante-dark-brown);
+  border-radius: 3px;
+  transition: width 600ms ease;
+}
+
+.availablePercent {
+  font-size: 11px;
+  color: var(--dante-grey);
+  font-family: "Rubik", sans-serif;
+  margin-top: 4px;
+}
+
+.footerCta {
+  width: 260px;
+  margin-left: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+
+  flex-shrink: 0;
+}
+.secureLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--dante-dark-brown);
+  font-family: "Rubik", sans-serif;
+}
+
+.secureIcon {
+  font-size: 16px !important;
+}
+
+.hiddenKeyword {
+  display: none;
+}
+
+@media screen and (max-width: 630px) {
+  .header {
+    padding-right: 0;
+  }
+
+    .photo {
+    object-position: center 18%;
+  }
+
+    .priceCard {
+    padding: 10px 12px;
+    gap: 8px;
+    border-radius: 12px;
+    align-items: center;
+  }
+
+  .priceCardIcon {
+    font-size: 18px !important;
+    margin-top: 0;
+  }
+  
+  
+
+  .title {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .infoRow {
+    flex-wrap: wrap;
+    gap: 8px;
+    border-radius: 16px;
+    padding: 12px 16px;
+  }
+
+  .infoItem {
+    flex: none;
+    width: calc(50% - 4px);
+    justify-content: flex-start;
+    font-size: 13px;
+  }
+
+  .infoSeparator {
+    display: none;
+  }
+
+  /* SOPRA: foto + testo */
+  .contentArea {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .contentLeft {
+    width: 100%;
+    flex: none;
+  }
+
+  .photoCard {
+    order: -1;
+    width: 100%;
+    height: 220px;
+    flex: none;
+  }
+
+  .description {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .priceCard {
+    width: 93%;
+    box-sizing: border-box;
+  }
+
+  /* SOTTO: date + posti + bottone */
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-top: 16px;
+  }
+
+  .footerSection {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 12px 10px;
+    border-right: 0;
+    border-radius: 18px;
+    background: rgba(250, 233, 234, 0.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .footerIcon {
+    font-size: 18px !important;
+    padding: 7px;
+  }
+
+  .footerLabel {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .footerValue {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .meetingsCount {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .placesContainer {
+    width: 100%;
+    max-width: none;
+  }
+
+  .footerValueFraction {
+    justify-content: center;
+  }
+
+  .footerValueLarge {
+    font-size: 26px;
+  }
+
+  .progressBar {
+    max-width: 110px;
+    margin: 8px auto 0;
+  }
+
+  .availablePercent {
+    font-size: 9px;
+  }
+
+  .footerCta {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-left: 0;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  .footerCta button,
+  .footerCta a {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .secureLabel {
+    justify-content: center;
+    font-size: 11px;
+  }
+}
+
+.meetingsCount {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--dante-grey);
+  margin-top: 2px;
+}
+

@@ -1,29 +1,86 @@
 .container {
-  background-color: var(--dante-white);
+
+  position: absolute;
+
+  top: 70px;
+  left: 20px;
+
+  width: 280px;
+
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 10px;
+  flex-direction: column;
+
+  gap: 6px;
+
+  padding: 14px;
+
+  border-radius: 22px;
+
+  background:
+    rgba(255, 253, 249, 0.98);
+
+  border:
+    1px solid rgba(95, 45, 50, 0.08);
+
+  box-shadow:
+    0 20px 50px rgba(40, 20, 20, 0.16);
+
+  backdrop-filter: blur(14px);
+
+  z-index: 9999;
 }
 
-.type,
 .header {
-  padding: 10px;
+
+  padding: 8px 10px 14px;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  color: #7d1d2b;
+
+  border-bottom:
+    1px solid rgba(95, 45, 50, 0.08);
 }
 
 .type {
-  color: var(--dante-black);
+
+  padding: 12px 14px;
+
+  border-radius: 14px;
+
+  color: #2d2d2d;
+
+  font-size: 14px;
+  font-weight: 600;
+
   cursor: pointer;
-  font-weight: 500;
+
+  transition:
+    background 160ms ease,
+    transform 160ms ease,
+    color 160ms ease;
+}
+
+.type:hover {
+
+  background:
+    rgba(170, 36, 68, 0.08);
+
+  transform: translateX(2px);
 }
 
 .type.active {
-  background-color: var(--dante-main-background);
-  border-radius: 50px;
-}
 
-.header {
-  font-weight: 700;
-  margin-right: 20px;
-  color: var(--dante-black);
+  background:
+    linear-gradient(
+      135deg,
+      #7d1d2b,
+      #5e1822
+    );
+
+  color: white;
+
+  box-shadow:
+    0 8px 20px rgba(125, 29, 43, 0.22);
 }

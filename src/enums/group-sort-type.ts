@@ -1,6 +1,9 @@
 export enum GroupSortType {
-    Level,
-    Day,
-    StartDate,
-    Lector
+  Level,
+  Type,
+  Lector,
+  Day,
+  StartDate,
+  FreePlacesAsc,
+  FreePlacesDesc
 }
