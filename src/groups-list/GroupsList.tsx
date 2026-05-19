@@ -266,6 +266,27 @@ useEffect(() => {
           a.groupLector.localeCompare(b.groupLector)
         );
         break;
+        case GroupSortType.Type:
+  sortedGroups = [...nonSpecialGroups].sort((a, b) =>
+    a.groupCityOrType.localeCompare(b.groupCityOrType)
+  );
+  break;
+
+case GroupSortType.FreePlacesAsc:
+  sortedGroups = [...nonSpecialGroups].sort(
+    (a, b) =>
+      a.groupFreePlaces -
+      b.groupFreePlaces
+  );
+  break;
+
+case GroupSortType.FreePlacesDesc:
+  sortedGroups = [...nonSpecialGroups].sort(
+    (a, b) =>
+      b.groupFreePlaces -
+      a.groupFreePlaces
+  );
+  break;
     }
     setFilteredGroups([...sortedGroups, ...specialGroups]);
   };
@@ -330,6 +351,13 @@ useEffect(() => {
   </div>
 
 </div>
+
+{selectedFilterTab === FilterTabs.Sort && (
+  <GroupSort
+    sortType={selectedSortType}
+    onSortChange={onToggleSort}
+  />
+)}
 
 <div className={styles.filtersDesktop}>
   <GroupsFilter

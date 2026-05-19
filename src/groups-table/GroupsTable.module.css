@@ -89,9 +89,13 @@
   font-size: 14px;
 }
 
-.tableRow > div:nth-child(5),
-.tableRow > div:nth-child(6) {
+.tableRow > .type,
+.tableRow > .info {
   font-size: 22px;
+}
+
+.tableRow > .danteButton {
+  font-size: 14px;
 }
 
 .sortIcon {
@@ -152,4 +156,64 @@
   font-weight: 850;
   letter-spacing: 0.04em;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.14);
+}
+@media (max-width: 700px) {
+  .groupsTable {
+    width: calc(100% - 12px);
+    margin-top: 18px;
+    border-radius: 18px;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 0.95fr 0.9fr 0.9fr 0.48fr 0.48fr 0.72fr;
+  }
+
+  .lectorHeader,
+  .lector {
+    display: none !important;
+  }
+
+  .tableHeader > div {
+    padding: 11px 2px;
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .tableRow {
+    min-height: 54px;
+  }
+
+  .tableRow > div {
+    padding: 9px 2px;
+    font-size: 11px;
+    line-height: 1.08;
+  }
+
+  .tableRow > div:first-child {
+    font-size: 10px;
+  }
+
+  .tableRow > .type,
+  .tableRow > .info {
+    font-size: 18px;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+
+  .tableRow > .danteButton {
+    font-size: 10px;
+    line-height: 1;
+    white-space: normal;
+    padding-inline: 2px;
+  }
+
+  .tableRow > .specialRow {
+    grid-column: span 2;
+    font-size: 10px;
+    line-height: 1.05;
+    padding-inline: 3px;
+  }
 }

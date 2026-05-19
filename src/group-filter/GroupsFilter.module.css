@@ -9,7 +9,7 @@
 
 .filterDesktopContainer {
   position: relative;
-  z-index: 99999;
+  z-index: 2;
 
   display: flex;
   align-items: center;
@@ -111,7 +111,7 @@
 
 :global(.group-filters-multi-select) {
   position: relative !important;
-  z-index: 999999 !important;
+  z-index: 2 !important;
 
   font-family: "Rubik", sans-serif;
 }
@@ -340,7 +340,7 @@
 
   .filters {
     position: relative;
-    z-index: 9999999;
+    z-index: 5;
   }
 
   .filterDesktopContainer {
@@ -351,7 +351,7 @@
     display: block;
 
     position: relative;
-    z-index: 9999999;
+    z-index: 5;
 
     width: 100%;
 
@@ -392,7 +392,7 @@
       0 12px 28px rgba(105, 30, 55, 0.22);
 
     position: relative;
-    z-index: 99999999;
+    z-index: 5;
   }
 
   .filtersButton .material-symbols-outlined {

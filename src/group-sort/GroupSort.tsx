@@ -11,6 +11,7 @@ export const GroupSort = ({
   return (
     <div className={styles.container}>
       <div className={styles.header}>Sortuj według</div>
+
       <div
         className={`${styles.type} ${
           sortType === GroupSortType.Level ? styles.active : ""
@@ -19,6 +20,16 @@ export const GroupSort = ({
       >
         poziomu
       </div>
+
+      <div
+        className={`${styles.type} ${
+          sortType === GroupSortType.Type ? styles.active : ""
+        }`}
+        onClick={() => onSortChange(GroupSortType.Type)}
+      >
+        trybu
+      </div>
+
       <div
         className={`${styles.type} ${
           sortType === GroupSortType.Day ? styles.active : ""
@@ -27,6 +38,7 @@ export const GroupSort = ({
       >
         dnia tygodnia
       </div>
+
       <div
         className={`${styles.type} ${
           sortType === GroupSortType.StartDate ? styles.active : ""
@@ -35,6 +47,7 @@ export const GroupSort = ({
       >
         daty rozpoczęcia
       </div>
+
       <div
         className={`${styles.type} ${
           sortType === GroupSortType.Lector ? styles.active : ""
@@ -42,6 +55,24 @@ export const GroupSort = ({
         onClick={() => onSortChange(GroupSortType.Lector)}
       >
         nauczyciela
+      </div>
+
+      <div
+        className={`${styles.type} ${
+          sortType === GroupSortType.FreePlacesDesc ? styles.active : ""
+        }`}
+        onClick={() => onSortChange(GroupSortType.FreePlacesDesc)}
+      >
+        największej liczby wolnych miejsc
+      </div>
+
+      <div
+        className={`${styles.type} ${
+          sortType === GroupSortType.FreePlacesAsc ? styles.active : ""
+        }`}
+        onClick={() => onSortChange(GroupSortType.FreePlacesAsc)}
+      >
+        najmniejszej liczby wolnych miejsc
       </div>
     </div>
   );
