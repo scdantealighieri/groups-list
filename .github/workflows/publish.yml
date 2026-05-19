@@ -31,15 +31,15 @@ jobs:
         npm run build
 
     - name: Rename css file
-      run: | 
+      run: |
         mkdir -p groups-list
         cd build/static/css
-        mv main.*.css ../../../groups-list/main.groupslist.css
+        cp $(ls main*.css | head -n 1) ../../../groups-list/main.groupslist.css
 
     - name: Rename js file
       run: |
         cd build/static/js
-        mv main.*.js ../../../groups-list/main.groupslist.js
+        cp $(ls main*.js | head -n 1) ../../../groups-list/main.groupslist.js
 
     - name: Checkout storage repository
       uses: actions/checkout@v4.2.2
