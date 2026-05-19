@@ -24,7 +24,7 @@
 /* ===== TOP TOOLBAR ===== */
 
 .toolbar {
-  width: calc(100% - 32px);
+  width: min(1320px, calc(100% - 32px));
   margin: 0 auto;
 
   min-height: 70px;
@@ -48,6 +48,8 @@
 
   gap: 20px;
   box-sizing: border-box;
+
+  border-radius: 18px;
 }
 .toolbarLeft {
   justify-self: start;
