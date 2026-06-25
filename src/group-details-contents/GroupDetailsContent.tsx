@@ -64,12 +64,21 @@ const applyMarkdown = (text: string) =>
       ? groupDetails.groupDescription.slice(kosztIndex).trim()
       : "";
 
-  const totalSeats = groupDetails.groupType === GroupType.Online ? 10 : 12;
-  const takenSeats = totalSeats - groupDetails.groupFreePlaces;
-  const filledPercent = Math.min(
-    100,
-    Math.round((takenSeats / totalSeats) * 100),
-  );
+const totalSeats = 10;
+const freePlaces = Math.max(0, groupDetails.groupFreePlaces);
+const takenSeats = Math.min(totalSeats, totalSeats - freePlaces);
+
+const ratio = takenSeats / totalSeats;
+
+let peopleCount = 0;
+
+if (ratio > 0 && ratio <= 0.33) {
+  peopleCount = 1;
+} else if (ratio <= 0.66) {
+  peopleCount = 2;
+} else {
+  peopleCount = 3;
+}
 
   return (
     <div className={styles.container}>
@@ -178,20 +187,20 @@ const applyMarkdown = (text: string) =>
             group
           </span>
           <div className={styles.placesContainer}>
-            <div className={styles.footerLabel}>Zajęte miejsca</div>
-            <div className={styles.footerValueFraction}>
-              <span className={styles.footerValueLarge}>{takenSeats}</span>
-              <span className={styles.footerValueTotal}>z {totalSeats}</span>
+            <div className={styles.footerLabel}>Liczebność grupy</div>
+            <div className={styles.peopleAvailability}>
+              {[0, 1, 2].map((index) => (
+                <span
+                  key={index}
+                  className={`material-symbols-outlined ${
+                    index < peopleCount ? styles.personActive : styles.personInactive
+                  }`}
+                >
+                  person
+                </span>
+              ))}
             </div>
-            <div className={styles.progressBar}>
-              <div
-                className={styles.progressFill}
-                style={{ width: `${filledPercent}%` }}
-              />
-            </div>
-            <div className={styles.availablePercent}>
-              {filledPercent}% zajętych miejsc
-            </div>
+
           </div>
         </div>
         <div className={styles.footerCta}>

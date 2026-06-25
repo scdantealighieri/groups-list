@@ -24,23 +24,25 @@ export const GroupCard = ({
     return groupHours.split("$")[0];
   };
 
-  const maxPlaces = group.groupType === "stacjonarna" ? 12 : 10;
+const freePlaces = Math.max(0, group.groupFreePlaces);
 
-const occupiedPlaces = maxPlaces - group.groupFreePlaces;
-
-const fillPercent = Math.min(
-  100,
-  Math.max(0, (occupiedPlaces / maxPlaces) * 100)
-);
+const availabilityLabel =
+  freePlaces === 0
+    ? "Pełna"
+    : freePlaces === 1
+    ? "Ostatnie miejsce!"
+    : freePlaces <= 3
+    ? "Ostatnie miejsca!"
+    : "";
 
   return (
     <div
       className={`${styles.groupCard} ${
-        group.groupFreePlaces === 0 ? styles.fullGroupCard : ""
+        freePlaces === 0 ? styles.fullGroupCard : ""
       }`}
       style={{ width: `${cardWidth}px` }}
     >
-      {group.groupFreePlaces === 0 && (
+      {freePlaces === 0 && (
         <div className={styles.groupFullBanner}>Pełna</div>
       )}
 
@@ -68,30 +70,17 @@ group.groupId === "special_duetto" ? (
 )}
             </div>
 
-      {group.groupId !== "special_individual" &&
-        group.groupId !== "special_duetto" && (
-          <div className={styles.capacityWrapper}>
-            <div className={styles.capacityBar}>
-              <div
-                className={styles.capacityFill}
-                style={{ width: `${fillPercent}%` }}
-              />
-
-              <div className={styles.capacityTextDark}>
-                {occupiedPlaces}/{maxPlaces}
-              </div>
-
-              <div
-                className={styles.capacityTextLight}
-                style={{ width: `${fillPercent}%` }}
-              >
-                <span>
-                  {occupiedPlaces}/{maxPlaces}
-                </span>
-              </div>
-            </div>
-          </div>
-        )}
+            {group.groupId !== "special_individual" &&
+              group.groupId !== "special_duetto" &&
+              availabilityLabel && (
+                <div
+                  className={`${styles.availabilityPill} ${
+                    freePlaces === 1 ? styles.availabilityPillBlink : ""
+                  }`}
+                >
+                  {availabilityLabel}
+                </div>
+            )}
 
 
       <div className={styles.groupLevel}>
@@ -146,7 +135,7 @@ group.groupId === "special_duetto" ? (
           </div>
         )}
 
-        {group.groupFreePlaces === 0 && !isLandingPage ? (
+        {freePlaces === 0 && !isLandingPage ? (
           <div
             className={`${styles.signInBtn} ${styles.danteButton} ${styles.notifyButton}`}
             onClick={() => onShowNotify(group.groupId)}

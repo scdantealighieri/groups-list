@@ -463,3 +463,21 @@
   margin-top: 2px;
 }
 
+.peopleAvailability {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.personActive {
+  font-size: 42px;
+  font-variation-settings: 'FILL' 1;
+  color: #8b1e2d;
+}
+
+.personInactive {
+  font-size: 42px;
+  font-variation-settings: 'FILL' 1;
+  color: #e8d8da;
+}
